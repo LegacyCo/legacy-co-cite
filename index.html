@@ -1167,14 +1167,22 @@
                 <stop offset="78%"  stop-color="#D4A853" stop-opacity="0.38"/>
                 <stop offset="100%" stop-color="#E8C97A" stop-opacity="0.72"/>
               </linearGradient>
+              <!-- Arrow gradient: objectBoundingBox so it stays aligned with the polygon's
+                   own x-axis regardless of the rotate() applied each frame.
+                   x1=1 → tip (lightest gold), x2=0 → base (blends into snake body) -->
+              <linearGradient id="arrowGrad" gradientUnits="objectBoundingBox" x1="1" y1="0.5" x2="0" y2="0.5">
+                <stop offset="0%"   stop-color="#F5E6C8"/>
+                <stop offset="55%"  stop-color="#E8C97A"/>
+                <stop offset="100%" stop-color="#C9A84C"/>
+              </linearGradient>
               <path id="lem-path" d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"/>
             </defs>
             <!-- Main snake body (solid gold) -->
             <use href="#lem-path" class="infinity-path" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none"/>
             <!-- Trailing fade — real gradient, endpoints driven by JS each frame -->
             <use href="#lem-path" class="infinity-tail" stroke="url(#tailGrad)" stroke-width="300" stroke-linecap="butt" fill="none"/>
-            <!-- Arrowhead at leading edge — positioned + rotated each RAF frame -->
-            <polygon id="inf-arrow" points="-120,130 -120,-130 160,0" fill="#F0D485" transform="translate(-9999,-9999)"/>
+            <!-- Arrowhead: base overlaps 30u into body (no seam), exactly stroke-width wide -->
+            <polygon id="inf-arrow" points="-30,150 -30,-150 280,0" fill="url(#arrowGrad)" transform="translate(-9999,-9999)"/>
           </svg>
         </div>
         <div class="strip-label">Kingdom Impact</div>
