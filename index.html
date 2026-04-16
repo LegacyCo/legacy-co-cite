@@ -422,7 +422,7 @@
     /* ─── Door numeral ─── */
     .door-num-wrap {
       position: relative;
-      perspective: 400px;
+      perspective: 500px;
       width: 56px;
       height: 52px;
       margin: 0 auto 8px;
@@ -439,16 +439,8 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .door-a {
-      transform-origin: 0% 50%;   /* exact left edge — "2" hinge */
-      z-index: 2;
-      backface-visibility: hidden;
-    }
-    .door-b {
-      transform-origin: 100% 50%; /* exact right edge — "1" hinge */
-      z-index: 1;
-      backface-visibility: hidden;
-    }
+    .door-a { transform-origin: 0% 50%;   z-index: 2; }
+    .door-b { transform-origin: 100% 50%; z-index: 1; }
 
     /* ─── Infinity SVG ─── */
     .infinity-svg {
@@ -1160,17 +1152,23 @@
       <div class="strip-item reveal reveal-delay-3">
         <div class="strip-num" style="display:flex;justify-content:center;margin-bottom:8px;">
           <svg class="infinity-svg" viewBox="0 0 3297 1603" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldSnake" gradientUnits="userSpaceOnUse" x1="0" y1="801" x2="3297" y2="801">
+                <stop offset="0%"   stop-color="#C9A84C"/>
+                <stop offset="35%"  stop-color="#F5E6C8"/>
+                <stop offset="65%"  stop-color="#E8C97A"/>
+                <stop offset="100%" stop-color="#C9A84C"/>
+                <animateTransform attributeName="gradientTransform" type="translate" values="-3297 0; 3297 0" dur="5s" repeatCount="indefinite"/>
+              </linearGradient>
+            </defs>
+            <!-- Main snake body — blunt leading edge -->
             <path class="infinity-path"
-              d="M1648.220,801.049
-                 C1648.220,801.049 1211.246,164.026 838.659,164.026
-                 C466.072,164.026 164.025,449.232 164.025,801.049
-                 C164.025,1152.864 466.072,1438.072 838.659,1438.072
-                 C1211.246,1438.072 1648.220,801.049 1648.220,801.049
-                 C1648.221,801.049 2085.195,164.026 2457.782,164.026
-                 C2830.369,164.026 3132.416,449.232 3132.416,801.049
-                 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072
-                 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
-              stroke="#C9A84C" stroke-width="300" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
+              stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" stroke-linejoin="round" fill="none"/>
+            <!-- Fading tail — trails behind main snake -->
+            <path class="infinity-tail"
+              d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
+              stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.3"/>
           </svg>
         </div>
         <div class="strip-label">Kingdom Impact</div>
@@ -1514,54 +1512,83 @@
       wrap.dataset.running = '1';
       const a = wrap.querySelector('.door-a'); // "2" — left hinge
       const b = wrap.querySelector('.door-b'); // "1" — right hinge
+      const SWING = 850, HOLD = 1100;
 
-      function swingA() {
-        // "2" swings open on its left edge
-        a.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
-        a.style.transform  = 'rotateY(-90deg)';
-        a.addEventListener('transitionend', function h() {
-          a.removeEventListener('transitionend', h);
-          // "1" revealed — slide "2" silently behind "1"
+      // Initial state
+      a.style.opacity = '1'; a.style.transform = 'rotateY(0deg)'; a.style.zIndex = '2';
+      b.style.opacity = '0'; b.style.transform = 'rotateY(0deg)'; b.style.zIndex = '1';
+
+      function openA() {
+        // "2" swings left + fades out
+        a.style.transition = `transform ${SWING}ms cubic-bezier(0.4,0,0.6,1), opacity ${SWING}ms ease-in`;
+        a.style.transform = 'rotateY(-90deg)';
+        a.style.opacity = '0';
+        // "1" fades in during the swing
+        setTimeout(() => {
+          b.style.transition = `opacity ${Math.round(SWING * 0.7)}ms ease-out`;
+          b.style.opacity = '1';
+        }, Math.round(SWING * 0.35));
+        // After swing: reset "2" silently behind "1", then hold and open "1"
+        setTimeout(() => {
           a.style.transition = 'none';
-          a.style.transform  = 'rotateY(0deg)';
+          a.style.transform = 'rotateY(0deg)';
           a.style.zIndex = '1';
           b.style.zIndex = '2';
-          setTimeout(swingB, 600);
-        });
+          setTimeout(openB, HOLD);
+        }, SWING + 60);
       }
 
-      function swingB() {
-        // "1" swings open on its right edge — "2" fades in behind as "1" opens
-        b.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
-        b.style.transform  = 'rotateY(90deg)';
-        b.addEventListener('transitionend', function h() {
-          b.removeEventListener('transitionend', h);
-          // "2" revealed — slide "1" silently behind "2"
+      function openB() {
+        // "1" swings right + fades out
+        b.style.transition = `transform ${SWING}ms cubic-bezier(0.4,0,0.6,1), opacity ${SWING}ms ease-in`;
+        b.style.transform = 'rotateY(90deg)';
+        b.style.opacity = '0';
+        // "2" fades in during the swing
+        setTimeout(() => {
+          a.style.transition = `opacity ${Math.round(SWING * 0.7)}ms ease-out`;
+          a.style.opacity = '1';
+        }, Math.round(SWING * 0.35));
+        // After swing: reset "1" silently behind "2", then hold and open "2"
+        setTimeout(() => {
           b.style.transition = 'none';
-          b.style.transform  = 'rotateY(0deg)';
+          b.style.transform = 'rotateY(0deg)';
           b.style.zIndex = '1';
           a.style.zIndex = '2';
-          setTimeout(swingA, 900);
-        });
+          setTimeout(openA, HOLD);
+        }, SWING + 60);
       }
 
-      setTimeout(swingA, 1000);
+      setTimeout(openA, HOLD);
     }
 
     // ── Infinity snake ────────────────────────────────────────────────────────
     function initInfinity() {
-      const path = document.querySelector('.infinity-path');
-      if (!path || path.dataset.init) return;
-      path.dataset.init = '1';
-      const len = path.getTotalLength();
-      const seg = len * 0.90;
-      path.style.strokeDasharray  = `${seg} ${len - seg}`;
-      path.style.strokeDashoffset = '0';
-      // Inject precise keyframe
+      const main = document.querySelector('.infinity-path');
+      const tail = document.querySelector('.infinity-tail');
+      if (!main || main.dataset.init) return;
+      main.dataset.init = '1';
+      const len     = main.getTotalLength();
+      const mainSeg = len * 0.92;          // 92% solid body
+      const tailSeg = len * 0.05;          // 5% fading tail
+      const tailOff = -(len - tailSeg);    // positions tail just behind main's trailing edge
+      const dur     = 3.5;                 // seconds per loop
+
+      main.style.strokeDasharray  = `${mainSeg} ${len - mainSeg}`;
+      main.style.strokeDashoffset = '0';
+
+      if (tail) {
+        tail.style.strokeDasharray  = `${tailSeg} ${len - tailSeg}`;
+        tail.style.strokeDashoffset = `${tailOff}`;
+      }
+
       const s = document.createElement('style');
-      s.textContent = `@keyframes inf-travel{to{stroke-dashoffset:-${Math.round(len)}px}}`;
+      s.textContent =
+        `@keyframes inf-main{to{stroke-dashoffset:-${Math.round(len)}px}}` +
+        `@keyframes inf-tail{from{stroke-dashoffset:${Math.round(tailOff)}px}to{stroke-dashoffset:${Math.round(tailOff - len)}px}}`;
       document.head.appendChild(s);
-      path.style.animation = `inf-travel ${(len / 155).toFixed(2)}s linear infinite`;
+
+      main.style.animation = `inf-main ${dur}s linear infinite`;
+      if (tail) tail.style.animation = `inf-tail ${dur}s linear infinite`;
     }
 
     // ── Trigger all three on scroll into view ────────────────────────────────
