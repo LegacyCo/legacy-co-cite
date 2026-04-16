@@ -1160,15 +1160,14 @@
                 <stop offset="100%" stop-color="#C9A84C"/>
                 <animateTransform attributeName="gradientTransform" type="translate" values="-3297 0; 3297 0" dur="5s" repeatCount="indefinite"/>
               </linearGradient>
+              <path id="lem-path" d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"/>
             </defs>
             <!-- Main snake body — blunt leading edge -->
-            <path class="infinity-path"
-              d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
-              stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" stroke-linejoin="round" fill="none"/>
-            <!-- Fading tail — trails behind main snake -->
-            <path class="infinity-tail"
-              d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
-              stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.3"/>
+            <use href="#lem-path" class="infinity-path"  stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" stroke-linejoin="round" fill="none"/>
+            <!-- Tail gradient: 3 steps — brightest closest to trailing edge → dimmest farthest -->
+            <use href="#lem-path" class="infinity-tail1" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.30"/>
+            <use href="#lem-path" class="infinity-tail2" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.14"/>
+            <use href="#lem-path" class="infinity-tail3" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.05"/>
           </svg>
         </div>
         <div class="strip-label">Kingdom Impact</div>
@@ -1563,32 +1562,47 @@
 
     // ── Infinity snake ────────────────────────────────────────────────────────
     function initInfinity() {
-      const main = document.querySelector('.infinity-path');
-      const tail = document.querySelector('.infinity-tail');
+      const main  = document.querySelector('.infinity-path');
+      const tail1 = document.querySelector('.infinity-tail1');
+      const tail2 = document.querySelector('.infinity-tail2');
+      const tail3 = document.querySelector('.infinity-tail3');
       if (!main || main.dataset.init) return;
       main.dataset.init = '1';
-      const len     = main.getTotalLength();
-      const mainSeg = len * 0.92;          // 92% solid body
-      const tailSeg = len * 0.05;          // 5% fading tail
-      const tailOff = -(len - tailSeg);    // positions tail just behind main's trailing edge
-      const dur     = 3.5;                 // seconds per loop
+      const len = main.getTotalLength();
+      const dur = 3.5; // seconds per loop
 
+      // Main body: 97% of the loop
+      const mainSeg = len * 0.97;
       main.style.strokeDasharray  = `${mainSeg} ${len - mainSeg}`;
       main.style.strokeDashoffset = '0';
 
-      if (tail) {
-        tail.style.strokeDasharray  = `${tailSeg} ${len - tailSeg}`;
-        tail.style.strokeDashoffset = `${tailOff}`;
-      }
+      // Three tail layers for a soft gradient fade behind the trailing edge:
+      // tail1 (0.30 opacity): 97%–100% — immediate trailing edge, brightest
+      // tail2 (0.14 opacity): 94%–97% — mid fade
+      // tail3 (0.05 opacity): 92%–94% — near invisible whisper
+      const tails = [
+        { el: tail1, seg: len * 0.03, off: -(len * 0.97), name: 'inf-tail1' },
+        { el: tail2, seg: len * 0.03, off: -(len * 0.94), name: 'inf-tail2' },
+        { el: tail3, seg: len * 0.02, off: -(len * 0.92), name: 'inf-tail3' },
+      ];
 
       const s = document.createElement('style');
-      s.textContent =
-        `@keyframes inf-main{to{stroke-dashoffset:-${Math.round(len)}px}}` +
-        `@keyframes inf-tail{from{stroke-dashoffset:${Math.round(tailOff)}px}to{stroke-dashoffset:${Math.round(tailOff - len)}px}}`;
+      s.textContent = `@keyframes inf-main{to{stroke-dashoffset:-${Math.round(len)}px}}`;
+
+      tails.forEach(({ el, seg, off, name }) => {
+        if (!el) return;
+        el.style.strokeDasharray  = `${seg} ${len - seg}`;
+        el.style.strokeDashoffset = `${off}`;
+        s.textContent += `@keyframes ${name}{from{stroke-dashoffset:${Math.round(off)}px}to{stroke-dashoffset:${Math.round(off - len)}px}}`;
+      });
+
       document.head.appendChild(s);
 
       main.style.animation = `inf-main ${dur}s linear infinite`;
-      if (tail) tail.style.animation = `inf-tail ${dur}s linear infinite`;
+      tails.forEach(({ el, name }) => {
+        if (!el) return;
+        el.style.animation = `${name} ${dur}s linear infinite`;
+      });
     }
 
     // ── Trigger all three on scroll into view ────────────────────────────────
