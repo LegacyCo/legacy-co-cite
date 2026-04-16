@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Legacy Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #C9A84C;
+      --cream:  #F5E6C8;
+      --black:  #080808;
+      --dark:   #0F0F0F;
+      --dark2:  #161616;
+      --white:  #FAFAF8;
+      --muted:  #888880;
+      --border: rgba(201,168,76,0.18);
+      --font-title: 'Archivo Black', 'Arial Black', sans-serif;
+      --font-body:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --grad-gold: linear-gradient(135deg, #C9A84C 0%, #E8C97A 45%, #F5E6C8 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .grad-text {
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(8,8,8,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(201,168,76,0.08); transition: background 0.3s ease; }
+    .nav-logo { font-family: var(--font-title); font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; z-index: 110; }
+    .nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-center a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s ease; white-space: nowrap; }
+    .nav-center a:hover, .nav-center a.active { color: var(--cream); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .btn { display: inline-block; padding: 14px 36px; border-radius: 100px; font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; outline: none; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,#E8C97A 0%,#F5E6C8 50%,#FFFFFF 100%); opacity: 0; transition: opacity 0.3s ease; }
+    .btn:hover::before { opacity: 1; } .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.3); } .btn span { position: relative; z-index: 1; }
+    .btn-primary { background: linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C); background-size: 300% 300%; animation: shimmer 5s ease infinite; color: var(--black); }
+    @keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 110; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer { display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0; background: rgba(8,8,8,0.98); backdrop-filter: blur(20px); z-index: 99; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transform: translateY(-12px); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); pointer-events: none; }
+    .nav-drawer.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .drawer-link { font-family: var(--font-title); font-size: clamp(28px,6vw,48px); letter-spacing: -0.01em; text-transform: uppercase; color: rgba(250,250,248,0.5); text-decoration: none; padding: 16px 40px; width: 100%; text-align: center; transition: color 0.2s ease; border-bottom: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:first-child { border-top: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:hover { color: var(--cream); }
+    .drawer-link.drawer-cta { color: var(--gold); margin-top: 8px; border: none; font-size: clamp(20px,4vw,28px); }
+    @media (max-width: 900px) { nav { padding: 0 24px; } .nav-center { display: none; } .nav-right .btn { display: none; } .nav-hamburger { display: flex; } .nav-drawer { display: flex; } }
+
+    /* Hero */
+    #hero {
+      padding: 140px 0 64px;
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-title);
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Content */
+    #content {
+      padding: 80px 0 120px;
+      background: var(--dark);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar TOC */
+    .toc {
+      position: sticky;
+      top: 100px;
+    }
+
+    .toc-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-list a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 0;
+      border-left: 1px solid rgba(201,168,76,0.15);
+      padding-left: 16px;
+      display: block;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+    }
+    .toc-list a:hover {
+      color: var(--cream);
+      border-left-color: var(--gold);
+    }
+
+    /* Body */
+    .policy-body {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .policy-section { scroll-margin-top: 100px; }
+
+    .section-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(18px, 2.5vw, 24px);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .section-body {
+      font-size: 15px;
+      color: rgba(250,250,248,0.65);
+      line-height: 1.85;
+    }
+
+    .section-body p + p { margin-top: 16px; }
+
+    .section-body ul {
+      margin: 16px 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-body ul li {
+      padding-left: 20px;
+      position: relative;
+      font-size: 15px;
+      color: rgba(250,250,248,0.65);
+    }
+
+    .section-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .contact-block {
+      margin-top: 24px;
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .contact-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-gold);
+    }
+
+    .contact-block p {
+      font-size: 14px;
+      color: rgba(250,250,248,0.65);
+      margin-bottom: 8px;
+    }
+
+    .contact-block a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .contact-block a:hover { color: var(--cream); }
+
+    /* Footer */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--font-title);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .footer-copy { font-size: 12px; color: rgba(136,136,128,0.5); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--cream); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .container { padding: 0 24px; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .footer-inner { padding: 0 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="brand-coaching.html">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Legal</p>
+      <h1 class="hero-headline"><span class="grad-text">Privacy</span><br/>Policy</h1>
+      <p class="hero-meta">Effective Date: November 23, 2024</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section id="content">
+    <div class="container">
+      <div class="policy-grid">
+
+        <!-- TOC -->
+        <aside class="toc">
+          <p class="toc-label">Contents</p>
+          <ul class="toc-list">
+            <li><a href="#section-1">Information We Collect</a></li>
+            <li><a href="#section-2">How We Use It</a></li>
+            <li><a href="#section-3">Mobile Numbers</a></li>
+            <li><a href="#section-4">Sharing Information</a></li>
+            <li><a href="#section-5">CRM Data Storage</a></li>
+            <li><a href="#section-6">Cookies</a></li>
+            <li><a href="#section-7">Your Rights</a></li>
+            <li><a href="#section-8">Children's Privacy</a></li>
+            <li><a href="#section-9">Privacy Rights</a></li>
+            <li><a href="#section-10">Policy Changes</a></li>
+            <li><a href="#section-11">Accessibility</a></li>
+            <li><a href="#section-12">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Body -->
+        <div class="policy-body">
+
+          <div class="policy-section" id="section-1">
+            <p class="section-num">01</p>
+            <h2 class="section-title">Information We Collect</h2>
+            <div class="section-body">
+              <p>Legacy Creative Co. gathers several categories of data to provide and improve our services:</p>
+              <ul>
+                <li><strong>Personal Information</strong> — Name, email address, phone number, and other contact details provided by you</li>
+                <li><strong>Mobile Information</strong> — Phone numbers designated for communication and messaging purposes</li>
+                <li><strong>User-Generated Content</strong> — Data from chats, forms, or submissions on our platform</li>
+                <li><strong>Technical Information</strong> — IP address, browser type, and usage data collected via cookies or similar technologies</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-2">
+            <p class="section-num">02</p>
+            <h2 class="section-title">How We Use Your Information</h2>
+            <div class="section-body">
+              <p>The data we collect is used to:</p>
+              <ul>
+                <li>Provide, maintain, and improve our services</li>
+                <li>Respond to your inquiries and send relevant updates</li>
+                <li>Send text messages and emails related to our services</li>
+                <li>Personalize your experience and improve website functionality</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-3">
+            <p class="section-num">03</p>
+            <h2 class="section-title">Collection & Use of Mobile Phone Numbers</h2>
+            <div class="section-body">
+              <p>Mobile phone numbers will be used exclusively for communication purposes related to our services.</p>
+              <p>We do not share your mobile information with third parties or affiliates for marketing purposes. Your number is used only to communicate with you directly about your engagement with Legacy Creative Co.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-4">
+            <p class="section-num">04</p>
+            <h2 class="section-title">Sharing Your Information</h2>
+            <div class="section-body">
+              <p>We do not sell or share your personal information with unaffiliated third parties, except in the following circumstances:</p>
+              <ul>
+                <li>To comply with applicable legal requirements or respond to lawful requests</li>
+                <li>To protect the security or integrity of our services</li>
+                <li>When providing services with trusted partners who are bound by confidentiality agreements</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-5">
+            <p class="section-num">05</p>
+            <h2 class="section-title">Storage of Data in CRM</h2>
+            <div class="section-body">
+              <p>All data collected via chat or website interactions is securely stored in our CRM system. We use industry-standard security measures to protect your information from unauthorized access, disclosure, or misuse.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-6">
+            <p class="section-num">06</p>
+            <h2 class="section-title">Cookies & Tracking Technologies</h2>
+            <div class="section-body">
+              <p>Our website uses cookies to analyze performance and improve your experience. Cookies are small data files stored on your device that help us understand how you interact with our site.</p>
+              <p>You can manage or disable cookies through your browser settings at any time. Note that disabling cookies may affect some functionality of the site.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-7">
+            <p class="section-num">07</p>
+            <h2 class="section-title">Access & Updates to Your Information</h2>
+            <div class="section-body">
+              <p>You may request access to, updates to, or deletion of your personal information at any time by contacting us at <a href="mailto:support@legacycreative.co" style="color:var(--gold);">support@legacycreative.co</a>.</p>
+              <p>We will respond to all requests within a reasonable timeframe and in accordance with applicable privacy laws.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-8">
+            <p class="section-num">08</p>
+            <h2 class="section-title">Children's Privacy</h2>
+            <div class="section-body">
+              <p>Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children. If we become aware that we have inadvertently collected information from a child under 13, we will take steps to delete it promptly.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-9">
+            <p class="section-num">09</p>
+            <h2 class="section-title">Your Privacy Rights</h2>
+            <div class="section-body">
+              <p>Depending on your location, you may have certain rights regarding your personal data, including the right to access, rectify, or request deletion of your personal information.</p>
+              <p>To exercise any of these rights, please contact us using the information in Section 12 below.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-10">
+            <p class="section-num">10</p>
+            <h2 class="section-title">Changes to This Privacy Policy</h2>
+            <div class="section-body">
+              <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. Updates will be posted on this page with a revised effective date.</p>
+              <p>We encourage you to review this policy periodically to stay informed about how we protect your information.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-11">
+            <p class="section-num">11</p>
+            <h2 class="section-title">Accessibility of This Policy</h2>
+            <div class="section-body">
+              <p>This Privacy Policy is accessible at all times via a direct link in our website footer and within any messaging workflows where your mobile number or other personal information is collected.</p>
+            </div>
+          </div>
+
+          <div class="policy-section" id="section-12">
+            <p class="section-num">12</p>
+            <h2 class="section-title">Contact Us</h2>
+            <div class="section-body">
+              <p>If you have any questions about this Privacy Policy or how we handle your data, please reach out:</p>
+              <div class="contact-block">
+                <p><strong style="color:var(--white);font-family:var(--font-title);font-size:14px;letter-spacing:0.04em;text-transform:uppercase;">Legacy Creative Co.</strong></p>
+                <p>Email: <a href="mailto:support@legacycreative.co">support@legacycreative.co</a></p>
+                <p>Phone: <a href="tel:+19804475429">+1 (980) 447-5429</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+      <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+      <div class="footer-links">
+        <a href="consultation.html">Book a Call</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.97)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+    const hamburger = document.querySelector('.nav-hamburger');
+    const drawer = document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open'); hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false); document.body.style.overflow = '';
+      });
+    });
+  </script>
+
+</body>
+</html>

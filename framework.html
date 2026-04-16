@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Brand Discipleship Framework — Legacy Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--gold:#C9A84C;--cream:#F5E6C8;--black:#080808;--dark:#0F0F0F;--dark2:#161616;--dark3:#1E1E1E;--white:#FAFAF8;--muted:#888880;--border:rgba(201,168,76,0.18);--font-title:'Archivo Black','Arial Black',sans-serif;--font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;--grad-gold:linear-gradient(135deg,#C9A84C 0%,#E8C97A 45%,#F5E6C8 100%);--grad-gold-h:linear-gradient(135deg,#E8C97A 0%,#F5E6C8 50%,#FFF 100%);}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .grad-text{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .grad-text-animate{background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s ease infinite;}
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.35s;}.reveal-delay-4{transition-delay:.5s;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.08);transition:background .3s ease;}
+    .nav-logo{font-family:var(--font-title);font-size:18px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;z-index:110;}
+    .nav-center{display:flex;align-items:center;gap:32px;list-style:none;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s ease;white-space:nowrap;}
+    .nav-center a:hover,.nav-center a.active{color:var(--cream);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .btn{display:inline-block;padding:14px 36px;border-radius:100px;font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;outline:none;position:relative;overflow:hidden;transition:all .3s cubic-bezier(.16,1,.3,1);}
+    .btn::before{content:'';position:absolute;inset:0;background:var(--grad-gold-h);opacity:0;transition:opacity .3s ease;}
+    .btn:hover::before{opacity:1;}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.3);}.btn span{position:relative;z-index:1;}
+    .btn-primary{background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C);background-size:300% 300%;animation:shimmer 5s ease infinite;color:var(--black);}
+    .btn-outline{background:transparent;color:var(--cream);border:1px solid var(--border);}
+    .btn-outline:hover{color:var(--black);border-color:transparent;}
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;background:none;border:none;padding:4px;z-index:110;}
+    .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .3s cubic-bezier(.16,1,.3,1);transform-origin:center;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+    .nav-drawer{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;justify-content:center;align-items:center;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+    .nav-drawer.open{opacity:1;transform:translateY(0);pointer-events:all;}
+    .drawer-link{font-family:var(--font-title);font-size:clamp(28px,6vw,48px);letter-spacing:-.01em;text-transform:uppercase;color:rgba(250,250,248,0.5);text-decoration:none;padding:16px 40px;width:100%;text-align:center;transition:color .2s ease;border-bottom:1px solid rgba(201,168,76,0.06);}
+    .drawer-link:first-child{border-top:1px solid rgba(201,168,76,0.06);}
+    .drawer-link:hover{color:var(--cream);}
+    .drawer-link.drawer-cta{color:var(--gold);margin-top:8px;border:none;font-size:clamp(20px,4vw,28px);}
+    @media(max-width:900px){nav{padding:0 24px;}.nav-center{display:none;}.nav-right .btn{display:none;}.nav-hamburger{display:flex;}.nav-drawer{display:flex;}}
+    .container{max-width:1100px;margin:0 auto;padding:0 48px;}
+
+    /* Hero */
+    #hero{padding:140px 0 100px;background:var(--black);position:relative;overflow:hidden;text-align:center;}
+    #hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;}
+    .hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+    .hero-headline{font-family:var(--font-title);font-size:clamp(44px,7vw,90px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:24px;}
+    .hero-sub{font-size:18px;color:rgba(250,250,248,0.6);max-width:580px;margin:0 auto 48px;line-height:1.8;}
+    .hero-manifesto{font-family:var(--font-title);font-size:clamp(20px,3vw,32px);line-height:1.3;letter-spacing:-.01em;max-width:700px;margin:0 auto;color:rgba(250,250,248,0.85);}
+
+    /* Philosophy */
+    #philosophy{padding:100px 0;background:var(--dark2);}
+    .phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .phil-label{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+    .phil-headline{font-family:var(--font-title);font-size:clamp(28px,4vw,48px);line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:24px;}
+    .phil-body{font-size:16px;color:rgba(250,250,248,0.65);line-height:1.85;margin-bottom:20px;}
+    .phil-quote{border-left:2px solid var(--gold);padding:16px 24px;font-family:var(--font-title);font-size:18px;line-height:1.4;letter-spacing:-.01em;color:var(--cream);margin:32px 0;}
+    .values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+    .value-item{background:var(--dark2);padding:28px 32px;}
+    .value-title{font-family:var(--font-title);font-size:14px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
+    .value-body{font-size:13px;color:var(--muted);line-height:1.6;}
+
+    /* Four Pillars */
+    #pillars{padding:120px 0;background:var(--dark);}
+    .pillars-header{text-align:center;margin-bottom:80px;}
+    .pillars-headline{font-family:var(--font-title);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:20px;}
+    .pillars-sub{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.75;}
+    .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+    .pillar-card{background:var(--dark);padding:56px 52px;position:relative;overflow:hidden;transition:background .3s ease;}
+    .pillar-card:hover{background:var(--dark3);}
+    .pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);opacity:0;transition:opacity .3s ease;}
+    .pillar-card:hover::before{opacity:1;}
+    .pillar-num{font-family:var(--font-title);font-size:48px;line-height:1;letter-spacing:-.03em;margin-bottom:16px;opacity:0.15;}
+    .pillar-title{font-family:var(--font-title);font-size:clamp(24px,3vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:12px;}
+    .pillar-verse{font-size:12px;font-style:italic;color:var(--gold);margin-bottom:20px;letter-spacing:.05em;}
+    .pillar-desc{font-size:15px;color:rgba(250,250,248,0.6);line-height:1.8;}
+
+    /* Two Doors */
+    #two-doors{padding:100px 0;background:var(--dark2);}
+    .doors-header{text-align:center;margin-bottom:64px;}
+    .doors-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;}
+    .door-card{border:1px solid var(--border);padding:52px 44px;position:relative;background:var(--dark);transition:border-color .3s ease;}
+    .door-card:hover{border-color:rgba(201,168,76,0.4);}
+    .door-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);}
+    .door-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .door-name{font-family:var(--font-title);font-size:26px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:14px;}
+    .door-body{font-size:14px;color:rgba(250,250,248,0.6);line-height:1.75;margin-bottom:32px;}
+    .door-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;}
+    .door-x{font-family:var(--font-title);font-size:64px;line-height:1;letter-spacing:-.04em;}
+    .door-x-line{width:1px;height:60px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.4));}
+    .door-x-line.bottom{background:linear-gradient(to top,transparent,rgba(201,168,76,0.4));}
+
+    /* Final CTA */
+    #cta{padding:120px 0;background:var(--black);text-align:center;position:relative;overflow:hidden;}
+    #cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+
+    footer{background:var(--dark2);border-top:1px solid var(--border);padding:40px 0;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+    .footer-brand{font-family:var(--font-title);font-size:16px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;}
+    .footer-copy{font-size:12px;color:rgba(136,136,128,0.5);}
+    .footer-links{display:flex;gap:28px;}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s ease;}
+    .footer-links a:hover{color:var(--cream);}
+
+    @media(max-width:900px){
+      .container{padding:0 24px;}
+      .phil-grid{grid-template-columns:1fr;}
+      .values-grid{grid-template-columns:1fr;}
+      .pillars-grid{grid-template-columns:1fr;}
+      .doors-grid{grid-template-columns:1fr;}
+      .door-connector{padding:20px 0;}
+      .door-x{font-size:40px;}
+    }
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}.btn-primary,.grad-text-animate{animation:none;}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html" class="active">Framework</a></li>
+      <li><a href="brand-coaching.html">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-drawer" role="dialog">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Brand Discipleship</p>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        <span style="display:block;">Build From</span>
+        <span class="grad-text-animate" style="display:block;">Identity.</span>
+        <span style="display:block;">Not Performance.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">Somewhere along the way, branding became more about optics than obedience. More about performance than purpose. Brand Discipleship exists to change that.</p>
+      <p class="hero-manifesto reveal reveal-delay-3">
+        Stop building for <em style="-webkit-text-fill-color:initial;font-style:normal;" class="grad-text">approval</em>.<br/>
+        Start building from <em style="-webkit-text-fill-color:initial;font-style:normal;" class="grad-text">identity</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="phil-grid">
+        <div>
+          <p class="phil-label reveal">Why Brand Discipleship?</p>
+          <h2 class="phil-headline reveal reveal-delay-1">Who Are You <span class="grad-text">Becoming?</span></h2>
+          <p class="phil-body reveal reveal-delay-2">We guide Kingdom-minded entrepreneurs, creatives, and nonprofit leaders to align their brand with their God-given calling — so their work reflects who they are becoming, not just what they do.</p>
+          <p class="phil-body reveal reveal-delay-2">Your brand should flow from who you're becoming. Not the market. Not your competitors. Not even your audience's expectations.</p>
+          <blockquote class="phil-quote reveal reveal-delay-3">"Obedience over optics. Kingdom-first branding. Aligned, not loud."</blockquote>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="values-grid">
+            <div class="value-item">
+              <div class="value-title">Obedience Over Optics</div>
+              <div class="value-body">Your brand decisions should flow from calling, not clout.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-title">Kingdom-First Branding</div>
+              <div class="value-body">Build for eternal impact, not just market share.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-title">Aligned, Not Loud</div>
+              <div class="value-body">Clarity is more powerful than volume. Know who you are.</div>
+            </div>
+            <div class="value-item">
+              <div class="value-title">Steward Your Calling</div>
+              <div class="value-body">What you carry is yours to steward. Build accordingly.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Pillars -->
+  <section id="pillars">
+    <div class="container">
+      <div class="pillars-header">
+        <p class="reveal" style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">The Framework</p>
+        <h2 class="pillars-headline reveal reveal-delay-1">The Four <span class="grad-text-animate">Pillars</span></h2>
+        <p class="pillars-sub reveal reveal-delay-2">Four interconnected dimensions of identity, calling, formation, and expression. Measured. Interpreted. Applied.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card reveal">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title grad-text">Imprint</div>
+          <div class="pillar-verse">Identity & Assignment</div>
+          <p class="pillar-desc">"You are the only one who carries what you carry." The Imprint pillar uncovers your God-given identity and assignment — the unique wiring that makes your brand distinctly yours and irreplaceable.</p>
+        </div>
+        <div class="pillar-card reveal reveal-delay-1">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title grad-text">Mountain</div>
+          <div class="pillar-verse">Calling & Direction</div>
+          <p class="pillar-desc">"Clarity comes when you rise above the noise." The Mountain pillar reveals your calling and intended audience — your sense of stewardship and the eternal significance of what you're building.</p>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title grad-text">Inner World</div>
+          <div class="pillar-verse">Formation & Surrender</div>
+          <p class="pillar-desc">"God desires truth in your hidden places." The Inner World pillar measures the alignment between your private life and your public brand — spiritual health, integrity, silence, and surrender.</p>
+        </div>
+        <div class="pillar-card reveal reveal-delay-1">
+          <div class="pillar-num">04</div>
+          <div class="pillar-title grad-text">Overflow</div>
+          <div class="pillar-verse">Expression & Output</div>
+          <p class="pillar-desc">"Your brand becomes a witness when it flows from presence." The Overflow pillar measures whether your output is flowing from partnership with God — sustainable, life-giving, and genuine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two Doors -->
+  <section id="two-doors">
+    <div class="container">
+      <div class="doors-header">
+        <p class="reveal" style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Introducing</p>
+        <h2 class="reveal reveal-delay-1" style="font-family:var(--font-title);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:16px;">The Brand <span class="grad-text-animate">Bridge™</span></h2>
+        <p class="reveal reveal-delay-2" style="font-size:17px;color:var(--muted);max-width:520px;margin:0 auto;">Two doors. One mission. Which one is right for you?</p>
+      </div>
+      <div class="doors-grid">
+        <div class="door-card reveal">
+          <div class="door-tag">Door One</div>
+          <div class="door-name">Brand Discipleship</div>
+          <p class="door-body">Start here if you need clarity on who you are before you can build what you're called to create. The assessment. The coaching. The foundation.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <a href="assessment.html" class="btn btn-primary"><span>Take the Assessment</span></a>
+            <a href="brand-coaching.html" class="btn btn-outline"><span>Explore Coaching</span></a>
+          </div>
+        </div>
+        <div class="door-connector reveal reveal-delay-1">
+          <div class="door-x-line"></div>
+          <div class="door-x grad-text-animate">×</div>
+          <div class="door-x-line bottom"></div>
+        </div>
+        <div class="door-card reveal reveal-delay-2">
+          <div class="door-tag">Door Two</div>
+          <div class="door-name">Legacy Co</div>
+          <p class="door-body">Start here if you know who you are and you're ready to execute. Brand identity, web design, marketing systems — built to last.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <a href="consultation.html" class="btn btn-primary"><span>Book a Consultation</span></a>
+            <a href="services.html" class="btn btn-outline"><span>View Services</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <p class="reveal" style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Take the First Step</p>
+      <h2 class="reveal reveal-delay-1" style="font-family:var(--font-title);font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:16px;">Toward <span class="grad-text-animate">Alignment.</span></h2>
+      <p class="reveal reveal-delay-2" style="font-size:17px;color:var(--muted);max-width:460px;margin:0 auto 48px;line-height:1.75;">"This isn't a personality test. It's identity formation." 20 questions. Four pillars. Clarity on where you are and what's next.</p>
+      <div class="reveal reveal-delay-2" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="assessment.html" class="btn btn-primary"><span>Take the Imprint Assessment</span></a>
+        <a href="brand-coaching.html" class="btn btn-outline"><span>Work 1:1 with KC</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+        <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+        <div class="footer-links">
+          <a href="faqs.html">FAQs</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="consultation.html">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const nav=document.querySelector('nav');
+    window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,8,0.97)':'rgba(8,8,8,0.85)';},{passive:true});
+    const hamburger=document.querySelector('.nav-hamburger');
+    const drawer=document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click',()=>{const isOpen=drawer.classList.toggle('open');hamburger.classList.toggle('open',isOpen);hamburger.setAttribute('aria-expanded',isOpen);document.body.style.overflow=isOpen?'hidden':'';});
+    drawer.querySelectorAll('.drawer-link').forEach(link=>{link.addEventListener('click',()=>{drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';});});
+  </script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imprint Intensive — 1:1 Brand Coaching with KC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--gold:#C9A84C;--cream:#F5E6C8;--black:#080808;--dark:#0F0F0F;--dark2:#161616;--dark3:#1E1E1E;--white:#FAFAF8;--muted:#888880;--border:rgba(201,168,76,0.18);--font-title:'Archivo Black','Arial Black',sans-serif;--font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;--grad-gold:linear-gradient(135deg,#C9A84C 0%,#E8C97A 45%,#F5E6C8 100%);--grad-gold-h:linear-gradient(135deg,#E8C97A 0%,#F5E6C8 50%,#FFF 100%);}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .grad-text{background:var(--grad-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .grad-text-animate{background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s ease infinite;}
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.35s;}.reveal-delay-4{transition-delay:.5s;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.08);transition:background .3s ease;}
+    .nav-logo{font-family:var(--font-title);font-size:18px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;z-index:110;}
+    .nav-center{display:flex;align-items:center;gap:32px;list-style:none;}
+    .nav-center a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s ease;white-space:nowrap;}
+    .nav-center a:hover,.nav-center a.active{color:var(--cream);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .btn{display:inline-block;padding:14px 36px;border-radius:100px;font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;outline:none;position:relative;overflow:hidden;transition:all .3s cubic-bezier(.16,1,.3,1);}
+    .btn::before{content:'';position:absolute;inset:0;background:var(--grad-gold-h);opacity:0;transition:opacity .3s ease;}
+    .btn:hover::before{opacity:1;}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.3);}.btn span{position:relative;z-index:1;}
+    .btn-primary{background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C);background-size:300% 300%;animation:shimmer 5s ease infinite;color:var(--black);}
+    .btn-outline{background:transparent;color:var(--cream);border:1px solid var(--border);}
+    .btn-outline:hover{color:var(--black);border-color:transparent;}
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;background:none;border:none;padding:4px;z-index:110;}
+    .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .3s cubic-bezier(.16,1,.3,1);transform-origin:center;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+    .nav-drawer{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;justify-content:center;align-items:center;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+    .nav-drawer.open{opacity:1;transform:translateY(0);pointer-events:all;}
+    .drawer-link{font-family:var(--font-title);font-size:clamp(28px,6vw,48px);letter-spacing:-.01em;text-transform:uppercase;color:rgba(250,250,248,0.5);text-decoration:none;padding:16px 40px;width:100%;text-align:center;transition:color .2s ease;border-bottom:1px solid rgba(201,168,76,0.06);}
+    .drawer-link:first-child{border-top:1px solid rgba(201,168,76,0.06);}
+    .drawer-link:hover{color:var(--cream);}
+    .drawer-link.drawer-cta{color:var(--gold);margin-top:8px;border:none;font-size:clamp(20px,4vw,28px);}
+    @media(max-width:900px){nav{padding:0 24px;}.nav-center{display:none;}.nav-right .btn{display:none;}.nav-hamburger{display:flex;}.nav-drawer{display:flex;}}
+    .container{max-width:1100px;margin:0 auto;padding:0 48px;}
+
+    /* Hero */
+    #hero{padding:140px 0 100px;background:var(--black);position:relative;overflow:hidden;}
+    #hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;}
+    .hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+    .hero-headline{font-family:var(--font-title);font-size:clamp(48px,8vw,100px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:32px;}
+    .hero-sub{font-size:19px;color:rgba(250,250,248,0.6);max-width:600px;line-height:1.8;margin-bottom:48px;}
+    .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+
+    /* What It Is */
+    #what-it-is{padding:100px 0;background:var(--dark2);}
+    .section-label{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .section-headline{font-family:var(--font-title);font-size:clamp(32px,5vw,56px);line-height:1.0;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:28px;}
+    .section-body{font-size:16px;color:rgba(250,250,248,0.65);line-height:1.85;max-width:640px;}
+    .what-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+    .what-quote{border-left:2px solid var(--gold);padding:20px 28px;font-family:var(--font-title);font-size:20px;line-height:1.35;letter-spacing:-.01em;color:var(--cream);margin-top:40px;}
+    .what-quote cite{display:block;font-family:var(--font-body);font-size:12px;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:12px;}
+    .what-right{display:flex;flex-direction:column;gap:24px;}
+    .what-card{background:var(--dark3);border:1px solid var(--border);padding:28px 32px;position:relative;}
+    .what-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad-gold);}
+    .what-card-num{font-family:var(--font-title);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .what-card-title{font-family:var(--font-title);font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
+    .what-card-body{font-size:14px;color:var(--muted);line-height:1.7;}
+
+    /* Who It's For */
+    #who{padding:100px 0;background:var(--dark);}
+    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+    .who-card{background:var(--dark);padding:40px 44px;}
+    .who-card-icon{width:32px;height:2px;background:var(--gold);margin-bottom:20px;}
+    .who-card-title{font-family:var(--font-title);font-size:20px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:12px;}
+    .who-card-body{font-size:14px;color:var(--muted);line-height:1.75;}
+    .who-not{margin-top:60px;text-align:center;}
+    .who-not-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+    .who-not-text{font-family:var(--font-title);font-size:clamp(18px,2.5vw,28px);line-height:1.2;letter-spacing:-.01em;color:rgba(250,250,248,0.4);max-width:700px;margin:0 auto;}
+
+    /* What's Included */
+    #included{padding:120px 0;background:var(--dark2);}
+    .included-header{margin-bottom:72px;}
+    .included-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+    .included-item{background:var(--dark2);padding:40px 36px;position:relative;overflow:hidden;}
+    .included-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--grad-gold);opacity:0;transition:opacity .3s ease;}
+    .included-item:hover::after{opacity:1;}
+    .included-icon{width:40px;height:40px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
+    .included-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+    .included-title{font-family:var(--font-title);font-size:16px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:10px;}
+    .included-body{font-size:13px;color:var(--muted);line-height:1.75;}
+
+    /* The Process */
+    #process{padding:100px 0;background:var(--black);}
+    .process-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);}
+    .process-step{display:grid;grid-template-columns:80px 1fr;gap:0;border-bottom:1px solid var(--border);}
+    .process-step:last-child{border-bottom:none;}
+    .process-num{display:flex;align-items:center;justify-content:center;background:var(--dark2);border-right:1px solid var(--border);font-family:var(--font-title);font-size:28px;letter-spacing:-.02em;color:rgba(201,168,76,0.3);padding:40px 0;}
+    .process-content{padding:36px 40px;}
+    .process-title{font-family:var(--font-title);font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
+    .process-body{font-size:14px;color:var(--muted);line-height:1.75;}
+
+    /* Investment */
+    #investment{padding:100px 0;background:var(--dark2);}
+    .invest-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+    .invest-card{background:var(--dark2);padding:52px 48px;}
+    .invest-card.featured{background:var(--dark3);position:relative;}
+    .invest-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);}
+    .invest-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .invest-name{font-family:var(--font-title);font-size:clamp(24px,3vw,36px);text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
+    .invest-price{font-family:var(--font-title);font-size:clamp(36px,5vw,56px);letter-spacing:-.03em;margin-bottom:6px;}
+    .invest-price sup{font-size:0.45em;vertical-align:super;letter-spacing:0;}
+    .invest-cycle{font-size:13px;color:var(--muted);margin-bottom:28px;}
+    .invest-divider{height:1px;background:var(--border);margin:28px 0;}
+    .invest-features{list-style:none;display:flex;flex-direction:column;gap:12px;}
+    .invest-features li{font-size:14px;color:rgba(250,250,248,0.7);line-height:1.5;padding-left:20px;position:relative;}
+    .invest-features li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:1px;background:var(--gold);}
+    .invest-cta{margin-top:36px;}
+    .invest-note{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6;}
+
+    /* CTA */
+    #cta{padding:120px 0;background:var(--black);text-align:center;position:relative;overflow:hidden;}
+    #cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .cta-eyebrow{font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+    .cta-headline{font-family:var(--font-title);font-size:clamp(36px,6vw,72px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:24px;}
+    .cta-sub{font-size:17px;color:rgba(250,250,248,0.55);max-width:520px;margin:0 auto 48px;line-height:1.75;}
+    .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+    footer{background:var(--dark2);border-top:1px solid var(--border);padding:40px 0;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+    .footer-brand{font-family:var(--font-title);font-size:16px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;}
+    .footer-copy{font-size:12px;color:rgba(136,136,128,0.5);}
+    .footer-links{display:flex;gap:28px;}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s ease;}
+    .footer-links a:hover{color:var(--cream);}
+
+    @media(max-width:900px){
+      .container{padding:0 24px;}
+      .what-grid{grid-template-columns:1fr;}
+      .who-grid{grid-template-columns:1fr;}
+      .included-grid{grid-template-columns:1fr;}
+      .invest-grid{grid-template-columns:1fr;}
+      .process-step{grid-template-columns:60px 1fr;}
+      .hero-ctas{flex-direction:column;align-items:flex-start;}
+    }
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}.btn-primary,.grad-text-animate{animation:none;}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="brand-coaching.html" class="active">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-drawer" role="dialog">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Brand Discipleship · Imprint Intensive</p>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        <span style="display:block;">Work 1:1</span>
+        <span class="grad-text-animate" style="display:block;">With KC.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">This isn't a course. It's not a template. It's deep, one-on-one work to help you discover, define, and deploy a brand built from the inside out — anchored in who God made you to be.</p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="consultation.html" class="btn btn-primary"><span>Apply Now</span></a>
+        <a href="assessment.html" class="btn btn-outline"><span>Take the Assessment First</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What It Is -->
+  <section id="what-it-is">
+    <div class="container">
+      <div class="what-grid">
+        <div>
+          <p class="section-label reveal">The Imprint Intensive</p>
+          <h2 class="section-headline reveal reveal-delay-1">Your Brand,<br/><span class="grad-text">Rebuilt<br/>From<br/>Within.</span></h2>
+          <p class="section-body reveal reveal-delay-2">The Imprint Intensive is a focused 1:1 engagement designed for founders who are done performing a version of themselves online. We go deep — into your calling, your story, your message — and build a brand framework that actually holds up when life gets hard.</p>
+          <blockquote class="what-quote reveal reveal-delay-3">
+            "Your brand is a reflection of your discipleship — it grows as you grow."
+            <cite>— KC, Founder of Brand Discipleship</cite>
+          </blockquote>
+        </div>
+        <div class="what-right reveal reveal-delay-2">
+          <div class="what-card">
+            <p class="what-card-num">What it is</p>
+            <p class="what-card-title">Deep Identity Work</p>
+            <p class="what-card-body">We excavate your story, your gifts, your values, and the unique mark God has placed on you — and translate all of it into a cohesive brand framework.</p>
+          </div>
+          <div class="what-card">
+            <p class="what-card-num">What it isn't</p>
+            <p class="what-card-title">Not a Logo Package</p>
+            <p class="what-card-body">This is not a design sprint or a social media audit. This is the foundational clarity that makes everything else click — before you invest in execution.</p>
+          </div>
+          <div class="what-card">
+            <p class="what-card-num">The outcome</p>
+            <p class="what-card-title">Clarity That Holds</p>
+            <p class="what-card-body">You'll walk away with a Brand Imprint — your identity foundation — that becomes the filter for every creative decision you make going forward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who It's For -->
+  <section id="who">
+    <div class="container">
+      <p class="section-label reveal" style="text-align:center;">Right For You?</p>
+      <h2 class="section-headline reveal reveal-delay-1" style="text-align:center;margin-bottom:56px;">This Is For The<br/><span class="grad-text-animate">Founder Who Knows</span><br/>Something Is Off.</h2>
+      <div class="who-grid">
+        <div class="who-card reveal">
+          <div class="who-card-icon"></div>
+          <p class="who-card-title">You've Built Something</p>
+          <p class="who-card-body">You've been in business for at least a year. You have clients, revenue, and a track record — but your brand doesn't feel like you. It feels borrowed or built for someone else's approval.</p>
+        </div>
+        <div class="who-card reveal reveal-delay-1">
+          <div class="who-card-icon"></div>
+          <p class="who-card-title">You're Tired of Performing</p>
+          <p class="who-card-body">You're exhausted by the pressure to show up a certain way online. You want to build a brand that's an extension of who you are, not a costume you put on.</p>
+        </div>
+        <div class="who-card reveal reveal-delay-2">
+          <div class="who-card-icon"></div>
+          <p class="who-card-title">You're in a Season of Transition</p>
+          <p class="who-card-body">You're pivoting, launching something new, or stepping into a bigger calling. This is the moment to build the brand that's meant to carry you into what's next.</p>
+        </div>
+        <div class="who-card reveal reveal-delay-3">
+          <div class="who-card-icon"></div>
+          <p class="who-card-title">You Want the Foundation First</p>
+          <p class="who-card-body">You know that getting the strategy wrong means wasting time and money. You'd rather go deep once and get it right than redesign every 18 months.</p>
+        </div>
+      </div>
+      <div class="who-not reveal">
+        <p class="who-not-label">This is not for</p>
+        <p class="who-not-text">Those looking for a quick fix, a logo refresh, or a content calendar. The Imprint Intensive requires your commitment to the process.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section id="included">
+    <div class="container">
+      <div class="included-header">
+        <p class="section-label reveal">What You Get</p>
+        <h2 class="section-headline reveal reveal-delay-1">The Imprint<br/><span class="grad-text">Intensive</span><br/>Includes.</h2>
+      </div>
+      <div class="included-grid">
+        <div class="included-item reveal">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <p class="included-title">Brand Imprint Session</p>
+          <p class="included-body">A deep 3-hour discovery intensive where we surface your core identity, your unique message, and the thread that runs through everything you do.</p>
+        </div>
+        <div class="included-item reveal reveal-delay-1">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <p class="included-title">Imprint Assessment Review</p>
+          <p class="included-body">We begin with your Imprint Assessment results as the foundation — understanding your Brand Archetype, your Mountain, and the gaps between who you are and how you're showing up.</p>
+        </div>
+        <div class="included-item reveal reveal-delay-2">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <p class="included-title">4 Coaching Sessions</p>
+          <p class="included-body">Four focused 60-minute calls over the engagement. Each session builds on the last, moving from identity clarity to message development to brand expression.</p>
+        </div>
+        <div class="included-item reveal reveal-delay-3">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+          </div>
+          <p class="included-title">Brand Imprint Document</p>
+          <p class="included-body">A complete Brand Imprint deliverable — your positioning, your voice principles, your visual identity direction, and your messaging pillars in one foundational document.</p>
+        </div>
+        <div class="included-item reveal">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <p class="included-title">Async Support</p>
+          <p class="included-body">Direct voice/text access to KC between sessions. When something comes up — an opportunity, a decision, a piece of copy — you don't have to wait for your next call.</p>
+        </div>
+        <div class="included-item reveal reveal-delay-1">
+          <div class="included-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.52-1.52a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <p class="included-title">30-Day Integration Window</p>
+          <p class="included-body">After the final session, you have 30 days of continued check-in access to help you integrate your Brand Imprint into your business decisions, copy, and creative direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Process -->
+  <section id="process">
+    <div class="container">
+      <p class="section-label reveal" style="margin-bottom:16px;">How It Works</p>
+      <h2 class="section-headline reveal reveal-delay-1" style="margin-bottom:56px;">The<br/><span class="grad-text">Process.</span></h2>
+      <div class="process-list">
+        <div class="process-step reveal">
+          <div class="process-num">01</div>
+          <div class="process-content">
+            <p class="process-title">Take the Imprint Assessment</p>
+            <p class="process-body">Start with our Brand Archetype assessment to surface your baseline. This gives us a shared vocabulary before we ever meet and gives KC a head start on understanding how you're built.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">02</div>
+          <div class="process-content">
+            <p class="process-title">Apply &amp; Discovery Call</p>
+            <p class="process-body">Submit your application and book a 30-minute discovery call with KC. This is where we determine fit — not every founder is right for the Intensive, and the Intensive isn't right for every season.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">03</div>
+          <div class="process-content">
+            <p class="process-title">Imprint Intensive Session</p>
+            <p class="process-body">Your 3-hour Brand Imprint Session — the deep dive into your story, gifts, calling, and the identity thread that will anchor your brand. This is where the real work begins.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">04</div>
+          <div class="process-content">
+            <p class="process-title">Coaching &amp; Build</p>
+            <p class="process-body">Four sessions where we develop your message architecture, refine your positioning, and build the Brand Imprint document. You'll leave each call with clear next steps.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">05</div>
+          <div class="process-content">
+            <p class="process-title">Integration &amp; What's Next</p>
+            <p class="process-body">The 30-day integration window and a clear path forward — whether that means graduating to the Legacy Co agency work or continuing in Brand Discipleship community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investment -->
+  <section id="investment">
+    <div class="container">
+      <p class="section-label reveal" style="margin-bottom:16px;">Investment</p>
+      <h2 class="section-headline reveal reveal-delay-1" style="margin-bottom:56px;">Built For<br/><span class="grad-text">Founders</span><br/>Who Are Ready.</h2>
+      <div class="invest-grid">
+        <div class="invest-card reveal">
+          <p class="invest-tag">Single Payment</p>
+          <p class="invest-name">Imprint Intensive</p>
+          <p class="invest-price"><sup>$</sup>3,500</p>
+          <p class="invest-cycle">One-time investment · Full engagement</p>
+          <div class="invest-divider"></div>
+          <ul class="invest-features">
+            <li>Imprint Assessment review &amp; debrief</li>
+            <li>3-hour Brand Imprint Session</li>
+            <li>4 × 60-min coaching calls</li>
+            <li>Brand Imprint Document</li>
+            <li>Async support throughout</li>
+            <li>30-day integration window</li>
+          </ul>
+          <div class="invest-cta">
+            <a href="consultation.html" class="btn btn-primary"><span>Apply Now</span></a>
+          </div>
+        </div>
+        <div class="invest-card featured reveal reveal-delay-1">
+          <p class="invest-tag">Payment Plan</p>
+          <p class="invest-name">Imprint Intensive</p>
+          <p class="invest-price"><sup>$</sup>1,850</p>
+          <p class="invest-cycle">× 2 payments · Same full engagement</p>
+          <div class="invest-divider"></div>
+          <ul class="invest-features">
+            <li>Everything in the single payment option</li>
+            <li>First payment due at kickoff</li>
+            <li>Second payment due at session 3</li>
+            <li>No additional fees or hidden costs</li>
+          </ul>
+          <p class="invest-note">Payment plans available on request. Reach out during your discovery call.</p>
+          <div class="invest-cta">
+            <a href="consultation.html" class="btn btn-outline"><span>Start With a Call</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <p class="cta-eyebrow reveal">Ready to Begin?</p>
+      <h2 class="cta-headline reveal reveal-delay-1">
+        <span style="display:block;">Your Brand</span>
+        <span class="grad-text-animate" style="display:block;">Already</span>
+        <span style="display:block;">Knows.</span>
+      </h2>
+      <p class="cta-sub reveal reveal-delay-2">The dissonance you feel between who you are and how you're showing up — that's the invitation. Let's answer it.</p>
+      <div class="cta-btns reveal reveal-delay-3">
+        <a href="consultation.html" class="btn btn-primary"><span>Apply for the Intensive</span></a>
+        <a href="assessment.html" class="btn btn-outline"><span>Start with the Assessment</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+        <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+        <div class="footer-links">
+          <a href="faqs.html">FAQs</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="consultation.html">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const nav=document.querySelector('nav');
+    window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,8,0.97)':'rgba(8,8,8,0.85)';},{passive:true});
+    const hamburger=document.querySelector('.nav-hamburger');
+    const drawer=document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click',()=>{const isOpen=drawer.classList.toggle('open');hamburger.classList.toggle('open',isOpen);hamburger.setAttribute('aria-expanded',isOpen);document.body.style.overflow=isOpen?'hidden':'';});
+    drawer.querySelectorAll('.drawer-link').forEach(link=>{link.addEventListener('click',()=>{drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';});});
+  </script>
+</body>
+</html>

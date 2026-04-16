@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work — Legacy Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C9A84C; --gold-lt: #E8C97A; --cream: #F5E6C8;
+      --black: #080808; --dark: #0F0F0F; --dark2: #161616; --dark3: #1E1E1E;
+      --white: #FAFAF8; --muted: #888880; --border: rgba(201,168,76,0.18);
+      --font-title: 'Archivo Black','Arial Black',sans-serif;
+      --font-body: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+      --grad-gold: linear-gradient(135deg,#C9A84C 0%,#E8C97A 45%,#F5E6C8 100%);
+      --grad-gold-h: linear-gradient(135deg,#E8C97A 0%,#F5E6C8 50%,#FFF 100%);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    @keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .grad-text { background: var(--grad-gold); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .grad-text-animate { background: linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C); background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shimmer 6s ease infinite; }
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal-delay-1 { transition-delay:.1s; } .reveal-delay-2 { transition-delay:.2s; } .reveal-delay-3 { transition-delay:.35s; }
+
+    /* Nav */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:0 48px; height:68px; display:flex; align-items:center; justify-content:space-between; background:rgba(8,8,8,0.85); backdrop-filter:blur(16px); border-bottom:1px solid rgba(201,168,76,0.08); transition:background .3s ease; }
+    .nav-logo { font-family:var(--font-title); font-size:18px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; z-index:110; }
+    .nav-center { display:flex; align-items:center; gap:32px; list-style:none; }
+    .nav-center a { color:var(--muted); text-decoration:none; font-size:12px; letter-spacing:.12em; text-transform:uppercase; transition:color .2s ease; white-space:nowrap; }
+    .nav-center a:hover, .nav-center a.active { color:var(--cream); }
+    .nav-right { display:flex; align-items:center; gap:20px; }
+    .btn { display:inline-block; padding:14px 36px; border-radius:100px; font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; cursor:pointer; border:none; outline:none; position:relative; overflow:hidden; transition:all .3s cubic-bezier(.16,1,.3,1); }
+    .btn::before { content:''; position:absolute; inset:0; background:var(--grad-gold-h); opacity:0; transition:opacity .3s ease; }
+    .btn:hover::before { opacity:1; } .btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(201,168,76,0.3); } .btn span { position:relative; z-index:1; }
+    .btn-primary { background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C); background-size:300% 300%; animation:shimmer 5s ease infinite; color:var(--black); }
+    .btn-outline { background:transparent; color:var(--cream); border:1px solid var(--border); }
+    .btn-outline:hover { color:var(--black); border-color:transparent; }
+    .nav-hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; cursor:pointer; background:none; border:none; padding:4px; z-index:110; }
+    .nav-hamburger span { display:block; width:22px; height:1.5px; background:var(--white); transition:all .3s cubic-bezier(.16,1,.3,1); transform-origin:center; }
+    .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer { display:none; position:fixed; top:68px; left:0; right:0; bottom:0; background:rgba(8,8,8,0.98); backdrop-filter:blur(20px); z-index:99; flex-direction:column; justify-content:center; align-items:center; opacity:0; transform:translateY(-12px); transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1); pointer-events:none; }
+    .nav-drawer.open { opacity:1; transform:translateY(0); pointer-events:all; }
+    .drawer-link { font-family:var(--font-title); font-size:clamp(28px,6vw,48px); letter-spacing:-.01em; text-transform:uppercase; color:rgba(250,250,248,0.5); text-decoration:none; padding:16px 40px; width:100%; text-align:center; transition:color .2s ease; border-bottom:1px solid rgba(201,168,76,0.06); }
+    .drawer-link:first-child { border-top:1px solid rgba(201,168,76,0.06); }
+    .drawer-link:hover { color:var(--cream); }
+    .drawer-link.drawer-cta { color:var(--gold); margin-top:8px; border:none; font-size:clamp(20px,4vw,28px); }
+    @media(max-width:900px) { nav{padding:0 24px;} .nav-center{display:none;} .nav-right .btn{display:none;} .nav-hamburger{display:flex;} .nav-drawer{display:flex;} }
+
+    .container { max-width:1200px; margin:0 auto; padding:0 48px; }
+
+    /* Hero */
+    #hero { padding:140px 0 80px; background:var(--black); position:relative; overflow:hidden; }
+    #hero::before { content:''; position:absolute; top:50%; right:-100px; transform:translateY(-50%); width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(201,168,76,0.05) 0%,transparent 70%); pointer-events:none; }
+    .hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:24px; display:flex; align-items:center; gap:12px; }
+    .hero-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--gold); }
+    .hero-headline { font-family:var(--font-title); font-size:clamp(48px,8vw,100px); line-height:.95; letter-spacing:-.02em; text-transform:uppercase; margin-bottom:28px; }
+    .hero-sub { font-size:18px; color:rgba(250,250,248,0.6); max-width:520px; line-height:1.75; }
+
+    /* Filter Bar */
+    #filter-bar { padding:40px 0; background:var(--dark2); border-bottom:1px solid var(--border); position:sticky; top:68px; z-index:50; }
+    .filters { display:flex; gap:8px; flex-wrap:wrap; }
+    .filter-btn { padding:8px 20px; border-radius:100px; border:1px solid rgba(201,168,76,0.2); background:transparent; color:var(--muted); font-family:var(--font-body); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .2s ease; }
+    .filter-btn:hover, .filter-btn.active { background:rgba(201,168,76,0.12); border-color:var(--gold); color:var(--cream); }
+
+    /* Portfolio Grid */
+    #portfolio { padding:80px 0; background:var(--dark); }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:2px; }
+
+    .case-card { position:relative; background:var(--dark3); overflow:hidden; cursor:pointer; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+    .case-card:hover { z-index:2; transform:scale(1.01); }
+    .case-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad-gold); opacity:0; transition:opacity .3s ease; z-index:2; }
+    .case-card:hover::before { opacity:1; }
+
+    /* Grid layouts — asymmetric */
+    .case-card.large  { grid-column:span 7; min-height:520px; }
+    .case-card.medium { grid-column:span 5; min-height:520px; }
+    .case-card.wide   { grid-column:span 8; min-height:380px; }
+    .case-card.narrow { grid-column:span 4; min-height:380px; }
+    .case-card.full   { grid-column:span 12; min-height:320px; }
+    .case-card.third  { grid-column:span 4; min-height:400px; }
+
+    .case-bg { position:absolute; inset:0; background:var(--dark3); }
+    .case-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.4) 60%, transparent 100%); }
+    .case-content { position:absolute; bottom:0; left:0; right:0; padding:36px 40px; z-index:1; }
+    .case-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .case-tag { font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,168,76,0.3); padding:4px 12px; border-radius:100px; }
+    .case-client { font-family:var(--font-title); font-size:clamp(20px,2.5vw,32px); letter-spacing:-.01em; text-transform:uppercase; margin-bottom:8px; }
+    .case-desc { font-size:13px; color:rgba(250,250,248,0.6); line-height:1.6; max-width:400px; }
+    .case-year { position:absolute; top:28px; right:32px; font-size:11px; letter-spacing:.15em; color:rgba(250,250,248,0.3); }
+
+    /* Color fills per client */
+    .case-retune   .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#1a1208 100%); }
+    .case-roger    .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#0d0d14 100%); }
+    .case-coastal  .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#08100f 100%); }
+    .case-hempel   .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#10100d 100%); }
+    .case-legacy   .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#1a0f08 100%); }
+    .case-bridge   .case-bg { background:linear-gradient(135deg,#0F0F0F 0%,#0a0a1a 100%); }
+
+    /* Accent marks */
+    .case-retune  .case-tag { color:#C9A84C; border-color:rgba(201,168,76,0.3); }
+    .case-coastal .case-tag { color:#4C9A84; border-color:rgba(76,154,132,0.3); }
+    .case-roger   .case-tag { color:#844C9A; border-color:rgba(132,76,154,0.3); }
+
+    /* Marquee carousel */
+    #marquee-section { padding:60px 0; background:var(--dark2); border-top:1px solid var(--border); overflow:hidden; }
+    .marquee-label { text-align:center; font-size:11px; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:40px; }
+    .marquee-track { display:flex; gap:0; width:max-content; animation:marquee 30s linear infinite; }
+    .marquee-track:hover { animation-play-state:paused; }
+    .marquee-item { display:flex; align-items:center; gap:0; padding:0 48px; border-right:1px solid var(--border); white-space:nowrap; }
+    .marquee-client { font-family:var(--font-title); font-size:18px; letter-spacing:.02em; text-transform:uppercase; color:rgba(250,250,248,0.35); transition:color .2s ease; }
+    .marquee-item:hover .marquee-client { color:var(--cream); }
+    .marquee-type { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-left:16px; opacity:0.6; }
+    .marquee-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); margin:0 48px; opacity:0.3; }
+
+    /* CTA */
+    #cta { padding:100px 0; background:var(--black); text-align:center; position:relative; overflow:hidden; }
+    #cta::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:300px; background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%); pointer-events:none; }
+    .cta-headline { font-family:var(--font-title); font-size:clamp(36px,5vw,64px); line-height:1; letter-spacing:-.02em; text-transform:uppercase; margin-bottom:16px; }
+    .cta-sub { font-size:16px; color:var(--muted); margin-bottom:40px; max-width:400px; margin-left:auto; margin-right:auto; }
+    .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+    /* Footer */
+    footer { background:var(--dark2); border-top:1px solid var(--border); padding:40px 0; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+    .footer-brand { font-family:var(--font-title); font-size:16px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; }
+    .footer-copy { font-size:12px; color:rgba(136,136,128,0.5); }
+    .footer-links { display:flex; gap:28px; }
+    .footer-links a { font-size:12px; color:var(--muted); text-decoration:none; letter-spacing:.08em; text-transform:uppercase; transition:color .2s ease; }
+    .footer-links a:hover { color:var(--cream); }
+
+    @media(max-width:900px) {
+      .container { padding:0 24px; }
+      .case-card.large, .case-card.medium, .case-card.wide, .case-card.narrow, .case-card.third { grid-column:span 12; min-height:320px; }
+      .case-card.full { min-height:260px; }
+    }
+    @media(prefers-reduced-motion:reduce) { .reveal{opacity:1;transform:none;transition:none;} .btn-primary,.grad-text-animate{animation:none;} .marquee-track{animation:none;} }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html" class="active">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="brand-coaching.html">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-drawer" role="dialog">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Legacy Creative Co.</p>
+      <h1 class="hero-headline">
+        <span class="reveal reveal-delay-1" style="display:block;">Our</span>
+        <span class="reveal reveal-delay-2 grad-text-animate" style="display:block;">Work.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-3">Built from identity. Designed with intention. Every project is a Kingdom story in progress.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div id="filter-bar">
+    <div class="container">
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="web">Web Design</button>
+        <button class="filter-btn" data-filter="strategy">Strategy</button>
+        <button class="filter-btn" data-filter="content">Content</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Grid -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-grid">
+
+        <!-- Retune Your Heart — Large -->
+        <div class="case-card large case-retune reveal" data-categories="branding web strategy">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2025</span>
+          <div class="case-content">
+            <div class="case-tags">
+              <span class="case-tag">Branding</span>
+              <span class="case-tag">Web Design</span>
+              <span class="case-tag">Publishing</span>
+            </div>
+            <div class="case-client">Retune Your Heart</div>
+            <p class="case-desc">Full brand identity, website design, and publishing strategy for a faith-based wellness brand rooted in renewal and purpose.</p>
+          </div>
+        </div>
+
+        <!-- Roger Jaeger Music — Medium -->
+        <div class="case-card medium case-roger reveal reveal-delay-1" data-categories="branding strategy">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2024</span>
+          <div class="case-content">
+            <div class="case-tags">
+              <span class="case-tag">Branding</span>
+              <span class="case-tag">Graphic Design</span>
+            </div>
+            <div class="case-client">Roger Jaeger Music</div>
+            <p class="case-desc">Artist identity and brand system for an independent musician building a ministry-forward presence.</p>
+          </div>
+        </div>
+
+        <!-- Coastal Luxury Wellness — Wide -->
+        <div class="case-card wide case-coastal reveal" data-categories="branding web">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2023</span>
+          <div class="case-content">
+            <div class="case-tags">
+              <span class="case-tag">Branding</span>
+              <span class="case-tag">Graphic Design</span>
+            </div>
+            <div class="case-client">Coastal Luxury Wellness</div>
+            <p class="case-desc">Premium wellness brand identity built around a coastal lifestyle and intentional living philosophy.</p>
+          </div>
+        </div>
+
+        <!-- Hempel Studios — Narrow -->
+        <div class="case-card narrow case-hempel reveal reveal-delay-2" data-categories="branding content">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2021</span>
+          <div class="case-content">
+            <div class="case-tags">
+              <span class="case-tag">Branding</span>
+              <span class="case-tag">Graphic Design</span>
+            </div>
+            <div class="case-client">Hempel Studios</div>
+            <p class="case-desc">Brand identity and visual system for a creative studio built on craft and intentional design.</p>
+          </div>
+        </div>
+
+        <!-- Legacy Co Brand System — Full -->
+        <div class="case-card full case-legacy reveal" data-categories="branding strategy">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2024</span>
+          <div class="case-content">
+            <div class="case-tags">
+              <span class="case-tag">Brand System</span>
+              <span class="case-tag">Strategy</span>
+              <span class="case-tag">Identity</span>
+            </div>
+            <div class="case-client">Legacy Creative Co.</div>
+            <p class="case-desc">Full brand strategy, identity system, and framework development for the Legacy Co ecosystem — including the Brand Bridge Framework.</p>
+          </div>
+        </div>
+
+        <!-- Brand Discipleship — Third -->
+        <div class="case-card third case-bridge reveal" data-categories="strategy">
+          <div class="case-bg"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2024</span>
+          <div class="case-content">
+            <div class="case-tags"><span class="case-tag">Framework</span></div>
+            <div class="case-client">Brand Discipleship</div>
+            <p class="case-desc">Four-pillar identity framework for faith-based founders.</p>
+          </div>
+        </div>
+
+        <!-- Placeholder cards -->
+        <div class="case-card third reveal reveal-delay-1" data-categories="branding web">
+          <div class="case-bg" style="background:linear-gradient(135deg,#0F0F0F,#0f0f14)"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2024</span>
+          <div class="case-content">
+            <div class="case-tags"><span class="case-tag">Branding</span><span class="case-tag">Web</span></div>
+            <div class="case-client">Coming Soon</div>
+            <p class="case-desc">New work in progress.</p>
+          </div>
+        </div>
+
+        <div class="case-card third reveal reveal-delay-2" data-categories="branding">
+          <div class="case-bg" style="background:linear-gradient(135deg,#0F0F0F,#140f0f)"></div>
+          <div class="case-overlay"></div>
+          <span class="case-year">2025</span>
+          <div class="case-content">
+            <div class="case-tags"><span class="case-tag">Branding</span></div>
+            <div class="case-client">Coming Soon</div>
+            <p class="case-desc">New work in progress.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section id="marquee-section">
+    <p class="marquee-label">Legacies We've Built</p>
+    <div style="overflow:hidden;">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="marquee-client">Retune Your Heart</span><span class="marquee-type">Branding · Web · Publishing</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Roger Jaeger Music</span><span class="marquee-type">Branding · Identity</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Coastal Luxury Wellness</span><span class="marquee-type">Brand · Design</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Hempel Studios</span><span class="marquee-type">Branding · Visual System</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Brand Discipleship</span><span class="marquee-type">Framework · Strategy</span></div>
+        <div class="marquee-dot"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item"><span class="marquee-client">Retune Your Heart</span><span class="marquee-type">Branding · Web · Publishing</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Roger Jaeger Music</span><span class="marquee-type">Branding · Identity</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Coastal Luxury Wellness</span><span class="marquee-type">Brand · Design</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Hempel Studios</span><span class="marquee-type">Branding · Visual System</span></div>
+        <div class="marquee-dot"></div>
+        <div class="marquee-item"><span class="marquee-client">Brand Discipleship</span><span class="marquee-type">Framework · Strategy</span></div>
+        <div class="marquee-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <p class="reveal" style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Ready to Build?</p>
+      <h2 class="cta-headline reveal reveal-delay-1">Let's Build <span class="grad-text-animate">Yours.</span></h2>
+      <p class="cta-sub reveal reveal-delay-2">Your brand story is waiting to be told. Let's tell it right.</p>
+      <div class="cta-btns reveal reveal-delay-2">
+        <a href="consultation.html" class="btn btn-primary"><span>Book a Consultation</span></a>
+        <a href="services.html" class="btn btn-outline"><span>View Services</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+        <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+        <div class="footer-links">
+          <a href="faqs.html">FAQs</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="consultation.html">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} });
+    },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,8,0.97)':'rgba(8,8,8,0.85)';},{passive:true});
+
+    const hamburger = document.querySelector('.nav-hamburger');
+    const drawer = document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click',()=>{
+      const isOpen=drawer.classList.toggle('open');
+      hamburger.classList.toggle('open',isOpen);
+      hamburger.setAttribute('aria-expanded',isOpen);
+      document.body.style.overflow=isOpen?'hidden':'';
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link=>{
+      link.addEventListener('click',()=>{drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';});
+    });
+
+    // Filter
+    document.querySelectorAll('.filter-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter=btn.dataset.filter;
+        document.querySelectorAll('.case-card').forEach(card=>{
+          if(filter==='all'||card.dataset.categories.includes(filter)){
+            card.style.opacity='1';card.style.pointerEvents='auto';
+          } else {
+            card.style.opacity='0.2';card.style.pointerEvents='none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

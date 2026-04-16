@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs — Legacy Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #C9A84C;
+      --cream:  #F5E6C8;
+      --black:  #080808;
+      --dark:   #0F0F0F;
+      --dark2:  #161616;
+      --dark3:  #1E1E1E;
+      --white:  #FAFAF8;
+      --muted:  #888880;
+      --border: rgba(201,168,76,0.18);
+      --font-title: 'Archivo Black', 'Arial Black', sans-serif;
+      --font-body:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --grad-gold: linear-gradient(135deg, #C9A84C 0%, #E8C97A 45%, #F5E6C8 100%);
+      --grad-gold-h: linear-gradient(135deg, #E8C97A 0%, #F5E6C8 50%, #FFFFFF 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .grad-text {
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-text-animate {
+      background: linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s ease infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: background 0.3s ease;
+    }
+    .nav-logo { font-family: var(--font-title); font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; z-index: 110; }
+    .nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-center a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s ease; white-space: nowrap; }
+    .nav-center a:hover, .nav-center a.active { color: var(--cream); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 110; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer { display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0; background: rgba(8,8,8,0.98); backdrop-filter: blur(20px); z-index: 99; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transform: translateY(-12px); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); pointer-events: none; }
+    .nav-drawer.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .drawer-link { font-family: var(--font-title); font-size: clamp(28px,6vw,48px); letter-spacing: -0.01em; text-transform: uppercase; color: rgba(250,250,248,0.5); text-decoration: none; padding: 16px 40px; width: 100%; text-align: center; transition: color 0.2s ease; border-bottom: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:first-child { border-top: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:hover { color: var(--cream); }
+    .drawer-link.drawer-cta { color: var(--gold); margin-top: 8px; border: none; font-size: clamp(20px,4vw,28px); }
+    @media (max-width: 900px) { nav { padding: 0 24px; } .nav-center { display: none; } .nav-right .btn { display: none; } .nav-hamburger { display: flex; } .nav-drawer { display: flex; } }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--grad-gold-h);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.3); }
+    .btn span { position: relative; z-index: 1; }
+    .btn-primary {
+      background: linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C);
+      background-size: 300% 300%;
+      animation: shimmer 5s ease infinite;
+      color: var(--black);
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+
+    /* Hero */
+    #hero {
+      padding: 160px 0 80px;
+      background: var(--black);
+      text-align: center;
+      position: relative;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-title);
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(250,250,248,0.55);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Category Nav */
+    #cat-nav {
+      padding: 40px 0;
+      background: var(--dark2);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+    }
+
+    .cat-nav-inner {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media (max-width: 640px) {
+      .cat-nav-inner {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        justify-content: center;
+        gap: 8px;
+      }
+      .cat-btn {
+        white-space: nowrap;
+        padding: 8px 14px;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-align: center;
+      }
+    }
+
+    .cat-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .cat-btn:hover, .cat-btn.active {
+      background: rgba(201,168,76,0.12);
+      border-color: var(--gold);
+      color: var(--cream);
+    }
+
+    /* FAQ sections */
+    #faq-body {
+      padding: 80px 0 120px;
+      background: var(--dark);
+    }
+
+    .faq-section {
+      margin-bottom: 80px;
+    }
+
+    .faq-section:last-child { margin-bottom: 0; }
+
+    .faq-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .faq-section-title {
+      font-family: var(--font-title);
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      cursor: pointer;
+      font-family: var(--font-title);
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.2s ease;
+    }
+    .faq-question:hover { color: var(--cream); }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-item.open .faq-answer { max-height: 600px; }
+
+    .faq-answer-inner {
+      padding: 0 40px 28px 0;
+      font-size: 15px;
+      color: rgba(250,250,248,0.6);
+      line-height: 1.85;
+    }
+
+    /* CTA strip */
+    #cta {
+      padding: 100px 0;
+      background: var(--black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-headline {
+      font-family: var(--font-title);
+      font-size: clamp(32px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--font-title);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .footer-copy { font-size: 12px; color: rgba(136,136,128,0.5); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--cream); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .container { padding: 0 24px; }
+      .footer-inner { padding: 0 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn-primary, .grad-text-animate { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="brand-coaching.html">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Got Questions?</p>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        <span class="grad-text-animate">FAQ</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">Everything you need to know before we work together.</p>
+    </div>
+  </section>
+
+  <!-- Category Nav -->
+  <div id="cat-nav">
+    <div class="container">
+      <div class="cat-nav-inner">
+        <a href="#branding" class="cat-btn">Branding</a>
+        <a href="#marketing" class="cat-btn">Marketing</a>
+        <a href="#coaching" class="cat-btn">Coaching</a>
+        <a href="#pricing" class="cat-btn">Pricing</a>
+        <a href="#getting-started" class="cat-btn">Getting Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Body -->
+  <section id="faq-body">
+    <div class="container">
+
+      <!-- Branding -->
+      <div class="faq-section" id="branding">
+        <p class="faq-section-label reveal">01</p>
+        <h2 class="faq-section-title reveal reveal-delay-1">Branding <span class="grad-text">Services</span></h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What branding services do you offer?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We turn your ideas into captivating visuals and compelling messages — bringing your brand to life through strategy, visual identity, messaging systems, and digital presence. Everything is built on the foundation of who you are, not just what you do.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              How can your branding services help my business?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We help your brand stand out and connect deeply with your audience — igniting inspiration and sustainable growth. More importantly, we help you build something that reflects your identity and calling, not just market trends.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What is Brand Discipleship?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Brand Discipleship is our coaching path that integrates faith, identity, and purpose into your brand and business. It's designed for founders who need clarity on who they are before they can build what they're called to create. Think of it as Door Two in the Brand Bridge Framework.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="faq-section" id="marketing">
+        <p class="faq-section-label reveal">02</p>
+        <h2 class="faq-section-title reveal reveal-delay-1">Marketing <span class="grad-text">Support</span></h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What marketing support do you provide?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">From strategic consulting to creating marketing materials, website design, CRM automation, and boosting your online presence — we cover the full spectrum. Every piece is built to align with your brand identity and communicate your message clearly.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              How do you approach marketing for different industries?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We tailor our strategies to fit your unique industry, audience, and calling — ensuring your message resonates and endures. We don't do cookie-cutter. Every strategy starts with understanding who you are and who you're called to serve.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coaching -->
+      <div class="faq-section" id="coaching">
+        <p class="faq-section-label reveal">03</p>
+        <h2 class="faq-section-title reveal reveal-delay-1">Coaching <span class="grad-text">Programs</span></h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What coaching programs do you offer?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Our Legacy Starter and Legacy Builder programs support your vision at every stage — providing guidance, strategic direction, and accountability to help you build with purpose and confidence.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              How can coaching benefit my business?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Our coaching helps you navigate challenges, clarify your direction, and build with sustainable momentum. You won't just get advice — you'll get a partner who believes in what you're building and helps you grow from the inside out.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="faq-section" id="pricing">
+        <p class="faq-section-label reveal">04</p>
+        <h2 class="faq-section-title reveal reveal-delay-1">Pricing & <span class="grad-text">Payment</span></h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              How are your services priced?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We offer flexible pricing options including monthly retainers, annual contracts, and per-project pricing. Every engagement is scoped to your specific needs and goals — we'll walk through options on our discovery call.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What is included in your monthly retainer packages?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Our monthly retainers cover full brand and marketing collateral — ensuring continuous, consistent support for your business. The exact scope depends on your program, which we'll define together.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer flexible payment options?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. We provide various payment plans to accommodate different budgets and project sizes. We believe in removing barriers to building something great — let's talk about what works for you.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              Can I get a custom quote?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Absolutely. Book a free consultation and we'll create a custom quote based on your specific requirements, timeline, and goals. No templates, no guesswork.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Getting Started -->
+      <div class="faq-section" id="getting-started">
+        <p class="faq-section-label reveal">05</p>
+        <h2 class="faq-section-title reveal reveal-delay-1">Getting <span class="grad-text">Started</span></h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              How do I get started?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Book a free consultation through our website. We'll discuss your vision, where you are right now, and how we can help you build something that reflects your identity and calling. From there, we'll map out the right path forward together.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              What makes Legacy Co different from other agencies?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We prioritize deep relationships and quality over quantity. We don't just build brands — we help you discover who you are before we design anything. We integrate faith, identity, and purpose into everything we create. That's not a tagline. It's the foundation of how we work.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              Do I need to know exactly what I want before reaching out?
+              <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Not at all. In fact, if you're still figuring out what you need, the consultation call is exactly the right place to start. We'll help you get clarity on what you're building and what kind of support will actually move the needle.</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container" style="text-align:center;">
+      <p style="font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;" class="reveal">Still Have Questions?</p>
+      <h2 class="cta-headline reveal reveal-delay-1">
+        Let's <span class="grad-text-animate">Talk.</span>
+      </h2>
+      <p class="cta-sub reveal reveal-delay-2">Book a free 30-minute call. No pitch, no pressure.</p>
+      <div class="reveal reveal-delay-2" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="consultation.html" class="btn btn-primary"><span>Book a Consultation</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+      <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+      <div class="footer-links">
+        <a href="consultation.html">Book a Call</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.97)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+    const hamburger = document.querySelector('.nav-hamburger');
+    const drawer = document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open'); hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false); document.body.style.overflow = '';
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+        btn.setAttribute('aria-expanded', !isOpen);
+      });
+    });
+
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -87,11 +87,10 @@
     /* ─── Nav ───────────────────────────────────────────────────────────────── */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 48px;
+      padding: 0 48px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -107,24 +106,110 @@
       font-size: 18px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      text-decoration: none;
+      z-index: 110;
     }
 
-    .nav-links {
+    .nav-center {
       display: flex;
-      gap: 36px;
+      align-items: center;
+      gap: 32px;
       list-style: none;
     }
 
-    .nav-links a {
+    .nav-center a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-center a:hover { color: var(--cream); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
-    .nav-links a:hover { color: var(--cream); }
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0; bottom: 0;
+      background: rgba(8,8,8,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+
+    .nav-drawer.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .drawer-link {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 6vw, 48px);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.5);
+      text-decoration: none;
+      padding: 16px 40px;
+      width: 100%;
+      text-align: center;
+      transition: color 0.2s ease;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+    .drawer-link:first-child { border-top: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:hover { color: var(--cream); }
+    .drawer-link.drawer-cta { color: var(--gold); margin-top: 8px; border: none; font-size: clamp(20px, 4vw, 28px); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-center { display: none; }
+      .nav-right .btn { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-drawer { display: flex; }
+    }
 
     /* ─── Buttons ───────────────────────────────────────────────────────────── */
     .btn {
@@ -915,17 +1000,30 @@
 
   <!-- ─── Nav ──────────────────────────────────────────────────────────────── -->
   <nav>
-    <div class="nav-logo grad-text">Legacy Co</div>
-    <ul class="nav-links">
-      <li><a href="#bridge">Framework</a></li>
-      <li><a href="#mission">About</a></li>
-      <li><a href="#proof">Work</a></li>
-      <li><a href="#cta-final">Contact</a></li>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="our-work.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="brand-coaching.html">Coaching</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
     </ul>
-    <a href="https://legacycreative.co/consultation" class="btn btn-primary" style="padding:10px 28px;font-size:12px;">
-      <span>Book a Call</span>
-    </a>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <div class="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="our-work.html" class="drawer-link">Work</a>
+    <a href="services.html" class="drawer-link">Services</a>
+    <a href="framework.html" class="drawer-link">Framework</a>
+    <a href="brand-coaching.html" class="drawer-link">Coaching</a>
+    <a href="assessment.html" class="drawer-link">Assessment</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
 
   <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
   <section id="hero">
@@ -1263,13 +1361,29 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Smooth nav background on scroll
+    // Nav scroll
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 60
-        ? 'rgba(8,8,8,0.97)'
-        : 'rgba(8,8,8,0.85)';
+      nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.97)' : 'rgba(8,8,8,0.85)';
     }, { passive: true });
+
+    // Hamburger
+    const hamburger = document.querySelector('.nav-hamburger');
+    const drawer = document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
   </script>
 
 </body>
