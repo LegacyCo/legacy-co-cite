@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Brand Consultation — Legacy Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #C9A84C;
+      --gold-lt:#E8C97A;
+      --cream:  #F5E6C8;
+      --black:  #080808;
+      --dark:   #0F0F0F;
+      --dark2:  #161616;
+      --dark3:  #1E1E1E;
+      --white:  #FAFAF8;
+      --muted:  #888880;
+      --border: rgba(201,168,76,0.18);
+      --font-title: 'Archivo Black', 'Arial Black', sans-serif;
+      --font-body:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --grad-gold: linear-gradient(135deg, #C9A84C 0%, #E8C97A 45%, #F5E6C8 100%);
+      --grad-gold-h: linear-gradient(135deg, #E8C97A 0%, #F5E6C8 50%, #FFFFFF 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .grad-text {
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-text-animate {
+      background: linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s ease infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: background 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: var(--font-title);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      z-index: 110;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-center a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-center a:hover, .nav-center a.active { color: var(--cream); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      cursor: pointer;
+      background: none; border: none;
+      padding: 4px; z-index: 110;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0; bottom: 0;
+      background: rgba(8,8,8,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0; transform: translateY(-12px);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    .nav-drawer.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+    .drawer-link {
+      font-family: var(--font-title);
+      font-size: clamp(28px, 6vw, 48px);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.5);
+      text-decoration: none;
+      padding: 16px 40px;
+      width: 100%; text-align: center;
+      transition: color 0.2s ease;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+    .drawer-link:first-child { border-top: 1px solid rgba(201,168,76,0.06); }
+    .drawer-link:hover { color: var(--cream); }
+    .drawer-link.drawer-cta { color: var(--gold); margin-top: 8px; border: none; font-size: clamp(20px,4vw,28px); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-center { display: none; }
+      .nav-right .btn { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-drawer { display: flex; }
+    }
+
+    /* ─── Button ─── */
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--grad-gold-h);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.3); }
+    .btn span { position: relative; z-index: 1; }
+    .btn-primary {
+      background: linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C);
+      background-size: 300% 300%;
+      animation: shimmer 5s ease infinite;
+      color: var(--black);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+    /* ─── Hero ─── */
+    #hero {
+      padding: 160px 0 100px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -100px;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-headline {
+      font-family: var(--font-title);
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(250,250,248,0.65);
+      max-width: 580px;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    /* ─── Main Grid ─── */
+    #main {
+      padding: 80px 0 120px;
+      background: var(--dark);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ─── Left: What to Expect ─── */
+    .expect-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .expect-headline {
+      font-family: var(--font-title);
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .expect-body {
+      font-size: 15px;
+      color: rgba(250,250,248,0.6);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .expect-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .expect-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .expect-item:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
+
+    .expect-num {
+      font-family: var(--font-title);
+      font-size: 12px;
+      color: var(--gold);
+      min-width: 24px;
+      padding-top: 3px;
+    }
+
+    .expect-item-title {
+      font-family: var(--font-title);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .expect-item-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .who-block {
+      margin-top: 48px;
+      padding: 36px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .who-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-gold);
+    }
+
+    .who-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .who-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .who-list li {
+      font-size: 14px;
+      color: rgba(250,250,248,0.7);
+      padding-left: 20px;
+      position: relative;
+    }
+    .who-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ─── Right: Calendar ─── */
+    .calendar-wrap {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .calendar-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-gold);
+    }
+
+    .calendar-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .calendar-title {
+      font-family: var(--font-title);
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .calendar-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .calendar-embed {
+      padding: 0;
+      min-height: 600px;
+    }
+
+
+    /* ─── FAQ ─── */
+    #faq {
+      padding: 120px 0;
+      background: var(--dark2);
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .faq-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .faq-headline {
+      font-family: var(--font-title);
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      cursor: pointer;
+      font-family: var(--font-title);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.2s ease;
+    }
+
+    .faq-question:hover { color: var(--cream); }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--gold);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    .faq-answer-inner {
+      padding: 0 0 28px;
+      font-size: 15px;
+      color: rgba(250,250,248,0.6);
+      line-height: 1.8;
+    }
+
+    /* ─── Footer Strip ─── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-title);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(136,136,128,0.5);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--cream); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .main-grid { grid-template-columns: 1fr; gap: 60px; }
+      nav { padding: 20px 24px; }
+      .container { padding: 0 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn-primary, .grad-text-animate { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <ul class="nav-center">
+      <li><a href="index.html#bridge">Framework</a></li>
+      <li><a href="index.html#mission">About</a></li>
+      <li><a href="index.html#proof">Work</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="consultation.html" class="btn btn-primary" style="padding:10px 28px;font-size:12px;"><span>Book a Call</span></a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="index.html#mission" class="drawer-link">About</a>
+    <a href="index.html#bridge" class="drawer-link">Framework</a>
+    <a href="index.html#proof" class="drawer-link">Work</a>
+    <a href="consultation.html" class="drawer-link drawer-cta">Book a Call →</a>
+  </div>
+
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Brand Discovery Call</p>
+      <h1 class="hero-headline">
+        <span class="reveal reveal-delay-1 grad-text-animate" style="display:block;">Book Your</span>
+        <span class="reveal reveal-delay-2" style="display:block;">Brand</span>
+        <span class="reveal reveal-delay-3 grad-text-animate" style="display:block;">Consultation.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-3">
+        As a Kingdom-minded entrepreneur, your brand should flow from who God designed you to be — not feel like a checkbox. This call is where it starts.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Main: Left Info + Right Calendar ─── -->
+  <section id="main">
+    <div class="container">
+      <div class="main-grid">
+
+        <!-- Left -->
+        <div>
+          <p class="expect-label reveal">What Happens on the Call</p>
+          <h2 class="expect-headline reveal reveal-delay-1">
+            A Call Built<br/>
+            <span class="grad-text">For Clarity.</span>
+          </h2>
+          <p class="expect-body reveal reveal-delay-2">
+            This isn't a sales pitch. It's a strategic conversation to understand where you are, where you're going, and whether Legacy Co is the right partner to get you there.
+          </p>
+
+          <div class="expect-items reveal reveal-delay-2">
+            <div class="expect-item">
+              <span class="expect-num">01</span>
+              <div>
+                <div class="expect-item-title">Vision & Identity Exploration</div>
+                <div class="expect-item-body">We dig into your vision, calling, principles, and goals — the foundation everything else is built on.</div>
+              </div>
+            </div>
+            <div class="expect-item">
+              <span class="expect-num">02</span>
+              <div>
+                <div class="expect-item-title">Brand Audit & Gap Analysis</div>
+                <div class="expect-item-body">We review your current brand identity and identify the gaps between where you are and where you need to be.</div>
+              </div>
+            </div>
+            <div class="expect-item">
+              <span class="expect-num">03</span>
+              <div>
+                <div class="expect-item-title">Strategic Pathway Mapping</div>
+                <div class="expect-item-body">We map a clear path forward — messaging, visual identity, and digital systems aligned to your mission.</div>
+              </div>
+            </div>
+            <div class="expect-item">
+              <span class="expect-num">04</span>
+              <div>
+                <div class="expect-item-title">Clear Next Steps</div>
+                <div class="expect-item-body">You leave with direction. Whether we partner or not, you'll know exactly what to do next.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="who-block reveal">
+            <p class="who-label">This Call Is For You If...</p>
+            <ul class="who-list">
+              <li>You're a faith-based entrepreneur, creative, or nonprofit leader</li>
+              <li>You sense a tension between your purpose and your brand</li>
+              <li>You're launching something new or realigning what you've built</li>
+              <li>You're ready to invest in clarity and sustainable brand systems</li>
+              <li>You want your work to flow from calling, not just ambition</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Calendar -->
+        <div class="reveal reveal-delay-2">
+          <div class="calendar-wrap">
+            <div class="calendar-header">
+              <div class="calendar-title">Schedule Your Call</div>
+              <div class="calendar-sub">30 minutes · Free · No obligation</div>
+            </div>
+            <div class="calendar-embed">
+              <iframe src="https://crm.legacycreative.co/widget/booking/0VFsIr2W5ALxGH5TBMKh" style="width:100%;border:none;overflow:hidden;" scrolling="no" id="0VFsIr2W5ALxGH5TBMKh_1776358524527" title="Book a Brand Consultation"></iframe>
+              <script src="https://crm.legacycreative.co/js/form_embed.js" type="text/javascript"></script>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <p class="faq-eyebrow reveal">Common Questions</p>
+        <h2 class="faq-headline reveal reveal-delay-1">
+          Before You <span class="grad-text-animate">Book</span>
+        </h2>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            What is Legacy Co?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Legacy Co is a faith-driven branding agency helping Kingdom entrepreneurs build brands rooted in clarity, identity, and purpose. We use stewardship and discipleship principles to align who you are with what you build.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Who do you work with?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We work with faith-based entrepreneurs, creatives, authors, and nonprofits who want their brand to flow from calling, not just ambition. If your work is purpose-driven and Kingdom-minded, you're in the right place.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            What services do you offer?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We offer brand strategy, visual identity, messaging, website design, CRM automation, and consulting — all through the lens of the Brand Bridge Framework. Two doors: Legacy Co for execution and Brand Discipleship for identity and direction.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            How are your services priced?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We offer flexible pricing including monthly retainers, annual contracts, and per-project pricing. Every engagement is scoped to your specific needs — we'll discuss options on the call and create a custom quote from there.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Is the consultation really free?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes, completely. This is a discovery conversation — no pitch, no pressure. We want to understand your vision and make sure we're the right fit before we talk about anything else.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            What makes Legacy Co different?
+            <span class="faq-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#C9A84C" stroke-width="1.5"><line x1="5" y1="0" x2="5" y2="10"/><line x1="0" y1="5" x2="10" y2="5"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We prioritize deep relationships and quality over quantity. We don't just build brands — we help you discover who you are before we design anything. That foundation is what makes the difference between a brand that looks good and one that lasts.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+        <p class="footer-copy">© 2026 Legacy Creative Co.</p>
+        <div class="footer-links">
+          <a href="faqs.html">FAQs</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="index.html">Home</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.97)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+
+    const hamburger = document.querySelector('.nav-hamburger');
+    const drawer = document.querySelector('.nav-drawer');
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+        btn.setAttribute('aria-expanded', !isOpen);
+      });
+    });
+  </script>
+
+</body>
+</html>
