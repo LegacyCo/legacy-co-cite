@@ -1566,9 +1566,11 @@
       const tail1 = document.querySelector('.infinity-tail1');
       const tail2 = document.querySelector('.infinity-tail2');
       const tail3 = document.querySelector('.infinity-tail3');
-      if (!main || main.dataset.init) return;
+      // getTotalLength() only works on real path elements, not <use>
+      const pathDef = document.getElementById('lem-path');
+      if (!main || main.dataset.init || !pathDef) return;
       main.dataset.init = '1';
-      const len = main.getTotalLength();
+      const len = pathDef.getTotalLength();
       const dur = 3.5; // seconds per loop
 
       // Main body: 97% of the loop
@@ -1587,13 +1589,14 @@
       ];
 
       const s = document.createElement('style');
-      s.textContent = `@keyframes inf-main{to{stroke-dashoffset:-${Math.round(len)}px}}`;
+      // SVG dashoffset uses user units — no "px" suffix in keyframes
+      s.textContent = `@keyframes inf-main{to{stroke-dashoffset:${-Math.round(len)}}}`;
 
       tails.forEach(({ el, seg, off, name }) => {
         if (!el) return;
         el.style.strokeDasharray  = `${seg} ${len - seg}`;
         el.style.strokeDashoffset = `${off}`;
-        s.textContent += `@keyframes ${name}{from{stroke-dashoffset:${Math.round(off)}px}to{stroke-dashoffset:${Math.round(off - len)}px}}`;
+        s.textContent += `@keyframes ${name}{from{stroke-dashoffset:${Math.round(off)}}to{stroke-dashoffset:${Math.round(off - len)}}}`;
       });
 
       document.head.appendChild(s);
