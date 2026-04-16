@@ -439,8 +439,13 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .door-front {
-      transform-origin: left center;
+    .door-a {
+      transform-origin: 0% 50%;   /* exact left edge — "2" hinge */
+      z-index: 2;
+      backface-visibility: hidden;
+    }
+    .door-b {
+      transform-origin: 100% 50%; /* exact right edge — "1" hinge */
       z-index: 1;
       backface-visibility: hidden;
     }
@@ -1146,18 +1151,26 @@
       <div class="strip-divider"></div>
       <div class="strip-item reveal reveal-delay-2">
         <div class="door-num-wrap">
-          <div class="door-digit door-back">1</div>
-          <div class="door-digit door-front">2</div>
+          <div class="door-digit door-b">1</div>
+          <div class="door-digit door-a">2</div>
         </div>
         <div class="strip-label">2 Doors. One Mission.</div>
       </div>
       <div class="strip-divider"></div>
       <div class="strip-item reveal reveal-delay-3">
         <div class="strip-num" style="display:flex;justify-content:center;margin-bottom:8px;">
-          <svg class="infinity-svg" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="infinity-svg" viewBox="0 0 3297 1603" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="infinity-path"
-              d="M100,45 C90,8 12,8 12,45 C12,82 90,82 100,45 C110,8 188,8 188,45 C188,82 110,82 100,45"
-              stroke="#C9A84C" stroke-width="11" stroke-linecap="round" fill="none"/>
+              d="M1648.220,801.049
+                 C1648.220,801.049 1211.246,164.026 838.659,164.026
+                 C466.072,164.026 164.025,449.232 164.025,801.049
+                 C164.025,1152.864 466.072,1438.072 838.659,1438.072
+                 C1211.246,1438.072 1648.220,801.049 1648.220,801.049
+                 C1648.221,801.049 2085.195,164.026 2457.782,164.026
+                 C2830.369,164.026 3132.416,449.232 3132.416,801.049
+                 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072
+                 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"
+              stroke="#C9A84C" stroke-width="300" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
         <div class="strip-label">Kingdom Impact</div>
@@ -1496,43 +1509,43 @@
 
     // ── Door loop ─────────────────────────────────────────────────────────────
     function runDoorLoop() {
-      const wrap  = document.querySelector('.door-num-wrap');
+      const wrap = document.querySelector('.door-num-wrap');
       if (!wrap || wrap.dataset.running) return;
       wrap.dataset.running = '1';
-      const front = wrap.querySelector('.door-front');
-      const back  = wrap.querySelector('.door-back');
-      let pair = ['2','1']; // [front-visible, back-hidden]
+      const a = wrap.querySelector('.door-a'); // "2" — left hinge
+      const b = wrap.querySelector('.door-b'); // "1" — right hinge
 
-      function step() {
-        // Reset without transition
-        front.style.transition = 'none';
-        front.style.transform  = 'rotateY(0deg)';
-        front.textContent = pair[0];
-        back.textContent  = pair[1];
-        wrap.style.transition = 'none';
-        wrap.style.opacity = '0';
-        // Fade in
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          wrap.style.transition = 'opacity 0.35s ease';
-          wrap.style.opacity = '1';
-        }));
-        // Swing open — right to left, hinge on left
-        setTimeout(() => {
-          front.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
-          front.style.transform  = 'rotateY(-88deg)';
-        }, 1600);
-        // Fade out
-        setTimeout(() => {
-          wrap.style.transition = 'opacity 0.3s ease';
-          wrap.style.opacity = '0';
-        }, 2750);
-        // Swap and loop
-        setTimeout(() => {
-          pair = [pair[1], pair[0]];
-          step();
-        }, 3150);
+      function swingA() {
+        // "2" swings open on its left edge
+        a.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
+        a.style.transform  = 'rotateY(-90deg)';
+        a.addEventListener('transitionend', function h() {
+          a.removeEventListener('transitionend', h);
+          // "1" revealed — slide "2" silently behind "1"
+          a.style.transition = 'none';
+          a.style.transform  = 'rotateY(0deg)';
+          a.style.zIndex = '1';
+          b.style.zIndex = '2';
+          setTimeout(swingB, 600);
+        });
       }
-      step();
+
+      function swingB() {
+        // "1" swings open on its right edge — "2" fades in behind as "1" opens
+        b.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
+        b.style.transform  = 'rotateY(90deg)';
+        b.addEventListener('transitionend', function h() {
+          b.removeEventListener('transitionend', h);
+          // "2" revealed — slide "1" silently behind "2"
+          b.style.transition = 'none';
+          b.style.transform  = 'rotateY(0deg)';
+          b.style.zIndex = '1';
+          a.style.zIndex = '2';
+          setTimeout(swingA, 900);
+        });
+      }
+
+      setTimeout(swingA, 1000);
     }
 
     // ── Infinity snake ────────────────────────────────────────────────────────
@@ -1541,7 +1554,7 @@
       if (!path || path.dataset.init) return;
       path.dataset.init = '1';
       const len = path.getTotalLength();
-      const seg = len * 0.24;
+      const seg = len * 0.90;
       path.style.strokeDasharray  = `${seg} ${len - seg}`;
       path.style.strokeDashoffset = '0';
       // Inject precise keyframe
