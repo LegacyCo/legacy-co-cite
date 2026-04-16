@@ -88,12 +88,15 @@
     }
 
     .nav-logo {
-      font-family: var(--font-title);
-      font-size: 18px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
       text-decoration: none;
       z-index: 110;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
     }
 
     .nav-center {
@@ -538,11 +541,13 @@
     }
 
     .footer-brand {
-      font-family: var(--font-title);
-      font-size: 16px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-decoration: none;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .footer-brand img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
 
     .footer-copy {
@@ -581,7 +586,7 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Legacy Co"></a>
     <ul class="nav-center">
       <li><a href="our-work.html">Work</a></li>
       <li><a href="services.html">Services</a></li>
@@ -790,7 +795,7 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+        <a href="index.html" class="footer-brand"><img src="logo.svg" alt="Legacy Co"></a>
         <p class="footer-copy">© 2026 Legacy Creative Co.</p>
         <div class="footer-links">
           <a href="faqs.html">FAQs</a>

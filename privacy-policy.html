@@ -43,7 +43,17 @@
     }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(8,8,8,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(201,168,76,0.08); transition: background 0.3s ease; }
-    .nav-logo { font-family: var(--font-title); font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; z-index: 110; }
+    .nav-logo {
+      text-decoration: none;
+      z-index: 110;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
     .nav-center { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-center a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s ease; white-space: nowrap; }
     .nav-center a:hover, .nav-center a.active { color: var(--cream); }
@@ -260,11 +270,13 @@
       align-items: center;
     }
     .footer-brand {
-      font-family: var(--font-title);
-      font-size: 16px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-decoration: none;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .footer-brand img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
     .footer-copy { font-size: 12px; color: rgba(136,136,128,0.5); }
     .footer-links { display: flex; gap: 28px; }
@@ -290,7 +302,7 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo grad-text">Legacy Co</a>
+    <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Legacy Co"></a>
     <ul class="nav-center">
       <li><a href="our-work.html">Work</a></li>
       <li><a href="services.html">Services</a></li>
@@ -480,7 +492,7 @@
 
   <footer>
     <div class="footer-inner">
-      <a href="index.html" class="footer-brand grad-text">Legacy Co</a>
+      <a href="index.html" class="footer-brand"><img src="logo.svg" alt="Legacy Co"></a>
       <p class="footer-copy">© 2026 Legacy Creative Co.</p>
       <div class="footer-links">
         <a href="consultation.html">Book a Call</a>
