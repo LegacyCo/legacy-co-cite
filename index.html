@@ -419,6 +419,39 @@
       color: var(--muted);
     }
 
+    /* ─── Door numeral ─── */
+    .door-num-wrap {
+      position: relative;
+      perspective: 400px;
+      width: 56px;
+      height: 52px;
+      margin: 0 auto 8px;
+    }
+    .door-digit {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: 48px;
+      line-height: 1;
+      background: var(--grad-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .door-front {
+      transform-origin: left center;
+      z-index: 1;
+      backface-visibility: hidden;
+    }
+
+    /* ─── Infinity SVG ─── */
+    .infinity-svg {
+      display: block;
+      width: 96px;
+      height: 46px;
+    }
+
     /* ─────────────────────────────────────────────────────────────────────────
        MISSION SECTION
     ───────────────────────────────────────────────────────────────────────── */
@@ -1106,18 +1139,27 @@
   <!-- ─── Stats Strip ───────────────────────────────────────────────────────── -->
   <section id="intro-strip">
     <div class="container">
-      <div class="strip-item reveal">
-        <div class="strip-num grad-text">100+</div>
+      <div class="strip-item reveal" id="stats-trigger">
+        <div class="strip-num grad-text"><span id="founders-count">0</span>+</div>
         <div class="strip-label">Founders Served</div>
       </div>
       <div class="strip-divider"></div>
       <div class="strip-item reveal reveal-delay-2">
-        <div class="strip-num grad-text">2</div>
-        <div class="strip-label">Doors. One Mission.</div>
+        <div class="door-num-wrap">
+          <div class="door-digit door-back">1</div>
+          <div class="door-digit door-front">2</div>
+        </div>
+        <div class="strip-label">2 Doors. One Mission.</div>
       </div>
       <div class="strip-divider"></div>
       <div class="strip-item reveal reveal-delay-3">
-        <div class="strip-num grad-text">∞</div>
+        <div class="strip-num" style="display:flex;justify-content:center;margin-bottom:8px;">
+          <svg class="infinity-svg" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="infinity-path"
+              d="M100,45 C90,8 12,8 12,45 C12,82 90,82 100,45 C110,8 188,8 188,45 C188,82 110,82 100,45"
+              stroke="#C9A84C" stroke-width="11" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
         <div class="strip-label">Kingdom Impact</div>
       </div>
     </div>
@@ -1437,6 +1479,90 @@
         document.body.style.overflow = '';
       });
     });
+
+    // ── Counter ──────────────────────────────────────────────────────────────
+    function runCounter() {
+      const el = document.getElementById('founders-count');
+      if (!el || el.dataset.ran) return;
+      el.dataset.ran = '1';
+      const target = 100, dur = 1800, t0 = performance.now();
+      function tick(now) {
+        const t = Math.min((now - t0) / dur, 1);
+        el.textContent = Math.round((1 - Math.pow(1 - t, 3)) * target);
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ── Door loop ─────────────────────────────────────────────────────────────
+    function runDoorLoop() {
+      const wrap  = document.querySelector('.door-num-wrap');
+      if (!wrap || wrap.dataset.running) return;
+      wrap.dataset.running = '1';
+      const front = wrap.querySelector('.door-front');
+      const back  = wrap.querySelector('.door-back');
+      let pair = ['2','1']; // [front-visible, back-hidden]
+
+      function step() {
+        // Reset without transition
+        front.style.transition = 'none';
+        front.style.transform  = 'rotateY(0deg)';
+        front.textContent = pair[0];
+        back.textContent  = pair[1];
+        wrap.style.transition = 'none';
+        wrap.style.opacity = '0';
+        // Fade in
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          wrap.style.transition = 'opacity 0.35s ease';
+          wrap.style.opacity = '1';
+        }));
+        // Swing open — right to left, hinge on left
+        setTimeout(() => {
+          front.style.transition = 'transform 0.95s cubic-bezier(0.4,0,0.2,1)';
+          front.style.transform  = 'rotateY(-88deg)';
+        }, 1600);
+        // Fade out
+        setTimeout(() => {
+          wrap.style.transition = 'opacity 0.3s ease';
+          wrap.style.opacity = '0';
+        }, 2750);
+        // Swap and loop
+        setTimeout(() => {
+          pair = [pair[1], pair[0]];
+          step();
+        }, 3150);
+      }
+      step();
+    }
+
+    // ── Infinity snake ────────────────────────────────────────────────────────
+    function initInfinity() {
+      const path = document.querySelector('.infinity-path');
+      if (!path || path.dataset.init) return;
+      path.dataset.init = '1';
+      const len = path.getTotalLength();
+      const seg = len * 0.24;
+      path.style.strokeDasharray  = `${seg} ${len - seg}`;
+      path.style.strokeDashoffset = '0';
+      // Inject precise keyframe
+      const s = document.createElement('style');
+      s.textContent = `@keyframes inf-travel{to{stroke-dashoffset:-${Math.round(len)}px}}`;
+      document.head.appendChild(s);
+      path.style.animation = `inf-travel ${(len / 155).toFixed(2)}s linear infinite`;
+    }
+
+    // ── Trigger all three on scroll into view ────────────────────────────────
+    const statsObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        runCounter();
+        runDoorLoop();
+        initInfinity();
+        statsObs.unobserve(e.target);
+      });
+    }, { threshold: 0.4 });
+    const strip = document.getElementById('intro-strip');
+    if (strip) statsObs.observe(strip);
   </script>
 
 </body>
