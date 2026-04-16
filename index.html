@@ -983,10 +983,63 @@
       .container { padding: 0 24px; }
       #intro-strip .container { grid-template-columns: 1fr; gap: 40px; }
       .strip-divider { width: 40px; height: 1px; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
       .footer-inner { flex-direction: column; }
       .footer-links { flex-direction: column; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      /* Hero mobile */
+      #hero {
+        min-height: 88vh;
+        padding-top: 68px;
+        padding-bottom: 48px;
+        justify-content: flex-end;
+      }
+      /* Gradient overlay so text is readable over photo */
+      #hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom,
+          transparent 0%,
+          transparent 28%,
+          rgba(8,8,8,0.55) 48%,
+          rgba(8,8,8,0.88) 65%,
+          var(--black) 82%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+      /* Photo: anchored top-right, covers upper portion only */
+      .hero-photo {
+        top: 0;
+        right: -16px;
+        height: 58%;
+        max-width: 68%;
+        -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
+        mask-image: linear-gradient(to left, black 60%, transparent 100%);
+      }
+      /* Headline tighter on mobile */
+      .hero-headline {
+        font-size: 38px;
+        margin-bottom: 20px;
+      }
+      /* Sub text smaller */
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.65;
+        margin-bottom: 28px;
+      }
+      /* Buttons smaller + stacked */
+      .btn {
+        padding: 11px 24px;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
     }
 
     /* ─── Reduced Motion ────────────────────────────────────────────────────── */
