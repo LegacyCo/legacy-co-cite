@@ -1160,14 +1160,21 @@
                 <stop offset="100%" stop-color="#C9A84C"/>
                 <animateTransform attributeName="gradientTransform" type="translate" values="-3297 0; 3297 0" dur="5s" repeatCount="indefinite"/>
               </linearGradient>
+              <!-- Tail fade gradient — x1/y1/x2/y2 updated each RAF frame to follow path curvature -->
+              <linearGradient id="tailGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#C9A84C" stop-opacity="0"/>
+                <stop offset="45%"  stop-color="#C9A84C" stop-opacity="0.12"/>
+                <stop offset="78%"  stop-color="#D4A853" stop-opacity="0.38"/>
+                <stop offset="100%" stop-color="#E8C97A" stop-opacity="0.72"/>
+              </linearGradient>
               <path id="lem-path" d="M1648.220,801.049 C1648.220,801.049 1211.246,164.026 838.659,164.026 C466.072,164.026 164.025,449.232 164.025,801.049 C164.025,1152.864 466.072,1438.072 838.659,1438.072 C1211.246,1438.072 1648.220,801.049 1648.220,801.049 C1648.221,801.049 2085.195,164.026 2457.782,164.026 C2830.369,164.026 3132.416,449.232 3132.416,801.049 C3132.416,1152.864 2830.369,1438.072 2457.782,1438.072 C2085.195,1438.072 1648.221,801.049 1648.221,801.049"/>
             </defs>
-            <!-- Main snake body — blunt leading edge -->
-            <use href="#lem-path" class="infinity-path"  stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" stroke-linejoin="round" fill="none"/>
-            <!-- Tail gradient: 3 steps — brightest closest to trailing edge → dimmest farthest -->
-            <use href="#lem-path" class="infinity-tail1" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.30"/>
-            <use href="#lem-path" class="infinity-tail2" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.14"/>
-            <use href="#lem-path" class="infinity-tail3" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none" opacity="0.05"/>
+            <!-- Main snake body (solid gold) -->
+            <use href="#lem-path" class="infinity-path" stroke="url(#goldSnake)" stroke-width="300" stroke-linecap="butt" fill="none"/>
+            <!-- Trailing fade — real gradient, endpoints driven by JS each frame -->
+            <use href="#lem-path" class="infinity-tail" stroke="url(#tailGrad)" stroke-width="300" stroke-linecap="butt" fill="none"/>
+            <!-- Arrowhead at leading edge — positioned + rotated each RAF frame -->
+            <polygon id="inf-arrow" points="-120,130 -120,-130 160,0" fill="#F0D485" transform="translate(-9999,-9999)"/>
           </svg>
         </div>
         <div class="strip-label">Kingdom Impact</div>
@@ -1562,50 +1569,70 @@
 
     // ── Infinity snake ────────────────────────────────────────────────────────
     function initInfinity() {
-      const main  = document.querySelector('.infinity-path');
-      const tail1 = document.querySelector('.infinity-tail1');
-      const tail2 = document.querySelector('.infinity-tail2');
-      const tail3 = document.querySelector('.infinity-tail3');
-      // getTotalLength() only works on real path elements, not <use>
+      const svgEl   = document.querySelector('.infinity-svg');
       const pathDef = document.getElementById('lem-path');
-      if (!main || main.dataset.init || !pathDef) return;
-      main.dataset.init = '1';
-      const len = pathDef.getTotalLength();
-      const dur = 3.5; // seconds per loop
+      if (!pathDef || !svgEl || svgEl.dataset.init) return;
+      svgEl.dataset.init = '1';
 
-      // Main body: 97% of the loop
-      const mainSeg = len * 0.97;
-      main.style.strokeDasharray  = `${mainSeg} ${len - mainSeg}`;
-      main.style.strokeDashoffset = '0';
+      const len  = pathDef.getTotalLength();
+      const DUR  = 3500;  // ms per full loop
+      const BODY = 0.97;  // 97% solid snake body
+      const TAIL = 0.07;  // 7% gradient tail
 
-      // Three tail layers for a soft gradient fade behind the trailing edge:
-      // tail1 (0.30 opacity): 97%–100% — immediate trailing edge, brightest
-      // tail2 (0.14 opacity): 94%–97% — mid fade
-      // tail3 (0.05 opacity): 92%–94% — near invisible whisper
-      const tails = [
-        { el: tail1, seg: len * 0.03, off: -(len * 0.97), name: 'inf-tail1' },
-        { el: tail2, seg: len * 0.03, off: -(len * 0.94), name: 'inf-tail2' },
-        { el: tail3, seg: len * 0.02, off: -(len * 0.92), name: 'inf-tail3' },
-      ];
+      const mainEl   = svgEl.querySelector('.infinity-path');
+      const tailEl   = svgEl.querySelector('.infinity-tail');
+      const arrowEl  = document.getElementById('inf-arrow');
+      const tailGrad = document.getElementById('tailGrad');
 
-      const s = document.createElement('style');
-      // SVG dashoffset uses user units — no "px" suffix in keyframes
-      s.textContent = `@keyframes inf-main{to{stroke-dashoffset:${-Math.round(len)}}}`;
+      // Static dasharray sizes (lengths don't change, only offsets move)
+      mainEl.style.strokeDasharray = `${len * BODY} ${len * (1 - BODY)}`;
+      tailEl.style.strokeDasharray = `${len * TAIL} ${len * (1 - TAIL)}`;
 
-      tails.forEach(({ el, seg, off, name }) => {
-        if (!el) return;
-        el.style.strokeDasharray  = `${seg} ${len - seg}`;
-        el.style.strokeDashoffset = `${off}`;
-        s.textContent += `@keyframes ${name}{from{stroke-dashoffset:${Math.round(off)}}to{stroke-dashoffset:${Math.round(off - len)}}}`;
-      });
+      let start = null;
 
-      document.head.appendChild(s);
+      function frame(t) {
+        if (!start) start = t;
+        const progress = ((t - start) % DUR) / DUR; // 0 → 1
 
-      main.style.animation = `inf-main ${dur}s linear infinite`;
-      tails.forEach(({ el, name }) => {
-        if (!el) return;
-        el.style.animation = `${name} ${dur}s linear infinite`;
-      });
+        // Leading edge of snake (front)
+        const leadPos  = progress * len;
+        // Trailing edge of main body — where the gap begins (3% of loop ahead of leading edge)
+        const trailPos = ((progress + (1 - BODY)) * len) % len;
+        // Far end of tail (transparent end, 7% further into the gap)
+        const tailPos  = ((progress + (1 - BODY - TAIL)) * len + len) % len;
+
+        // dashoffset formula (derived): dashoffset = (BODY − progress) × len
+        // → leading edge lands exactly at progress × len along the path
+        mainEl.style.strokeDashoffset = (BODY - progress) * len;
+
+        // Tail's leading edge (opaque end) sits at trailPos
+        // dashoffset = TAIL×len − trailPos
+        tailEl.style.strokeDashoffset = TAIL * len - trailPos;
+
+        // Update tail gradient endpoints so the fade follows the actual path curvature
+        // x1/y1 = transparent end (tailPos), x2/y2 = opaque end (trailPos)
+        if (tailGrad) {
+          const p0 = pathDef.getPointAtLength(tailPos);
+          const p1 = pathDef.getPointAtLength(trailPos);
+          tailGrad.setAttribute('x1', p0.x | 0);
+          tailGrad.setAttribute('y1', p0.y | 0);
+          tailGrad.setAttribute('x2', p1.x | 0);
+          tailGrad.setAttribute('y2', p1.y | 0);
+        }
+
+        // Position arrow at leading edge, rotated to match path tangent
+        if (arrowEl) {
+          const ap  = pathDef.getPointAtLength(leadPos % len);
+          const ap2 = pathDef.getPointAtLength((leadPos + 18) % len);
+          const angle = Math.atan2(ap2.y - ap.y, ap2.x - ap.x) * 180 / Math.PI;
+          arrowEl.setAttribute('transform',
+            `translate(${ap.x | 0},${ap.y | 0}) rotate(${(angle * 10 | 0) / 10})`);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
     }
 
     // ── Trigger all three on scroll into view ────────────────────────────────
