@@ -1590,7 +1590,7 @@
       const len  = pathDef.getTotalLength();
       const DUR  = 3500;  // ms per full loop
       const BODY = 0.97;  // 97% solid snake body
-      const TAIL = 0.07;  // 7% gradient tail
+      const TAIL = 0.20;  // 20% gradient tail — long fade from arrowhead backward
 
       const mainEl   = svgEl.querySelector('.infinity-path');
       const tailEl   = svgEl.querySelector('.infinity-tail');
@@ -1607,26 +1607,21 @@
         if (!start) start = t;
         const progress = ((t - start) % DUR) / DUR; // 0 → 1
 
-        // Leading edge of snake (front)
-        const leadPos  = progress * len;
-        // Trailing edge of main body — where the gap begins (3% of loop ahead of leading edge)
-        const trailPos = ((progress + (1 - BODY)) * len) % len;
-        // Far end of tail (transparent end, 7% further into the gap)
-        const tailPos  = ((progress + (1 - BODY - TAIL)) * len + len) % len;
+        // Leading edge of snake (front) — where the arrowhead is
+        const leadPos = progress * len;
+        // Tail: opaque end anchored AT the arrowhead (leadPos),
+        // fades backward 20% of the loop through the gap into the body
+        const tailFarPos = ((progress - TAIL) * len + len) % len;
 
-        // dashoffset formula (derived): dashoffset = (BODY − progress) × len
-        // → leading edge lands exactly at progress × len along the path
+        // dashoffset formula: dashoffset = TAIL×len − leadPos
+        // → tail's leading (opaque) edge lands at leadPos
         mainEl.style.strokeDashoffset = (BODY - progress) * len;
+        tailEl.style.strokeDashoffset = TAIL * len - leadPos;
 
-        // Tail's leading edge (opaque end) sits at trailPos
-        // dashoffset = TAIL×len − trailPos
-        tailEl.style.strokeDashoffset = TAIL * len - trailPos;
-
-        // Update tail gradient endpoints so the fade follows the actual path curvature
-        // x1/y1 = transparent end (tailPos), x2/y2 = opaque end (trailPos)
+        // Gradient: x1/y1 = transparent far end, x2/y2 = opaque end at arrowhead
         if (tailGrad) {
-          const p0 = pathDef.getPointAtLength(tailPos);
-          const p1 = pathDef.getPointAtLength(trailPos);
+          const p0 = pathDef.getPointAtLength(tailFarPos);
+          const p1 = pathDef.getPointAtLength(leadPos % len);
           tailGrad.setAttribute('x1', p0.x | 0);
           tailGrad.setAttribute('y1', p0.y | 0);
           tailGrad.setAttribute('x2', p1.x | 0);
