@@ -4,6 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legacy Co — The Brand Bridge Framework</title>
+  <meta name="description" content="Legacy Co helps founders and leaders build authentic, lasting brands through the Brand Bridge Framework — rooted in identity, clarity, and purpose." />
+  <link rel="canonical" href="https://legacycreative.co/" />
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Legacy Co" />
+  <meta property="og:locale"      content="en_US" />
+  <meta property="og:url"         content="https://legacycreative.co/" />
+  <meta property="og:title"       content="Legacy Co — The Brand Bridge Framework" />
+  <meta property="og:description" content="Legacy Co helps founders and leaders build authentic, lasting brands through the Brand Bridge Framework — rooted in identity, clarity, and purpose." />
+  <meta property="og:image"       content="https://legacycreative.co/og-image.png" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Legacy Co — The Brand Bridge Framework" />
+  <meta name="twitter:description" content="Legacy Co helps founders and leaders build authentic, lasting brands through the Brand Bridge Framework — rooted in identity, clarity, and purpose." />
+  <meta name="twitter:image"       content="https://legacycreative.co/og-image.png" />
+  <!-- JSON-LD: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://legacycreative.co/#organization",
+        "name": "Legacy Co",
+        "url": "https://legacycreative.co",
+        "logo": { "@type": "ImageObject", "url": "https://legacycreative.co/logo.svg" },
+        "email": "hello@legacycreative.co",
+        "description": "Legacy Co helps founders and leaders build authentic brands through the Brand Bridge Framework."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://legacycreative.co/#website",
+        "url": "https://legacycreative.co",
+        "name": "Legacy Co",
+        "publisher": { "@id": "https://legacycreative.co/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://legacycreative.co/#webpage",
+        "url": "https://legacycreative.co/",
+        "name": "Legacy Co — The Brand Bridge Framework",
+        "isPartOf": { "@id": "https://legacycreative.co/#website" },
+        "about": { "@id": "https://legacycreative.co/#organization" },
+        "description": "Legacy Co helps founders and leaders build authentic, lasting brands through the Brand Bridge Framework — rooted in identity, clarity, and purpose."
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
@@ -1167,10 +1215,10 @@
               </linearGradient>
               <!-- Tail fade gradient — x1/y1/x2/y2 updated each RAF frame to follow path curvature -->
               <linearGradient id="tailGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#C9A84C" stop-opacity="0.04"/>
-                <stop offset="45%"  stop-color="#C9A84C" stop-opacity="0.22"/>
-                <stop offset="78%"  stop-color="#D4A853" stop-opacity="0.54"/>
-                <stop offset="100%" stop-color="#E8C97A" stop-opacity="0.88"/>
+                <stop offset="0%"   stop-color="#E8C97A" stop-opacity="0.88"/>
+                <stop offset="22%"  stop-color="#D4A853" stop-opacity="0.54"/>
+                <stop offset="55%"  stop-color="#C9A84C" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#C9A84C" stop-opacity="0.04"/>
               </linearGradient>
               <!-- Arrow gradient: objectBoundingBox so it stays aligned with the polygon's
                    own x-axis regardless of the rotate() applied each frame.
