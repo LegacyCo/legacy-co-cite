@@ -97,13 +97,10 @@
 
     /* Who It's For */
     #who{padding:100px 0;background:var(--dark);}
-    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
-    .who-card{background:var(--dark);padding:40px 44px;
-      border-radius: 14px;
-    }
-    .who-card-icon{width:32px;height:2px;background:var(--gold);margin-bottom:20px;
-      border-radius: 14px;
-    }
+    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .who-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.1);padding:36px 32px;border-radius:14px;transition:border-color .25s ease;}
+    .who-card:hover{border-color:rgba(201,168,76,0.28);}
+    .who-card-icon{width:32px;height:2px;background:var(--gold);margin-bottom:20px;}
     .who-card-title{font-family:var(--font-title);font-size:20px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:12px;}
     .who-card-body{font-size:14px;color:var(--muted);line-height:1.75;}
     .who-not{margin-top:60px;text-align:center;}
@@ -113,13 +110,10 @@
     /* What's Included */
     #included{padding:120px 0;background:var(--dark2);}
     .included-header{margin-bottom:72px;}
-    .included-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
-    .included-item{background:var(--dark2);padding:40px 36px;position:relative;overflow:hidden;
-      border-radius: 14px;
-    }
-    .included-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--grad-gold);opacity:0;transition:opacity .3s ease;
-      border-radius: 14px;
-    }
+    .included-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .included-item{background:var(--dark3);border:1px solid rgba(201,168,76,0.1);padding:36px 32px;position:relative;overflow:hidden;border-radius:14px;transition:border-color .25s ease;}
+    .included-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--grad-gold);opacity:0;transition:opacity .3s ease;}
+    .included-item:hover{border-color:rgba(201,168,76,0.28);}
     .included-item:hover::after{opacity:1;}
     .included-icon{width:40px;height:40px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
     .included-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5;}
@@ -128,13 +122,9 @@
 
     /* The Process */
     #process{padding:100px 0;background:var(--black);}
-    .process-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);}
-    .process-step{display:grid;grid-template-columns:80px 1fr;gap:0;border-bottom:1px solid var(--border);
-      border-radius: 14px;
-    }
-    .process-step:last-child{border-bottom:none;
-      border-radius: 14px;
-    }
+    .process-list{display:flex;flex-direction:column;gap:0;border:1px solid rgba(201,168,76,0.1);border-radius:14px;overflow:hidden;}
+    .process-step{display:grid;grid-template-columns:80px 1fr;gap:0;border-bottom:1px solid rgba(201,168,76,0.08);}
+    .process-step:last-child{border-bottom:none;}
     .process-num{display:flex;align-items:center;justify-content:center;background:var(--dark2);border-right:1px solid var(--border);font-family:var(--font-title);font-size:28px;letter-spacing:-.02em;color:rgba(201,168,76,0.3);padding:40px 0;}
     .process-content{padding:36px 40px;}
     .process-title{font-family:var(--font-title);font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
@@ -142,16 +132,11 @@
 
     /* Investment */
     #investment{padding:100px 0;background:var(--dark2);}
-    .invest-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
-    .invest-card{background:var(--dark2);padding:52px 48px;
-      border-radius: 14px;
-    }
-    .invest-card.featured{background:var(--dark3);position:relative;
-      border-radius: 14px;
-    }
-    .invest-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);
-      border-radius: 14px;
-    }
+    .invest-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .invest-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.1);padding:48px 44px;border-radius:14px;transition:border-color .25s ease;}
+    .invest-card:hover{border-color:rgba(201,168,76,0.28);}
+    .invest-card.featured{background:var(--dark3);border-color:rgba(201,168,76,0.25);position:relative;}
+    .invest-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);border-radius:14px 14px 0 0;}
     .invest-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
     .invest-name{font-family:var(--font-title);font-size:clamp(24px,3vw,36px);text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
     .invest-price{font-family:var(--font-title);font-size:clamp(36px,5vw,56px);letter-spacing:-.03em;margin-bottom:6px;}
