@@ -344,5 +344,17 @@
     hamburger.addEventListener('click',()=>{const isOpen=drawer.classList.toggle('open');hamburger.classList.toggle('open',isOpen);hamburger.setAttribute('aria-expanded',isOpen);document.body.style.overflow=isOpen?'hidden':'';});
     drawer.querySelectorAll('.drawer-link').forEach(link=>{link.addEventListener('click',()=>{drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';});});
   </script>
+
+  <!-- GHL Chat Widget -->
+  <div
+    data-chat-widget
+    data-widget-id="68c5b1a2cae3028c0c725431"
+    data-location-id="oCtKBYieVtVlbqJBLjft">
+  </div>
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="68c5b1a2cae3028c0c725431">
+  </script>
 </body>
 </html>
