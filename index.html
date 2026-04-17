@@ -572,6 +572,7 @@
       border: 1px solid var(--border);
       padding: 52px 44px;
       position: relative;
+      border-radius: 14px;
     }
 
     .mission-card::before {
@@ -582,6 +583,7 @@
       right: 0;
       height: 2px;
       background: var(--grad-gold);
+      border-radius: 14px;
     }
 
     .pillars {
@@ -599,11 +601,13 @@
       border: 1px solid rgba(201,168,76,0.1);
       transition: border-color 0.3s ease, background 0.3s ease;
       cursor: default;
+      border-radius: 14px;
     }
 
     .pillar:hover {
       border-color: rgba(201,168,76,0.35);
       background: rgba(201,168,76,0.04);
+      border-radius: 14px;
     }
 
     .pillar-num {
@@ -612,6 +616,7 @@
       color: var(--gold);
       min-width: 28px;
       padding-top: 2px;
+      border-radius: 14px;
     }
 
     .pillar-title {
@@ -686,9 +691,12 @@
       position: relative;
       background: var(--dark);
       transition: border-color 0.4s ease;
+      border-radius: 14px;
     }
 
-    .bridge-side:hover { border-color: rgba(201,168,76,0.4); }
+    .bridge-side:hover { border-color: rgba(201,168,76,0.4);
+      border-radius: 14px;
+    }
 
     .bridge-side::before {
       content: '';
@@ -698,6 +706,7 @@
       right: 0;
       height: 2px;
       background: var(--grad-gold);
+      border-radius: 14px;
     }
 
     .bridge-connector {
@@ -794,9 +803,12 @@
       background: var(--dark);
       padding: 48px 40px;
       transition: background 0.3s ease;
+      border-radius: 14px;
     }
 
-    .proof-card:hover { background: var(--dark3); }
+    .proof-card:hover { background: var(--dark3);
+      border-radius: 14px;
+    }
 
     .proof-stars {
       display: flex;
@@ -1044,9 +1056,12 @@
       color: rgba(201,168,76,0.15);
       font-size: 20px;
       transition: border-color 0.3s ease;
+      border-radius: 14px;
     }
 
-    .ig-placeholder-cell:hover { border-color: var(--border); }
+    .ig-placeholder-cell:hover { border-color: var(--border);
+      border-radius: 14px;
+    }
 
     /* ─── Responsive ────────────────────────────────────────────────────────── */
     @media (max-width: 1024px) {

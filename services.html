@@ -98,7 +98,9 @@
     /* Process strip */
     #process{padding:60px 0;background:var(--dark2);border-bottom:1px solid var(--border);}
     .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-    .process-step{background:var(--dark2);padding:40px 44px;}
+    .process-step{background:var(--dark2);padding:40px 44px;
+      border-radius: 14px;
+    }
     .step-num{font-family:var(--font-title);font-size:11px;color:var(--gold);letter-spacing:.15em;margin-bottom:12px;}
     .step-title{font-family:var(--font-title);font-size:20px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;}
     .step-body{font-size:13px;color:var(--muted);line-height:1.7;}
@@ -111,9 +113,15 @@
 
     /* Service: Establish */
     .service-block{margin-bottom:2px;}
-    .service-card{background:var(--dark3);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .3s ease;}
-    .service-card:hover{border-color:rgba(201,168,76,0.4);}
-    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);}
+    .service-card{background:var(--dark3);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .3s ease;
+      border-radius: 14px;
+    }
+    .service-card:hover{border-color:rgba(201,168,76,0.4);
+      border-radius: 14px;
+    }
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);
+      border-radius: 14px;
+    }
     .service-inner{padding:52px 56px;}
     .service-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
     .service-name{font-family:var(--font-title);font-size:clamp(36px,5vw,64px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:12px;}
@@ -127,10 +135,18 @@
 
     /* Build tiers */
     .build-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:2px;}
-    .tier-card{background:var(--dark3);padding:44px 36px;position:relative;transition:background .3s ease;}
-    .tier-card:hover{background:#1a1a1a;}
-    .tier-card.featured{background:var(--dark2);}
-    .tier-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);}
+    .tier-card{background:var(--dark3);padding:44px 36px;position:relative;transition:background .3s ease;
+      border-radius: 14px;
+    }
+    .tier-card:hover{background:#1a1a1a;
+      border-radius: 14px;
+    }
+    .tier-card.featured{background:var(--dark2);
+      border-radius: 14px;
+    }
+    .tier-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);
+      border-radius: 14px;
+    }
     .tier-badge{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
     .tier-name{font-family:var(--font-title);font-size:22px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:12px;}
     .tier-price{font-family:var(--font-title);font-size:32px;letter-spacing:-.02em;margin-bottom:24px;}
