@@ -1,0 +1,453 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "meta": {
+    "name": "Legacy Co Design System",
+    "version": "1.0.0",
+    "description": "Brand design tokens for Legacy Creative Co. Compatible with Figma Tokens, Style Dictionary, and W3C Design Tokens format.",
+    "author": "Legacy Creative Co",
+    "url": "https://legacycreative.co"
+  },
+
+  "color": {
+    "$type": "color",
+    "gold": {
+      "$value": "#C9A84C",
+      "$description": "Primary brand gold — used for accents, borders, CTAs, and category labels"
+    },
+    "gold-light": {
+      "$value": "#E8C97A",
+      "$description": "Mid-gold — used in gradient midpoints and hover states"
+    },
+    "cream": {
+      "$value": "#F5E6C8",
+      "$description": "Warm cream — used for headlines on dark, gradient endpoints, and warm text"
+    },
+    "black": {
+      "$value": "#080808",
+      "$description": "Brand black — primary background"
+    },
+    "dark": {
+      "$value": "#0F0F0F",
+      "$description": "Near black — secondary background layer"
+    },
+    "dark-2": {
+      "$value": "#161616",
+      "$description": "Card background — primary surface for cards, sidebars, footers"
+    },
+    "dark-3": {
+      "$value": "#1E1E1E",
+      "$description": "Elevated card background — used for nested or higher-contrast cards"
+    },
+    "white": {
+      "$value": "#FAFAF8",
+      "$description": "Warm white — primary text color"
+    },
+    "muted": {
+      "$value": "#888880",
+      "$description": "Muted text — used for nav links, meta, secondary copy"
+    },
+    "border-default": {
+      "$value": "rgba(201, 168, 76, 0.18)",
+      "$description": "Default gold border — nav dividers, footer borders"
+    },
+    "border-card": {
+      "$value": "rgba(201, 168, 76, 0.10)",
+      "$description": "Subtle card border at rest"
+    },
+    "border-card-hover": {
+      "$value": "rgba(201, 168, 76, 0.28)",
+      "$description": "Card border on hover — adds warmth and elevation"
+    },
+    "border-active": {
+      "$value": "rgba(201, 168, 76, 0.25)",
+      "$description": "Active/featured element border"
+    },
+    "border-nav": {
+      "$value": "rgba(201, 168, 76, 0.08)",
+      "$description": "Hairline nav bottom border"
+    },
+    "prose-body": {
+      "$value": "rgba(250, 250, 248, 0.82)",
+      "$description": "Long-form prose text — slightly dimmed white for readability"
+    },
+    "prose-muted": {
+      "$value": "rgba(250, 250, 248, 0.72)",
+      "$description": "Secondary prose — card body copy"
+    },
+    "overlay-nav": {
+      "$value": "rgba(8, 8, 8, 0.85)",
+      "$description": "Nav background — used with backdrop-filter: blur(16px)"
+    },
+    "overlay-drawer": {
+      "$value": "rgba(8, 8, 8, 0.98)",
+      "$description": "Mobile drawer background — used with backdrop-filter: blur(20px)"
+    },
+    "pull-quote-bg": {
+      "$value": "rgba(201, 168, 76, 0.04)",
+      "$description": "Pull quote block background tint"
+    }
+  },
+
+  "gradient": {
+    "gold": {
+      "$value": "linear-gradient(135deg, #C9A84C 0%, #E8C97A 45%, #F5E6C8 100%)",
+      "$description": "Primary gold gradient — decorative use, gradient text"
+    },
+    "gold-hover": {
+      "$value": "linear-gradient(135deg, #E8C97A 0%, #F5E6C8 50%, #FFFFFF 100%)",
+      "$description": "Lightened gold gradient — button hover overlay"
+    },
+    "gold-shimmer": {
+      "$value": "linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C)",
+      "$description": "Shimmer gradient — applied to primary buttons and animated text. Requires background-size: 300% 300% and shimmer keyframe animation."
+    },
+    "radial-glow": {
+      "$value": "radial-gradient(ellipse, rgba(201, 168, 76, 0.05) 0%, transparent 70%)",
+      "$description": "Subtle gold ambient glow — used behind hero and section headers"
+    },
+    "step-num": {
+      "$value": "linear-gradient(135deg, #C9A84C, #E8C97A)",
+      "$description": "Step number gradient — used on large numbered display elements"
+    }
+  },
+
+  "typography": {
+    "font-title": {
+      "$value": "'Archivo Black', 'Arial Black', sans-serif",
+      "$description": "Display / heading font — all caps, tight tracking. Google Fonts: Archivo+Black"
+    },
+    "font-body": {
+      "$value": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "$description": "UI / body font — nav, labels, buttons, short-form copy"
+    },
+    "font-prose": {
+      "$value": "'Lora', Georgia, serif",
+      "$description": "Long-form prose font — blog posts, pull quotes. Google Fonts: Lora:ital,wght@0,400;0,600;1,400"
+    },
+    "size-display": {
+      "$value": "clamp(52px, 7vw, 96px)",
+      "$description": "Hero display — largest text on page"
+    },
+    "size-h1": {
+      "$value": "clamp(40px, 5.5vw, 80px)",
+      "$description": "Section hero headline"
+    },
+    "size-h2": {
+      "$value": "clamp(28px, 4vw, 52px)",
+      "$description": "Section title"
+    },
+    "size-h3": {
+      "$value": "clamp(22px, 3vw, 36px)",
+      "$description": "Sub-section title"
+    },
+    "size-card-title": {
+      "$value": "20px",
+      "$description": "Card / component heading"
+    },
+    "size-body": {
+      "$value": "16px",
+      "$description": "Standard UI body text"
+    },
+    "size-prose": {
+      "$value": "18px",
+      "$description": "Long-form reading body text"
+    },
+    "size-label": {
+      "$value": "11px",
+      "$description": "Eyebrow / category label — uppercase, wide tracking"
+    },
+    "size-meta": {
+      "$value": "13px",
+      "$description": "Meta info — dates, read time, nav links"
+    },
+    "size-small": {
+      "$value": "12px",
+      "$description": "Footer links, fine print"
+    },
+    "size-micro": {
+      "$value": "10px",
+      "$description": "Sidebar labels, badge text"
+    },
+    "line-height-tight": {
+      "$value": "0.95",
+      "$description": "Hero titles — very tight, architectural"
+    },
+    "line-height-heading": {
+      "$value": "1.1",
+      "$description": "Card and section headings"
+    },
+    "line-height-body": {
+      "$value": "1.6",
+      "$description": "Standard body copy"
+    },
+    "line-height-prose": {
+      "$value": "1.85",
+      "$description": "Long-form reading — maximum readability"
+    },
+    "line-height-pull-quote": {
+      "$value": "1.3",
+      "$description": "Pull quote / title font at large sizes"
+    },
+    "letter-spacing-display": {
+      "$value": "-0.03em",
+      "$description": "Largest display text — negative tracking for tight look"
+    },
+    "letter-spacing-heading": {
+      "$value": "-0.02em",
+      "$description": "Standard heading tracking"
+    },
+    "letter-spacing-sub": {
+      "$value": "-0.01em",
+      "$description": "Card titles and sub-headings"
+    },
+    "letter-spacing-label": {
+      "$value": "0.15em",
+      "$description": "Eyebrow / category label — wide"
+    },
+    "letter-spacing-button": {
+      "$value": "0.12em",
+      "$description": "Button and nav link text"
+    },
+    "letter-spacing-micro": {
+      "$value": "0.20em",
+      "$description": "Smallest labels — maximum legibility"
+    },
+    "text-transform-heading": {
+      "$value": "uppercase",
+      "$description": "All brand headings are uppercase"
+    }
+  },
+
+  "spacing": {
+    "card-padding": {
+      "$value": "36px 32px",
+      "$description": "Standard card internal padding"
+    },
+    "card-padding-large": {
+      "$value": "48px 44px",
+      "$description": "Large / feature card internal padding"
+    },
+    "card-gap": {
+      "$value": "24px",
+      "$description": "Gap between cards in a grid"
+    },
+    "section-padding": {
+      "$value": "100px 0",
+      "$description": "Standard section vertical padding"
+    },
+    "section-padding-large": {
+      "$value": "140px 0",
+      "$description": "Hero section padding — accounts for fixed nav"
+    },
+    "container-max": {
+      "$value": "1100px",
+      "$description": "Primary content container max-width"
+    },
+    "container-padding": {
+      "$value": "0 48px",
+      "$description": "Container horizontal padding (desktop)"
+    },
+    "container-padding-mobile": {
+      "$value": "0 24px",
+      "$description": "Container horizontal padding (mobile)"
+    },
+    "nav-height": {
+      "$value": "68px",
+      "$description": "Fixed nav bar height"
+    }
+  },
+
+  "border": {
+    "radius-card": {
+      "$value": "14px",
+      "$description": "Standard card border radius"
+    },
+    "radius-button": {
+      "$value": "100px",
+      "$description": "Pill button border radius — full round"
+    },
+    "radius-badge": {
+      "$value": "100px",
+      "$description": "Category badge / pill border radius"
+    },
+    "radius-pull-quote": {
+      "$value": "0 8px 8px 0",
+      "$description": "Pull quote block — left edge flush, right corners rounded"
+    },
+    "width-default": {
+      "$value": "1px",
+      "$description": "Standard border width"
+    },
+    "pull-quote-left": {
+      "$value": "2px solid #C9A84C",
+      "$description": "Pull quote left accent border"
+    }
+  },
+
+  "shadow": {
+    "button-hover": {
+      "$value": "0 8px 32px rgba(201, 168, 76, 0.30)",
+      "$description": "Gold glow on button hover"
+    },
+    "card-hover": {
+      "$value": "0 20px 60px rgba(0, 0, 0, 0.4)",
+      "$description": "Depth shadow on card hover"
+    }
+  },
+
+  "motion": {
+    "duration-micro": {
+      "$value": "150ms",
+      "$description": "Fastest interactions — focus rings, checkboxes"
+    },
+    "duration-fast": {
+      "$value": "200ms",
+      "$description": "Color and opacity transitions"
+    },
+    "duration-default": {
+      "$value": "300ms",
+      "$description": "Standard transition — buttons, cards, overlays"
+    },
+    "duration-shimmer": {
+      "$value": "5s",
+      "$description": "Shimmer loop on primary buttons"
+    },
+    "duration-shimmer-text": {
+      "$value": "6s",
+      "$description": "Shimmer loop on gradient text animations"
+    },
+    "easing-default": {
+      "$value": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "$description": "Spring-like ease-out — used for transforms and reveals"
+    },
+    "easing-color": {
+      "$value": "ease",
+      "$description": "Simple ease for color transitions"
+    },
+    "button-lift": {
+      "$value": "translateY(-2px)",
+      "$description": "Button hover lift transform"
+    }
+  },
+
+  "component": {
+    "nav": {
+      "background": "rgba(8, 8, 8, 0.85)",
+      "backdrop-filter": "blur(16px)",
+      "border-bottom": "1px solid rgba(201, 168, 76, 0.08)",
+      "height": "68px",
+      "padding": "0 48px",
+      "position": "fixed",
+      "z-index": "100"
+    },
+    "button-primary": {
+      "background": "linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C)",
+      "background-size": "300% 300%",
+      "animation": "shimmer 5s ease infinite",
+      "color": "#080808",
+      "padding": "14px 36px",
+      "border-radius": "100px",
+      "font-size": "13px",
+      "font-weight": "600",
+      "letter-spacing": "0.12em",
+      "text-transform": "uppercase",
+      "hover-transform": "translateY(-2px)",
+      "hover-shadow": "0 8px 32px rgba(201, 168, 76, 0.30)"
+    },
+    "button-outline": {
+      "background": "transparent",
+      "color": "#F5E6C8",
+      "border": "1px solid rgba(201, 168, 76, 0.18)",
+      "padding": "14px 36px",
+      "border-radius": "100px",
+      "font-size": "13px",
+      "font-weight": "600",
+      "letter-spacing": "0.12em",
+      "text-transform": "uppercase",
+      "hover-background": "linear-gradient(135deg, #E8C97A, #F5E6C8, #FFF)",
+      "hover-color": "#080808"
+    },
+    "card-standard": {
+      "background": "#161616",
+      "border": "1px solid rgba(201, 168, 76, 0.10)",
+      "border-radius": "14px",
+      "padding": "36px 32px",
+      "hover-border": "1px solid rgba(201, 168, 76, 0.28)",
+      "transition": "border-color 250ms ease"
+    },
+    "card-large": {
+      "background": "#1E1E1E",
+      "border": "1px solid rgba(201, 168, 76, 0.10)",
+      "border-radius": "14px",
+      "padding": "48px 44px",
+      "hover-border": "1px solid rgba(201, 168, 76, 0.28)"
+    },
+    "pull-quote": {
+      "border-left": "2px solid #C9A84C",
+      "padding": "20px 28px",
+      "background": "rgba(201, 168, 76, 0.04)",
+      "border-radius": "0 8px 8px 0"
+    },
+    "category-badge": {
+      "background": "transparent",
+      "border": "1px solid rgba(201, 168, 76, 0.25)",
+      "color": "#C9A84C",
+      "font-size": "10px",
+      "font-weight": "600",
+      "letter-spacing": "0.18em",
+      "text-transform": "uppercase",
+      "padding": "4px 12px",
+      "border-radius": "100px"
+    },
+    "sidebar-card": {
+      "background": "#161616",
+      "border": "1px solid rgba(201, 168, 76, 0.10)",
+      "border-radius": "14px",
+      "padding": "32px 28px"
+    }
+  },
+
+  "animation": {
+    "shimmer-keyframes": {
+      "$value": "@keyframes shimmer { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }",
+      "$description": "Shimmer loop — apply to elements with shimmer gradient and background-size: 300% 300%"
+    },
+    "grad-text-animate": {
+      "$value": "background: linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 6s ease infinite;",
+      "$description": "Animated gradient text — applied to hero subheads and accent words"
+    }
+  },
+
+  "z-index": {
+    "base": { "$value": "0" },
+    "card": { "$value": "10" },
+    "dropdown": { "$value": "20" },
+    "sticky": { "$value": "30" },
+    "nav": { "$value": "100" },
+    "drawer": { "$value": "99" },
+    "modal": { "$value": "200" }
+  },
+
+  "breakpoint": {
+    "mobile": {
+      "$value": "375px",
+      "$description": "Minimum supported width"
+    },
+    "tablet": {
+      "$value": "768px",
+      "$description": "Tablet breakpoint"
+    },
+    "nav-collapse": {
+      "$value": "900px",
+      "$description": "Nav collapses to hamburger below this width"
+    },
+    "desktop": {
+      "$value": "1024px",
+      "$description": "Standard desktop"
+    },
+    "wide": {
+      "$value": "1440px",
+      "$description": "Wide desktop — content still constrained to max-width"
+    }
+  }
+}

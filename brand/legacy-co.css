@@ -1,0 +1,984 @@
+/**
+ * ============================================================
+ * LEGACY CO — DESIGN SYSTEM CSS
+ * Version 1.0.0 | legacycreative.co
+ * ============================================================
+ *
+ * USAGE:
+ *   <link rel="stylesheet" href="/brand/legacy-co.css">
+ *
+ * GOOGLE FONTS (add to <head> before this sheet):
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ *   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ *
+ * TABLE OF CONTENTS:
+ *   1. CSS Custom Properties (Tokens)
+ *   2. Reset & Base
+ *   3. Animations
+ *   4. Typography
+ *   5. Layout & Container
+ *   6. Navigation
+ *   7. Buttons
+ *   8. Cards
+ *   9. Badges & Labels
+ *  10. Pull Quotes
+ *  11. Sidebar Components
+ *  12. Grid Patterns
+ *  13. Article / Prose
+ *  14. Utility Classes
+ *  15. Responsive
+ *  16. Reduced Motion
+ * ============================================================
+ */
+
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (TOKENS)
+   ============================================================ */
+
+:root {
+
+  /* --- Colors --- */
+  --gold:           #C9A84C;
+  --gold-light:     #E8C97A;
+  --cream:          #F5E6C8;
+  --black:          #080808;
+  --dark:           #0F0F0F;
+  --dark2:          #161616;
+  --dark3:          #1E1E1E;
+  --white:          #FAFAF8;
+  --muted:          #888880;
+
+  /* --- Borders --- */
+  --border:              rgba(201, 168, 76, 0.18);
+  --border-card:         rgba(201, 168, 76, 0.10);
+  --border-card-hover:   rgba(201, 168, 76, 0.28);
+  --border-active:       rgba(201, 168, 76, 0.25);
+  --border-nav:          rgba(201, 168, 76, 0.08);
+
+  /* --- Text variants --- */
+  --text-prose:     rgba(250, 250, 248, 0.82);
+  --text-prose-dim: rgba(250, 250, 248, 0.72);
+
+  /* --- Gradients --- */
+  --grad-gold:       linear-gradient(135deg, #C9A84C 0%, #E8C97A 45%, #F5E6C8 100%);
+  --grad-gold-h:     linear-gradient(135deg, #E8C97A 0%, #F5E6C8 50%, #FFF 100%);
+  --grad-shimmer:    linear-gradient(135deg, #C9A84C, #F5E6C8, #E8C97A, #C9A84C);
+  --grad-radial-glow: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
+
+  /* --- Fonts --- */
+  --font-title: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body:  'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-prose: 'Lora', Georgia, serif;
+
+  /* --- Spacing --- */
+  --card-padding:       36px 32px;
+  --card-padding-lg:    48px 44px;
+  --card-gap:           24px;
+  --section-padding:    100px 0;
+  --section-padding-lg: 140px 0;
+  --container-max:      1100px;
+
+  /* --- Border Radius --- */
+  --radius-card:   14px;
+  --radius-button: 100px;
+  --radius-badge:  100px;
+
+  /* --- Shadows --- */
+  --shadow-button-hover: 0 8px 32px rgba(201, 168, 76, 0.30);
+  --shadow-card-hover:   0 20px 60px rgba(0, 0, 0, 0.40);
+
+  /* --- Motion --- */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:    200ms;
+  --dur-default: 300ms;
+
+  /* --- Z-Index Scale --- */
+  --z-card:     10;
+  --z-dropdown: 20;
+  --z-sticky:   30;
+  --z-drawer:   99;
+  --z-nav:      100;
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+
+/* ============================================================
+   3. ANIMATIONS
+   ============================================================ */
+
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ============================================================
+   4. TYPOGRAPHY
+   ============================================================ */
+
+/* Display — hero-level text */
+.text-display {
+  font-family: var(--font-title);
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* H1 — section hero */
+h1, .text-h1 {
+  font-family: var(--font-title);
+  font-size: clamp(40px, 5.5vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+/* H2 — section title */
+h2, .text-h2 {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* H3 — card / component heading */
+h3, .text-h3 {
+  font-family: var(--font-title);
+  font-size: clamp(18px, 2.5vw, 28px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* H4 — sub-component heading */
+h4, .text-h4 {
+  font-family: var(--font-title);
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Body — standard UI copy */
+p, .text-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+/* Prose — long-form reading */
+.text-prose {
+  font-family: var(--font-prose);
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--text-prose);
+}
+
+/* Label — eyebrow / category */
+.text-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Meta — dates, read-time, nav */
+.text-meta {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Muted — secondary copy */
+.text-muted {
+  color: var(--muted);
+}
+
+/* Gold gradient text — animated */
+.grad-text {
+  background: var(--grad-shimmer);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s ease infinite;
+}
+
+/* Gold gradient text — static */
+.grad-text-static {
+  background: var(--grad-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cream highlight */
+.text-cream {
+  color: var(--cream);
+}
+
+/* Gold accent */
+.text-gold {
+  color: var(--gold);
+}
+
+
+/* ============================================================
+   5. LAYOUT & CONTAINER
+   ============================================================ */
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+.section-hero {
+  padding: var(--section-padding-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow behind section headers */
+.section-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  background: var(--grad-radial-glow);
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8, 8, 8, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-nav);
+  transition: background var(--dur-default) ease;
+}
+
+.nav-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-center a {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color var(--dur-fast) ease;
+  white-space: nowrap;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+  color: var(--cream);
+}
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  z-index: 110;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--white);
+  transition: all var(--dur-default) var(--ease-spring);
+  transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 8, 8, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: var(--z-drawer);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity var(--dur-default) ease, transform var(--dur-default) var(--ease-spring);
+  pointer-events: none;
+}
+
+.nav-drawer.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.drawer-link {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 6vw, 48px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.5);
+  text-decoration: none;
+  padding: 16px 40px;
+  width: 100%;
+  text-align: center;
+  transition: color var(--dur-fast) ease;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+}
+
+.drawer-link:first-child { border-top: 1px solid rgba(201, 168, 76, 0.06); }
+.drawer-link:hover       { color: var(--cream); }
+
+.drawer-link.drawer-cta {
+  color: var(--gold);
+  margin-top: 8px;
+  border: none;
+  font-size: clamp(20px, 4vw, 28px);
+}
+
+
+/* ============================================================
+   7. BUTTONS
+   ============================================================ */
+
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-default) var(--ease-spring);
+}
+
+/* Hover sheen layer */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-gold-h);
+  opacity: 0;
+  transition: opacity var(--dur-default) ease;
+}
+
+.btn:hover::before  { opacity: 1; }
+.btn:hover          { transform: translateY(-2px); box-shadow: var(--shadow-button-hover); }
+.btn span           { position: relative; z-index: 1; }
+
+/* Primary — animated shimmer gold */
+.btn-primary {
+  background: var(--grad-shimmer);
+  background-size: 300% 300%;
+  animation: shimmer 5s ease infinite;
+  color: var(--black);
+}
+
+/* Outline — transparent with gold border */
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  color: var(--black);
+  border-color: transparent;
+}
+
+/* Small variant */
+.btn-sm {
+  padding: 10px 28px;
+  font-size: 12px;
+}
+
+/* Large variant */
+.btn-lg {
+  padding: 18px 52px;
+  font-size: 14px;
+}
+
+/* Sidebar full-width button */
+.btn-sidebar {
+  display: block;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--grad-shimmer);
+  background-size: 300% 300%;
+  animation: shimmer 5s ease infinite;
+  color: var(--black);
+  transition: all var(--dur-default) var(--ease-spring);
+}
+
+.btn-sidebar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+
+/* ============================================================
+   8. CARDS
+   ============================================================ */
+
+/* Standard card */
+.card {
+  background: var(--dark2);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding);
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.card:hover {
+  border-color: var(--border-card-hover);
+}
+
+/* Large card */
+.card-lg {
+  background: var(--dark3);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding-lg);
+  transition: border-color 250ms ease;
+}
+
+.card-lg:hover {
+  border-color: var(--border-card-hover);
+}
+
+/* Feature card — gold border at rest */
+.card-feature {
+  background: var(--dark2);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding);
+}
+
+/* Card heading */
+.card-title {
+  font-family: var(--font-title);
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+/* Card body */
+.card-body {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Clickable card wrapper */
+.card-link {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Step card — numbered with large gold step number */
+.step-block {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 28px;
+  background: var(--dark2);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--card-padding);
+  align-items: start;
+}
+
+.step-num {
+  font-family: var(--font-title);
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #C9A84C, #E8C97A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.7;
+}
+
+.step-content h3 {
+  font-family: var(--font-title);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.step-content p {
+  font-family: var(--font-prose);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-prose-dim);
+}
+
+
+/* ============================================================
+   9. BADGES & LABELS
+   ============================================================ */
+
+/* Category pill badge */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border-active);
+  padding: 4px 12px;
+  border-radius: var(--radius-badge);
+}
+
+/* Eyebrow label — above headings */
+.eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+/* Sidebar micro-label */
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* Meta dot separator */
+.meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--muted);
+  display: inline-block;
+}
+
+/* Divider line */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(201, 168, 76, 0.10);
+}
+
+.divider-subtle {
+  width: 100%;
+  height: 1px;
+  background: rgba(201, 168, 76, 0.06);
+}
+
+
+/* ============================================================
+   10. PULL QUOTES
+   ============================================================ */
+
+.pull-quote {
+  border-left: 2px solid var(--gold);
+  padding: 20px 28px;
+  margin: 40px 0;
+  background: rgba(201, 168, 76, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.pull-quote p {
+  font-family: var(--font-title);
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin: 0;
+}
+
+
+/* ============================================================
+   11. SIDEBAR COMPONENTS
+   ============================================================ */
+
+.sidebar-card {
+  background: var(--dark2);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: 32px 28px;
+  margin-bottom: 24px;
+}
+
+.sidebar-title {
+  font-family: var(--font-title);
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.sidebar-body {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Related post link */
+.related-post-link {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  text-decoration: none;
+}
+
+.related-post-link:last-child { border-bottom: none; }
+.related-post-link:hover .related-post-title { color: var(--gold); }
+
+.related-post-cat {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.related-post-title {
+  font-size: 13px;
+  color: rgba(250, 250, 248, 0.70);
+  line-height: 1.4;
+  transition: color var(--dur-fast) ease;
+}
+
+
+/* ============================================================
+   12. GRID PATTERNS
+   ============================================================ */
+
+/* Standard card grid — 3 columns */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+}
+
+/* 2-column grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--card-gap);
+}
+
+/* 4-column grid */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--card-gap);
+}
+
+/* Article layout — prose + sidebar */
+.layout-article {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Asymmetric feature layout */
+.layout-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Auto-fill responsive grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--card-gap);
+}
+
+
+/* ============================================================
+   13. ARTICLE / PROSE
+   ============================================================ */
+
+.article-prose p {
+  font-family: var(--font-prose);
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--text-prose);
+  margin-bottom: 28px;
+}
+
+.article-prose h2 {
+  font-family: var(--font-title);
+  font-size: clamp(22px, 3vw, 32px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 52px 0 20px;
+}
+
+.article-prose h3 {
+  font-family: var(--font-title);
+  font-size: clamp(16px, 2vw, 22px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin: 36px 0 14px;
+}
+
+.article-prose strong { color: var(--white); font-weight: 600; }
+.article-prose em     { color: var(--cream); font-style: italic; }
+
+.article-prose a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.30);
+  transition: border-color var(--dur-fast) ease;
+}
+
+.article-prose a:hover { border-color: var(--gold); }
+
+/* Sticky sidebar */
+.article-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+
+/* ============================================================
+   14. UTILITY CLASSES
+   ============================================================ */
+
+/* Background fills */
+.bg-black  { background: var(--black); }
+.bg-dark   { background: var(--dark); }
+.bg-dark2  { background: var(--dark2); }
+.bg-dark3  { background: var(--dark3); }
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+/* Flex helpers */
+.flex         { display: flex; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col     { display: flex; flex-direction: column; }
+
+/* Gap */
+.gap-sm  { gap: 12px; }
+.gap-md  { gap: 24px; }
+.gap-lg  { gap: 40px; }
+.gap-xl  { gap: 60px; }
+
+/* Max width */
+.max-prose  { max-width: 680px; }
+.max-wide   { max-width: 860px; }
+
+/* Margin auto center */
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Overflow hidden (needed for grid containers with rounded items) */
+.overflow-hidden { overflow: hidden; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+
+/* Visually hidden (accessible) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ============================================================
+   15. RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* Nav */
+  nav { padding: 0 24px; }
+  .nav-center  { display: none; }
+  .nav-right .btn { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-drawer    { display: flex; }
+
+  /* Container */
+  .container { padding: 0 24px; }
+
+  /* Grids collapse to 1 column */
+  .grid-3,
+  .grid-4,
+  .layout-article { grid-template-columns: 1fr; }
+
+  .grid-2,
+  .layout-feature { grid-template-columns: 1fr; }
+
+  /* Sidebar unsticks */
+  .article-sidebar { position: static; }
+
+  /* Step blocks go single column */
+  .step-block { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .grid-auto { grid-template-columns: 1fr; }
+
+  .btn { padding: 12px 28px; }
+  .btn-lg { padding: 16px 40px; font-size: 13px; }
+}
+
+
+/* ============================================================
+   16. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-sidebar,
+  .grad-text {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
