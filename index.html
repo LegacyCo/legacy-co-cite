@@ -405,6 +405,36 @@
       opacity: 1;
     }
 
+    /* Meet the Founder link */
+    .hero-founder-link {
+      position: absolute;
+      bottom: 48px;
+      right: 60px;
+      z-index: 10;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.55);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color .2s ease;
+    }
+    .hero-founder-link::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .6;
+      transition: width .3s var(--ease-spring), opacity .2s ease;
+    }
+    .hero-founder-link:hover { color: var(--cream); }
+    .hero-founder-link:hover::before { width: 32px; opacity: 1; }
+    @media(max-width:900px){ .hero-founder-link { display: none; } }
+
     /* Background grain texture */
     #hero::after {
       content: '';
@@ -1174,6 +1204,7 @@
   <section id="hero">
     <div class="hero-glow"></div>
     <img src="/kc-hero.jpg" alt="" class="hero-photo" aria-hidden="true" />
+    <a href="/about" class="hero-founder-link">Meet the Founder</a>
     <div class="container">
       <p class="hero-eyebrow reveal">Faith-Forward Founder Framework</p>
       <h1 class="hero-headline">
