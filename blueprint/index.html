@@ -38,36 +38,7 @@
       "jobTitle": "Chief Curator",
       "url": "https://legacycreative.co/about"
     },
-    "blogPost": [
-      {
-        "@type": "BlogPosting",
-        "headline": "What Is Brand Discipleship?",
-        "url": "https://legacycreative.co/blueprint/what-is-brand-discipleship",
-        "datePublished": "2026-03-21",
-        "author": { "@type": "Person", "name": "KC Clark" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "5 Signs Your Brand Doesn't Reflect Your Calling",
-        "url": "https://legacycreative.co/blueprint/5-signs-your-brand-doesnt-reflect-your-calling",
-        "datePublished": "2026-03-24",
-        "author": { "@type": "Person", "name": "KC Clark" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "The Imprint Framework: How to Align Your Brand with Your Calling",
-        "url": "https://legacycreative.co/blueprint/the-imprint-framework",
-        "datePublished": "2026-03-30",
-        "author": { "@type": "Person", "name": "KC Clark" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Brand Discipleship Deep Dive: The Deep Work Behind Aligned Brands",
-        "url": "https://legacycreative.co/blueprint/brand-discipleship-deep-dive",
-        "datePublished": "2026-04-18",
-        "author": { "@type": "Person", "name": "KC Clark" }
-      }
-    ]
+    "blogPost": []
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -210,32 +181,7 @@
   <!-- Featured Post -->
   <section id="featured">
     <div class="container">
-      <a href="/blueprint/brand-discipleship-deep-dive" class="featured-card reveal">
-        <div class="featured-visual">
-          <div class="featured-visual-text">
-            <span class="featured-visual-num">04</span>
-            <span class="featured-label">Latest — Deep Dive</span>
-          </div>
-        </div>
-        <div class="featured-content">
-          <div>
-            <span class="post-category">Brand Discipleship</span>
-            <h2 class="featured-title">The Deep Work Behind Aligned Brands</h2>
-            <p class="featured-excerpt">"The strongest brands aren't the loudest — they're the most true." A full breakdown of the four pillars behind Brand Discipleship and what real alignment actually requires.</p>
-            <div class="post-meta">
-              <span>KC Clark</span>
-              <span class="post-meta-dot"></span>
-              <span>April 18, 2026</span>
-              <span class="post-meta-dot"></span>
-              <span>12 min read</span>
-            </div>
-          </div>
-          <span class="read-link">
-            Read the article
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </a>
+      <div id="featured-wrap"></div>
     </div>
   </section>
 
@@ -245,39 +191,7 @@
       <div class="posts-header reveal">
         <p class="posts-label">All Entries</p>
       </div>
-      <div class="posts-grid">
-
-        <a href="/blueprint/what-is-brand-discipleship" class="post-card reveal">
-          <span class="post-category">Foundation</span>
-          <h2 class="post-card-title">What Is Brand Discipleship?</h2>
-          <p class="post-card-excerpt">"Your brand isn't a logo or a color palette. It's a declaration." An introduction to the practice of building your brand from the inside out.</p>
-          <div class="post-card-footer">
-            <span class="post-card-meta">Mar 21, 2026 · 6 min</span>
-            <span class="post-card-arrow">→</span>
-          </div>
-        </a>
-
-        <a href="/blueprint/5-signs-your-brand-doesnt-reflect-your-calling" class="post-card reveal reveal-delay-1">
-          <span class="post-category">Brand Identity</span>
-          <h2 class="post-card-title">5 Signs Your Brand Doesn't Reflect Your Calling</h2>
-          <p class="post-card-excerpt">Most founders invest in polished visuals but feel something is off. The disconnect isn't a design problem — it's an alignment problem.</p>
-          <div class="post-card-footer">
-            <span class="post-card-meta">Mar 24, 2026 · 5 min</span>
-            <span class="post-card-arrow">→</span>
-          </div>
-        </a>
-
-        <a href="/blueprint/the-imprint-framework" class="post-card reveal reveal-delay-2">
-          <span class="post-category">Framework</span>
-          <h2 class="post-card-title">The Imprint Framework: How to Align Your Brand with Your Calling</h2>
-          <p class="post-card-excerpt">A proven four-step system for closing the gap between who you are and how your brand shows up in the world.</p>
-          <div class="post-card-footer">
-            <span class="post-card-meta">Mar 30, 2026 · 7 min</span>
-            <span class="post-card-arrow">→</span>
-          </div>
-        </a>
-
-      </div>
+      <div id="posts-grid" class="posts-grid"></div>
     </div>
   </section>
 
@@ -325,14 +239,90 @@
   <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="68c5b1a2cae3028c0c725431"></script>
 
   <script>
-    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    // Nav scroll + hamburger
     const nav=document.querySelector('nav');
     window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,8,0.97)':'rgba(8,8,8,0.85)';},{passive:true});
     const hamburger=document.querySelector('.nav-hamburger');
     const drawer=document.querySelector('.nav-drawer');
     hamburger.addEventListener('click',()=>{const isOpen=drawer.classList.toggle('open');hamburger.classList.toggle('open',isOpen);hamburger.setAttribute('aria-expanded',isOpen);document.body.style.overflow=isOpen?'hidden':'';});
     drawer.querySelectorAll('.drawer-link').forEach(link=>{link.addEventListener('click',()=>{drawer.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';});});
+
+    // Reveal observer (re-usable after dynamic render)
+    function observeReveal(){
+      const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+    }
+    observeReveal();
+
+    // Date helpers
+    const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const SHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtLong(d){const[y,m,day]=d.split('-').map(Number);return`${MONTHS[m-1]} ${day}, ${y}`;}
+    function fmtShort(d){const[y,m,day]=d.split('-').map(Number);return`${SHORT[m-1]} ${day}, ${y}`;}
+
+    // Load and render posts
+    fetch('/blueprint/posts.json')
+      .then(r=>r.json())
+      .then(data=>{
+        const posts=data.posts
+          .filter(p=>!p.draft)
+          .sort((a,b)=>new Date(b.publishDate)-new Date(a.publishDate));
+
+        // Featured: first with featured:true, else most recent
+        const fi=posts.findIndex(p=>p.featured);
+        const featured=posts[fi>=0?fi:0];
+        const num=String(posts.indexOf(featured)+1).padStart(2,'0');
+
+        // Render featured card
+        document.getElementById('featured-wrap').innerHTML=`
+          <a href="${featured.href}" class="featured-card reveal">
+            <div class="featured-visual">
+              <div class="featured-visual-text">
+                <span class="featured-visual-num">${num}</span>
+                <span class="featured-label">Latest — ${featured.category}</span>
+              </div>
+            </div>
+            <div class="featured-content">
+              <div>
+                <span class="post-category">${featured.category}</span>
+                <h2 class="featured-title">${featured.title}</h2>
+                <p class="featured-excerpt">${featured.excerpt}</p>
+                <div class="post-meta">
+                  <span>KC Clark</span><span class="post-meta-dot"></span>
+                  <span>${fmtLong(featured.publishDate)}</span><span class="post-meta-dot"></span>
+                  <span>${featured.readTime} read</span>
+                </div>
+              </div>
+              <span class="read-link">Read the article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>`;
+
+        // Render grid (all except the featured post)
+        const delays=['','reveal-delay-1','reveal-delay-2','reveal-delay-3','reveal-delay-4'];
+        const grid=posts.filter(p=>p.slug!==featured.slug);
+        document.getElementById('posts-grid').innerHTML=grid.map((p,i)=>`
+          <a href="${p.href}" class="post-card reveal ${delays[i%5]}">
+            <span class="post-category">${p.category}</span>
+            <h2 class="post-card-title">${p.title}</h2>
+            <p class="post-card-excerpt">${p.excerpt}</p>
+            <div class="post-card-footer">
+              <span class="post-card-meta">${fmtShort(p.publishDate)} · ${p.readTime}</span>
+              <span class="post-card-arrow">→</span>
+            </div>
+          </a>`).join('');
+
+        // Update schema.org blogPost list
+        const ld=document.querySelector('script[type="application/ld+json"]');
+        if(ld){
+          const schema=JSON.parse(ld.textContent);
+          schema.blogPost=posts.map(p=>({'@type':'BlogPosting',headline:p.title,url:`https://legacycreative.co${p.href}`,datePublished:p.publishDate,author:{'@type':'Person',name:'KC Clark'}}));
+          ld.textContent=JSON.stringify(schema);
+        }
+
+        observeReveal();
+      });
   </script>
 </body>
 </html>

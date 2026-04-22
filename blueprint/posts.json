@@ -1,0 +1,446 @@
+{
+  "generated": "2026-04-21",
+  "schema": "legacy-co-blueprint-v1",
+  "posts": [
+    {
+      "slug": "brand-discipleship-deep-dive",
+      "title": "The Deep Work Behind Aligned Brands",
+      "category": "Brand Discipleship",
+      "excerpt": "\"The strongest brands aren't the loudest — they're the most true.\" A full breakdown of the four pillars behind Brand Discipleship and what real alignment actually requires.",
+      "publishDate": "2026-04-18",
+      "readTime": "12 min",
+      "featured": true,
+      "href": "/blueprint/brand-discipleship-deep-dive"
+    },
+    {
+      "slug": "the-imprint-framework",
+      "title": "The Imprint Framework: How to Align Your Brand with Your Calling",
+      "category": "Framework",
+      "excerpt": "A proven four-step system for closing the gap between who you are and how your brand shows up in the world.",
+      "publishDate": "2026-03-30",
+      "readTime": "7 min",
+      "featured": false,
+      "href": "/blueprint/the-imprint-framework"
+    },
+    {
+      "slug": "5-signs-your-brand-doesnt-reflect-your-calling",
+      "title": "5 Signs Your Brand Doesn't Reflect Your Calling",
+      "category": "Brand Identity",
+      "excerpt": "Most founders invest in polished visuals but feel something is off. The disconnect isn't a design problem — it's an alignment problem.",
+      "publishDate": "2026-03-24",
+      "readTime": "5 min",
+      "featured": false,
+      "href": "/blueprint/5-signs-your-brand-doesnt-reflect-your-calling"
+    },
+    {
+      "slug": "what-is-brand-discipleship",
+      "title": "What Is Brand Discipleship?",
+      "category": "Foundation",
+      "excerpt": "\"Your brand isn't a logo or a color palette. It's a declaration.\" An introduction to the practice of building your brand from the inside out.",
+      "publishDate": "2026-03-21",
+      "readTime": "6 min",
+      "featured": false,
+      "href": "/blueprint/what-is-brand-discipleship"
+    },
+    {
+      "slug": "the-branded-company-guide-2026",
+      "title": "The Branded Company Guide: Building for Legacy in 2026",
+      "category": "Framework",
+      "excerpt": "A step-by-step guide to building a branded company in 2026 that actually lasts. Identity, digital presence, customer experience, scale, and future-proofing through a Brand Discipleship lens.",
+      "publishDate": "2026-01-20",
+      "readTime": "18 min",
+      "featured": true,
+      "tags": [
+        "branded company",
+        "brand strategy",
+        "2026 brand trends",
+        "digital presence",
+        "future-proofing"
+      ],
+      "metaDescription": "A five-step guide to building a branded company in 2026 that lasts — identity, digital presence, experience, scale, and future-proofing, through Brand Discipleship.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/the-branded-company-guide-2026",
+      "draft": false
+    },
+    {
+      "slug": "brand-discipleship-becoming-through-motion",
+      "title": "Brand Discipleship Use Case: Becoming Through Motion — Identity Before Perfection",
+      "category": "Brand Identity",
+      "excerpt": "You don't find your next identity. You grow into it by moving. A Brand Discipleship use case on why faithful motion beats perfect planning every time.",
+      "publishDate": "2025-07-22",
+      "readTime": "4 min",
+      "featured": false,
+      "tags": [
+        "brand discipleship",
+        "identity",
+        "founder story",
+        "faithful motion",
+        "kingdom business"
+      ],
+      "metaDescription": "You don't find your next identity. You grow into it. A Brand Discipleship use case on why faithful motion beats perfect planning for founders called to build.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/brand-discipleship-becoming-through-motion",
+      "draft": false
+    },
+    {
+      "slug": "the-power-of-storytelling-in-business",
+      "title": "The Power of Storytelling in Business: KC Clark on The Pivot Podcast",
+      "category": "Brand Identity",
+      "excerpt": "Connor King-Roberts and I talk branding vs. marketing, the pastoral meaning of the word curator, and the shift from approval-driven building to identity-rooted Brand Discipleship.",
+      "publishDate": "2025-07-22",
+      "readTime": "4 min",
+      "featured": false,
+      "tags": [
+        "storytelling",
+        "branding vs marketing",
+        "pivot podcast",
+        "brand discipleship",
+        "founder story"
+      ],
+      "metaDescription": "KC Clark on The Pivot Podcast. Branding vs. marketing, the pastoral meaning of curator, and why identity has to come before approval in building a brand.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/the-power-of-storytelling-in-business",
+      "draft": false
+    },
+    {
+      "slug": "the-foundation-of-kingdom-community",
+      "title": "The Foundation of Kingdom Community: Why Creatives Can't Build Alone",
+      "category": "Foundation",
+      "excerpt": "The early church didn't meet weekly. They lived daily. A reflection on why Kingdom-minded creatives and founders were never meant to build alone.",
+      "publishDate": "2025-06-10",
+      "readTime": "4 min",
+      "featured": false,
+      "tags": [
+        "kingdom community",
+        "creativity",
+        "discipleship",
+        "collaboration",
+        "spiritual formation"
+      ],
+      "metaDescription": "The early church didn't meet weekly. They lived daily. A reflection on why Kingdom-minded creatives and founders were never meant to build alone.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/the-foundation-of-kingdom-community",
+      "draft": true
+    },
+    {
+      "slug": "the-reality-of-starting-a-christian-business",
+      "title": "The Reality of Starting a Christian Business: What You Need to Know",
+      "category": "Foundation",
+      "excerpt": "A calling isn't a business plan. The honest math of startup risk, the spiritual work that has to come first, and what it takes to build a Christian business that lasts past year five.",
+      "publishDate": "2025-04-01",
+      "readTime": "7 min",
+      "featured": false,
+      "tags": [
+        "christian business",
+        "entrepreneurship",
+        "kingdom business",
+        "startup",
+        "calling"
+      ],
+      "metaDescription": "A calling isn't a business plan. The honest math, the spiritual work that comes first, and what it takes to build a Christian business that lasts past year five.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/the-reality-of-starting-a-christian-business",
+      "draft": false
+    },
+    {
+      "slug": "the-sacred-space-between-calling-and-career",
+      "title": "The Sacred Space Between Calling and Career: Aligning the Work of Your Heart and Hands",
+      "category": "Foundation",
+      "excerpt": "Most Kingdom founders live in the tension between what pays and what burns in them. What if the tension isn't a problem to solve, but a liminal space God is using to shape you?",
+      "publishDate": "2025-03-31",
+      "readTime": "7 min",
+      "featured": false,
+      "tags": [
+        "calling",
+        "career",
+        "christian entrepreneur",
+        "kingdom business",
+        "liminal space"
+      ],
+      "metaDescription": "Most Kingdom founders live in tension between what pays and what burns in them. The liminal space between calling and career — and six ways to steward it.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/the-sacred-space-between-calling-and-career",
+      "draft": false
+    },
+    {
+      "slug": "brand-stewardship-the-discipline-underneath-the-brand",
+      "title": "Brand Stewardship: The Discipline Underneath the Brand",
+      "category": "Brand Identity",
+      "excerpt": "A brand isn't something you launch. It's something you steward. Why the founders who build durable equity treat their brand like a garden, not a billboard.",
+      "publishDate": "2025-03-18",
+      "readTime": "6 min",
+      "featured": false,
+      "tags": [
+        "brand stewardship",
+        "brand equity",
+        "founder story",
+        "kingdom business",
+        "brand strategy"
+      ],
+      "metaDescription": "A brand isn't launched — it's stewarded. Why durable founders treat their brand like a garden, and the four disciplines that protect brand equity.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/brand-stewardship-the-discipline-underneath-the-brand",
+      "draft": false
+    },
+    {
+      "slug": "biglife-weekly-stewarding-vision",
+      "title": "Big Life Weekly Podcast: The Power of Stewarding Vision",
+      "category": "Deep Dive",
+      "excerpt": "Robert Acosta and I talk brand stewardship over service, the generosity math that actually builds trust, and why I'd rather leave a client with the impression of increase than a stack of deliverables.",
+      "publishDate": "2025-02-11",
+      "readTime": "11 min",
+      "featured": false,
+      "tags": [
+        "big life weekly",
+        "brand stewardship",
+        "vision",
+        "generosity",
+        "founder story"
+      ],
+      "metaDescription": "KC Clark on the Big Life Weekly Podcast. Brand stewardship vs. service delivery, the generosity principle, and how to build a brand that actually lasts.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/biglife-weekly-stewarding-vision",
+      "draft": false
+    },
+    {
+      "slug": "a-legacy-builders-prayer",
+      "title": "A Legacy Builder's Prayer",
+      "category": "Foundation",
+      "excerpt": "A prayer for the parent, the entrepreneur, and the leader. For anyone building something and trying to remember they're not building it alone.",
+      "publishDate": "2025-02-03",
+      "readTime": "7 min",
+      "featured": false,
+      "tags": [
+        "prayer",
+        "legacy",
+        "fatherhood",
+        "entrepreneurship",
+        "spiritual formation"
+      ],
+      "metaDescription": "A prayer for the parent, entrepreneur, and leader. For anyone building something and trying to remember they're not building it alone. From Legacy Creative.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/a-legacy-builders-prayer",
+      "draft": true
+    },
+    {
+      "slug": "dadsigner-episode-15-kc-clark",
+      "title": "DADSIGNER Podcast Episode 15: Legacy, Fatherhood, and the Invitation I Missed the First Time",
+      "category": "Deep Dive",
+      "excerpt": "Michael of the Dad Designer Podcast and I sit down to talk agency life, adult kids, and the quiet difference between providing for your family and being present with them.",
+      "publishDate": "2025-01-11",
+      "readTime": "9 min",
+      "featured": false,
+      "tags": [
+        "dad designer podcast",
+        "fatherhood",
+        "agency life",
+        "legacy creative",
+        "founder story"
+      ],
+      "metaDescription": "KC Clark on Dad Designer Podcast Ep. 15. The original invitation behind Legacy Creative and the difference between providing for your family and being present.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/dadsigner-episode-15-kc-clark",
+      "draft": false
+    },
+    {
+      "slug": "canvas-rebel-interview-kc-clark",
+      "title": "Canvas Rebel Interview: On Curation, Calling, and the Invitation Behind Legacy Creative",
+      "category": "Deep Dive",
+      "excerpt": "KC Clark sits down with Canvas Rebel to talk about the afternoon invitation that started Legacy Creative, why he calls himself a Chief Curator, and the resilience it took to build a company instead of a career.",
+      "publishDate": "2024-11-15",
+      "readTime": "10 min",
+      "featured": false,
+      "tags": [
+        "founder story",
+        "canvas rebel",
+        "kc clark",
+        "legacy creative origin",
+        "curation"
+      ],
+      "metaDescription": "The afternoon invitation that started Legacy Creative, the meaning of Chief Curator, and a long road of pivots. KC Clark in conversation with Canvas Rebel.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/canvas-rebel-interview-kc-clark",
+      "draft": false
+    },
+    {
+      "slug": "practice-infrastructure-for-kingdom-counselors",
+      "title": "Practice Infrastructure for Kingdom-Minded Counselors: Protecting Presence at Scale",
+      "category": "Framework",
+      "excerpt": "The calling is presence. The practice is paperwork. Here's how Kingdom-minded counselors can protect the first by stewarding the second with a single operating system.",
+      "publishDate": "2024-10-23",
+      "readTime": "9 min",
+      "featured": false,
+      "tags": [
+        "faith-based counseling",
+        "practice management",
+        "kingdom business",
+        "operational stewardship",
+        "therapist tools"
+      ],
+      "metaDescription": "Kingdom-minded counselors are called to presence, not paperwork. A framework for stewarding the operational weight of a faith-based practice without losing the gift.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/practice-infrastructure-for-kingdom-counselors",
+      "draft": false
+    },
+    {
+      "slug": "creative-infrastructure-for-kingdom-brands",
+      "title": "Creative Infrastructure for Kingdom Brands: Why Unlimited Design Belongs in Your Build",
+      "category": "Framework",
+      "excerpt": "The rhythm of your creative output reveals how you steward your calling. Why Kingdom-minded founders are trading project-by-project scramble for consistent, identity-rooted design.",
+      "publishDate": "2024-09-30",
+      "readTime": "6 min",
+      "featured": false,
+      "tags": [
+        "brand stewardship",
+        "creative subscription",
+        "kingdom business",
+        "design systems",
+        "legacy framework"
+      ],
+      "metaDescription": "Your design rhythm reveals your stewardship. Why Kingdom-minded founders are moving to consistent, identity-rooted creative infrastructure for the long game.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/creative-infrastructure-for-kingdom-brands",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-6-rhythms-of-life",
+      "title": "Rule or Be Ruled — Part 6: Rhythms of Life",
+      "category": "Deep Dive",
+      "excerpt": "A life centered on Jesus runs on rhythm, not willpower. The closing piece of the Rule or Be Ruled manifesto — daily, weekly, monthly, and annual practices.",
+      "publishDate": "2024-09-25",
+      "readTime": "4 min",
+      "featured": false,
+      "tags": [
+        "rule of life",
+        "rhythms",
+        "kingdom rhythms",
+        "spiritual formation",
+        "founder practices"
+      ],
+      "metaDescription": "A life centered on Jesus runs on rhythm, not willpower. Part 6 of the Rule or Be Ruled manifesto — daily, weekly, monthly, and annual rhythms for founders.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-6-rhythms-of-life",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-5-prioritizing-the-kingdom",
+      "title": "Rule or Be Ruled — Part 5: Prioritizing the Kingdom",
+      "category": "Deep Dive",
+      "excerpt": "Hustle culture asks what you can build. The Kingdom asks who you're becoming while you build it. Part 5 of the Rule or Be Ruled manifesto.",
+      "publishDate": "2024-09-18",
+      "readTime": "3 min",
+      "featured": false,
+      "tags": [
+        "kingdom values",
+        "anti-hustle",
+        "kingdom rhythms",
+        "founder practices",
+        "spiritual formation"
+      ],
+      "metaDescription": "Hustle asks what you can build. The Kingdom asks who you're becoming. Part 5 of the Rule or Be Ruled manifesto on choosing Kingdom values over success culture.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-5-prioritizing-the-kingdom",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-4-scheduling-what-matters",
+      "title": "Rule or Be Ruled — Part 4: Scheduling What Matters",
+      "category": "Deep Dive",
+      "excerpt": "Your calendar is a values statement. The things that don't make it onto the grid are the things you didn't actually choose. Part 4 of the manifesto.",
+      "publishDate": "2024-09-11",
+      "readTime": "3 min",
+      "featured": false,
+      "tags": [
+        "time management",
+        "intentional living",
+        "kingdom rhythms",
+        "founder practices",
+        "calendar"
+      ],
+      "metaDescription": "Your calendar is a values statement. Part 4 of the Rule or Be Ruled manifesto on scheduling the things that matter before the urgent fills the grid.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-4-scheduling-what-matters",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-3-sabbath-rest",
+      "title": "Rule or Be Ruled — Part 3: Sabbath Rest",
+      "category": "Deep Dive",
+      "excerpt": "Sabbath is not a reward for finishing your week. It's how you declare the week doesn't own you. Part 3 of the Rule or Be Ruled manifesto.",
+      "publishDate": "2024-09-04",
+      "readTime": "3 min",
+      "featured": false,
+      "tags": [
+        "sabbath",
+        "rest",
+        "kingdom rhythms",
+        "spiritual formation",
+        "founder practices"
+      ],
+      "metaDescription": "Sabbath isn't a reward for finishing. It's how you declare the week doesn't own you. Part 3 of the Rule or Be Ruled manifesto on Kingdom rhythms.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-3-sabbath-rest",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-2-silence-and-solitude",
+      "title": "Rule or Be Ruled — Part 2: Silence and Solitude",
+      "category": "Deep Dive",
+      "excerpt": "Jesus withdrew. Often. If the Son of God needed the desert, the founder building on His name needs it more. Part 2 of the Rule or Be Ruled manifesto.",
+      "publishDate": "2024-08-28",
+      "readTime": "3 min",
+      "featured": false,
+      "tags": [
+        "silence",
+        "solitude",
+        "kingdom rhythms",
+        "spiritual formation",
+        "founder practices"
+      ],
+      "metaDescription": "Jesus withdrew often to lonely places. Part 2 of the Rule or Be Ruled manifesto on silence, solitude, and the founder's discipline of being alone with God.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-2-silence-and-solitude",
+      "draft": false
+    },
+    {
+      "slug": "rule-or-be-ruled-part-1-introduction",
+      "title": "Rule or Be Ruled — Part 1: A Manifesto on Taking Back Your Peace",
+      "category": "Deep Dive",
+      "excerpt": "Most of us aren't in charge of our own attention. A six-part working manifesto on Kingdom rhythms, slow faithfulness, and the peace we keep trading away.",
+      "publishDate": "2024-08-21",
+      "readTime": "4 min",
+      "featured": false,
+      "tags": [
+        "rule of life",
+        "kingdom rhythms",
+        "slow faithfulness",
+        "spiritual formation",
+        "manifesto"
+      ],
+      "metaDescription": "Part 1 of a six-part manifesto on Kingdom rhythms. Most of us are already being ruled by something — an invitation into a slower, truer rule of life.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/rule-or-be-ruled-part-1-introduction",
+      "draft": false
+    },
+    {
+      "slug": "fathering-artists-vulnerability-and-affirmation",
+      "title": "Fathering Artists: The Vulnerability and Affirmation of Creative Expression",
+      "category": "Deep Dive",
+      "excerpt": "A conversation with Tehillah on dance, dads, and the kind of affirmation that lets an artist stop performing. From the Being Salt Podcast, Episode 2.",
+      "publishDate": "2023-09-04",
+      "readTime": "8 min",
+      "featured": false,
+      "tags": [
+        "being salt podcast",
+        "creative identity",
+        "worship arts",
+        "fathering",
+        "kingdom creatives"
+      ],
+      "metaDescription": "KC Clark and Tehillah on dance, fatherhood, and the Father's affirmation that sets creative expression free. Being Salt Podcast, Episode 2 recap and transcript.",
+      "ogImage": "https://legacycreative.co/og-image.png",
+      "href": "/blueprint/fathering-artists-vulnerability-and-affirmation",
+      "draft": false
+    }
+  ]
+}
