@@ -80,8 +80,8 @@
     /* ── Hero ───────────────────────────────────────────────── */
     #hero{
       position:relative;overflow:hidden;
-      padding:0 0 24px;min-height:45vh;
-      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:96px 0 16px;
+      display:flex;flex-direction:column;justify-content:center;
     }
     .hero-glow{
       position:absolute;top:-200px;right:-200px;
@@ -90,17 +90,18 @@
       pointer-events:none;z-index:1;
     }
     .hero-photo{
-      position:absolute;top:2vh;right:-6vw;
-      width:72vw;height:26vh;
+      position:absolute;top:2vh;right:-2vw;
+      width:34vw;height:auto;max-height:46vh;
       object-fit:cover;object-position:center top;
       pointer-events:none;z-index:2;
-      -webkit-mask-image:linear-gradient(to left,black 60%,transparent 100%);
-      mask-image:linear-gradient(to left,black 60%,transparent 100%);
+      -webkit-mask-image:linear-gradient(to bottom,black 55%,transparent 100%);
+      mask-image:linear-gradient(to bottom,black 55%,transparent 100%);
     }
     #hero::before{
       content:'';position:absolute;inset:0;z-index:3;pointer-events:none;
-      background:linear-gradient(to bottom,transparent 0%,transparent 52%,rgba(8,8,8,0.5) 72%,rgba(8,8,8,0.88) 88%,var(--black) 100%);
+      background:linear-gradient(to bottom,transparent 80%,var(--black) 100%);
     }
+    .hero-content-wrap{max-width:60vw;}
     #hero::after{
       content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
