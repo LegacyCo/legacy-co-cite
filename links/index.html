@@ -80,7 +80,7 @@
     /* ── Hero ───────────────────────────────────────────────── */
     #hero{
       position:relative;overflow:hidden;
-      padding:108px 0 32px;
+      padding:120px 0 40px;min-height:440px;
       display:flex;flex-direction:column;justify-content:center;
     }
     .hero-glow{
@@ -90,8 +90,8 @@
       pointer-events:none;z-index:1;
     }
     .hero-photo{
-      position:absolute;top:68px;right:-40px;
-      height:calc(100% - 90px);width:auto;max-width:66%;
+      position:absolute;top:68px;right:-8vw;
+      width:70vw;height:auto;max-height:none;
       object-fit:cover;object-position:top center;
       pointer-events:none;z-index:2;
       -webkit-mask-image:linear-gradient(to left,black 55%,transparent 95%);
@@ -99,7 +99,7 @@
     }
     #hero::before{
       content:'';position:absolute;inset:0;z-index:3;pointer-events:none;
-      background:linear-gradient(to bottom,transparent 0%,transparent 60%,rgba(8,8,8,0.6) 88%,var(--black) 100%);
+      background:linear-gradient(to right,rgba(8,8,8,0.85) 0%,rgba(8,8,8,0.5) 35%,transparent 65%),linear-gradient(to bottom,transparent 0%,transparent 65%,rgba(8,8,8,0.7) 90%,var(--black) 100%);
     }
     #hero::after{
       content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
@@ -207,8 +207,8 @@
     /* ── Desktop layout ───────────────────────────────────────── */
     @media(min-width:901px){
       #hero{min-height:72vh;padding:120px 0 48px;justify-content:center;}
-      .hero-photo{right:-20px;height:88%;max-width:46%;top:6%;-webkit-mask-image:linear-gradient(to left,black 62%,transparent 100%);mask-image:linear-gradient(to left,black 62%,transparent 100%);}
-      #hero::before{background:linear-gradient(to right,transparent 0%,transparent 46%,rgba(8,8,8,0.3) 58%,transparent 100%),linear-gradient(to bottom,transparent 0%,transparent 70%,rgba(8,8,8,0.6) 92%,var(--black) 100%);}
+      .hero-photo{right:-3vw;width:44vw;height:auto;max-height:none;top:10%;-webkit-mask-image:linear-gradient(to left,black 62%,transparent 100%);mask-image:linear-gradient(to left,black 62%,transparent 100%);}
+      #hero::before{background:linear-gradient(to right,rgba(8,8,8,0.6) 0%,rgba(8,8,8,0.2) 40%,transparent 60%),linear-gradient(to bottom,transparent 0%,transparent 70%,rgba(8,8,8,0.6) 92%,var(--black) 100%);}
       .hero-inner{max-width:1100px;padding:0 48px;margin:0 auto;}
       .hero-content-wrap{max-width:560px;}
       .hero-name{font-size:clamp(56px,6.5vw,88px);margin-bottom:14px;}
