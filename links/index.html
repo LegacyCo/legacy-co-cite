@@ -188,10 +188,22 @@
     .social-btn:hover{border-color:var(--gold);background:var(--dark3);color:var(--gold);transform:translateY(-2px);}
     .social-btn svg{width:16px;height:16px;}
 
-    .footer{text-align:center;margin-top:36px;}
-    .footer a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s ease;}
-    .footer a:hover{color:var(--cream);}
-    .footer-copy{font-size:10px;color:rgba(136,136,128,0.5);margin-top:8px;letter-spacing:.08em;}
+    /* ── Footer (sitewide standard) ──────────────────────────────────── */
+    footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 0 40px;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;margin-bottom:48px;flex-wrap:wrap;max-width:1100px;margin-left:auto;margin-right:auto;padding:0 48px;}
+    .footer-brand{margin-bottom:12px;display:block;}
+    .footer-brand img{height:44px;width:auto;display:block;}
+    .footer-tagline{font-size:13px;color:var(--muted);max-width:260px;line-height:1.7;}
+    .footer-links{display:flex;gap:80px;flex-wrap:wrap;}
+    .footer-col-title{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+    .footer-col-links{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;}
+    .footer-col-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s ease;}
+    .footer-col-links a:hover{color:var(--cream);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1100px;margin:0 auto;padding-left:48px;padding-right:48px;}
+    .footer-copy{font-size:12px;color:rgba(136,136,128,0.6);}
+    .footer-faith{font-size:12px;color:rgba(136,136,128,0.4);letter-spacing:.1em;font-style:italic;}
+    @media(max-width:1024px){.footer-links{gap:48px;}}
+    @media(max-width:768px){.footer-inner{flex-direction:column;padding-left:24px;padding-right:24px;}.footer-links{flex-direction:column;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;padding-left:24px;padding-right:24px;}}
 
     /* Entry animations */
     .stack > *,.features > *,.secondary-stack > *,.social-row{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both;}
@@ -419,13 +431,50 @@
         </a>
       </div>
 
-      <div class="footer">
-        <a href="https://legacycreative.co">legacycreative.co</a>
-        <p class="footer-copy">© 2026 Legacy Creative Co.</p>
-      </div>
-
     </div>
   </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand"><img src="/logo.svg" alt="Legacy Co"></div>
+          <p class="footer-tagline">Helping Kingdom-minded founders build brands with clarity, purpose, and identity that lasts.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <div class="footer-col-title">Legacy Co</div>
+            <ul class="footer-col-links">
+              <li><a href="/our-work">Our Work</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/consultation">Book a Consultation</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Brand Discipleship</div>
+            <ul class="footer-col-links">
+              <li><a href="/framework">The Framework</a></li>
+              <li><a href="/brand-coaching">Brand Coaching</a></li>
+              <li><a href="/assessment">Take the Assessment</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Connect</div>
+            <ul class="footer-col-links">
+              <li><a href="https://instagram.com/legacycreative.co" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/legacy-creative-co" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://www.youtube.com/@LegacyCreativeCo" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="mailto:hello@legacycreative.co">Email Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Legacy Creative Co. All rights reserved.</p>
+        <p class="footer-faith">Built on purpose. Rooted in faith.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Nav scroll + hamburger

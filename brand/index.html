@@ -52,6 +52,23 @@
     .guide-nav a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
     .guide-nav a:hover{color:var(--cream);}
     .guide-nav-logo{font-family:var(--font-title);font-size:14px;letter-spacing:.05em;color:var(--white);margin-right:24px;}
+    /* ── Footer (sitewide standard) ──────────────────────────────────── */
+    footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 0 40px;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;margin-bottom:48px;flex-wrap:wrap;}
+    .footer-brand{margin-bottom:12px;display:block;}
+    .footer-brand img{height:44px;width:auto;display:block;}
+    .footer-tagline{font-size:13px;color:var(--muted);max-width:260px;line-height:1.7;}
+    .footer-links{display:flex;gap:80px;flex-wrap:wrap;}
+    .footer-col-title{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+    .footer-col-links{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;}
+    .footer-col-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s ease;}
+    .footer-col-links a:hover{color:var(--cream);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-copy{font-size:12px;color:rgba(136,136,128,0.6);}
+    .footer-faith{font-size:12px;color:rgba(136,136,128,0.4);letter-spacing:.1em;font-style:italic;}
+    @media(max-width:1024px){.footer-links{gap:48px;}}
+    @media(max-width:768px){.footer-inner{flex-direction:column;}.footer-links{flex-direction:column;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}}
+
   </style>
 </head>
 <body style="background:var(--black);">
@@ -622,11 +639,44 @@
   </section>
 
   <!-- Footer -->
-  <footer style="border-top:1px solid rgba(201,168,76,0.12);padding:40px 0;">
+  <footer>
     <div class="container">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-        <p style="font-size:12px;color:rgba(136,136,128,0.5);">&copy; 2026 Legacy Creative Co · Brand Design System v1.0</p>
-        <a href="/" style="font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">legacycreative.co</a>
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand"><img src="/logo.svg" alt="Legacy Co"></div>
+          <p class="footer-tagline">Helping Kingdom-minded founders build brands with clarity, purpose, and identity that lasts.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <div class="footer-col-title">Legacy Co</div>
+            <ul class="footer-col-links">
+              <li><a href="/our-work">Our Work</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/consultation">Book a Consultation</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Brand Discipleship</div>
+            <ul class="footer-col-links">
+              <li><a href="/framework">The Framework</a></li>
+              <li><a href="/brand-coaching">Brand Coaching</a></li>
+              <li><a href="/assessment">Take the Assessment</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Connect</div>
+            <ul class="footer-col-links">
+              <li><a href="https://instagram.com/legacycreative.co" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/legacy-creative-co" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://www.youtube.com/@LegacyCreativeCo" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="mailto:hello@legacycreative.co">Email Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Legacy Creative Co. All rights reserved.</p>
+        <p class="footer-faith">Built on purpose. Rooted in faith.</p>
       </div>
     </div>
   </footer>
