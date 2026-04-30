@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formational Habits for Faith-Forward Founders — Legacy Co</title>
+  <meta name="description" content="Built around The Brand Bridge: Identity, Clarity, Legacy. The daily, weekly, and seasonal rhythms that form the founder behind the brand." />
+  <link rel="canonical" href="https://legacycreative.co/framework/formational-habits" />
+
+  <meta property="og:type"        content="article" />
+  <meta property="og:site_name"   content="Legacy Co" />
+  <meta property="og:locale"      content="en_US" />
+  <meta property="og:url"         content="https://legacycreative.co/framework/formational-habits" />
+  <meta property="og:title"       content="Formational Habits for Faith-Forward Founders — Legacy Co" />
+  <meta property="og:description" content="Built around The Brand Bridge: Identity, Clarity, Legacy. The rhythms that form each." />
+  <meta property="og:image"       content="https://legacycreative.co/og-image.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Formational Habits for Faith-Forward Founders" />
+  <meta name="twitter:description" content="Built around The Brand Bridge. The rhythms that form each." />
+  <meta name="twitter:image"       content="https://legacycreative.co/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Formational Habits for Faith-Forward Founders",
+    "url": "https://legacycreative.co/framework/formational-habits",
+    "description": "Built around The Brand Bridge: Identity, Clarity, Legacy. The rhythms that form each.",
+    "publisher": { "@type": "Organization", "name": "Legacy Co", "url": "https://legacycreative.co" },
+    "author": { "@type": "Person", "name": "KC Clark" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Tokens ──────────────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --gold:#C9A84C;--gold-lt:#E8C97A;--cream:#F5E6C8;
+      --black:#080808;--dark:#0F0F0F;--dark2:#161616;--dark3:#1E1E1E;
+      --white:#FAFAF8;--muted:#888880;--border:rgba(201,168,76,0.18);
+      --font-title:'Archivo Black','Arial Black',sans-serif;
+      --font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-serif:'Lora',Georgia,serif;
+      --grad-gold:linear-gradient(135deg,#C9A84C 0%,#E8C97A 45%,#F5E6C8 100%);
+      --grad-gold-h:linear-gradient(135deg,#E8C97A 0%,#F5E6C8 50%,#FFFFFF 100%);
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* ─── Top Bar ─────────────────────────────────────────────────────────── */
+    .guide-topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;background:rgba(8,8,8,0.6);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.08);}
+    .topbar-pdf{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;background:linear-gradient(135deg,#C9A84C,#F5E6C8,#E8C97A,#C9A84C);background-size:300% 300%;animation:shimmer 5s ease infinite;color:var(--black);font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;}
+    .topbar-pdf:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,0.3);}
+    .topbar-pdf svg{width:14px;height:14px;}
+    .topbar-back{display:inline-flex;align-items:center;gap:6px;color:var(--cream);text-decoration:none;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:0.7;transition:opacity .2s ease;}
+    .topbar-back:hover{opacity:1;}
+    .topbar-back svg{width:14px;height:14px;}
+
+    /* ─── Container ───────────────────────────────────────────────────────── */
+    .guide-wrap{max-width:720px;margin:0 auto;padding:140px 32px 120px;}
+
+    /* ─── Hero ────────────────────────────────────────────────────────────── */
+    .guide-hero{text-align:center;margin-bottom:80px;}
+    .guide-logo{height:42px;width:auto;margin:0 auto 28px;display:block;opacity:.95;}
+    .guide-eyebrow{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+    .guide-title{font-family:var(--font-title);font-size:clamp(40px,7vw,76px);line-height:.96;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin-bottom:24px;}
+    .guide-subtitle{font-family:var(--font-serif);font-size:clamp(16px,2vw,20px);font-style:italic;color:var(--cream);line-height:1.5;max-width:560px;margin:0 auto 36px;}
+    .guide-steps-row{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+    .guide-steps-row .step{color:var(--cream);}
+    .guide-steps-row .dot{color:var(--gold);opacity:.6;}
+
+    /* ─── Section Headings ────────────────────────────────────────────────── */
+    .section-h2{font-family:var(--font-title);font-size:clamp(28px,3.6vw,40px);line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
+    .section-h3{font-family:var(--font-title);font-size:clamp(22px,2.6vw,28px);line-height:1.1;letter-spacing:-.01em;text-transform:uppercase;color:var(--cream);margin:48px 0 16px;}
+    .section-h4{font-family:var(--font-title);font-size:18px;line-height:1.15;letter-spacing:-.005em;color:var(--white);margin:32px 0 12px;}
+    .section-lead{font-family:var(--font-serif);font-size:18px;font-style:italic;color:var(--cream);margin-bottom:24px;line-height:1.5;}
+    .subsection-label{display:block;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:48px 0 18px;font-family:var(--font-body);}
+
+    /* ─── Prose ───────────────────────────────────────────────────────────── */
+    .prose p{font-size:16px;line-height:1.85;color:rgba(250,250,248,0.8);margin-bottom:18px;}
+    .prose p strong{color:var(--white);font-weight:600;}
+    .prose p em{font-style:italic;color:var(--cream);}
+    .prose ul,.prose ol{margin:14px 0 22px;padding-left:0;list-style:none;}
+    .prose ul li{font-size:16px;line-height:1.75;color:rgba(250,250,248,0.78);padding:6px 0 6px 22px;position:relative;}
+    .prose ul li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.6;}
+    .prose ol{counter-reset:item;padding-left:0;}
+    .prose ol li{font-size:16px;line-height:1.75;color:rgba(250,250,248,0.8);padding:8px 0 8px 36px;position:relative;counter-increment:item;}
+    .prose ol li::before{content:counter(item) ".";position:absolute;left:0;top:8px;font-family:var(--font-title);font-size:14px;color:var(--gold);letter-spacing:.04em;}
+    .prose ol li strong{color:var(--white);}
+
+    /* ─── Dividers ────────────────────────────────────────────────────────── */
+    .divider{border:0;height:1px;background:rgba(201,168,76,0.18);margin:64px 0;}
+    .divider-major{height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.6),transparent);margin:96px 0;}
+
+    /* ─── Pillar ──────────────────────────────────────────────────────────── */
+    .pillar{margin:80px 0;scroll-margin-top:120px;}
+    .pillar-num{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+    .pillar-name{font-family:var(--font-title);font-size:clamp(48px,7vw,80px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
+    .pillar-tagline{font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--cream);line-height:1.45;margin-bottom:36px;}
+
+    /* ─── Closing / Capstone ──────────────────────────────────────────────── */
+    .closing{margin:96px 0 0;}
+    .capstone{font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,2.6vw,24px);line-height:1.4;color:var(--gold);text-align:center;margin:48px 0;padding:0 16px;}
+
+    /* ─── What's Next CTA ─────────────────────────────────────────────────── */
+    .next-cta{margin:72px 0 32px;padding:48px 36px;background:var(--dark2);border:1px solid rgba(201,168,76,0.18);border-radius:14px;text-align:center;}
+    .next-eyebrow{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+    .next-headline{font-family:var(--font-title);font-size:clamp(26px,3.2vw,36px);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
+    .next-cta p{font-size:15px;line-height:1.75;color:rgba(250,250,248,0.78);margin-bottom:14px;text-align:left;}
+    .next-cta p strong{color:var(--white);}
+
+    /* ─── Signature ───────────────────────────────────────────────────────── */
+    .signature{margin:72px 0 32px;padding:0 8px;}
+    .signature p{font-size:15px;color:rgba(250,250,248,0.78);line-height:1.6;margin-bottom:6px;}
+    .sig-name{font-family:var(--font-title);font-size:24px;letter-spacing:.02em;text-transform:uppercase;color:var(--cream);margin:14px 0 4px !important;}
+    .sig-title{font-style:italic;color:var(--cream);}
+    .signature a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);}
+    .signature a:hover{color:var(--gold-lt);border-bottom-color:var(--gold-lt);}
+
+    /* ─── Footnote ────────────────────────────────────────────────────────── */
+    .footnote{margin:48px 0 0;padding-top:24px;border-top:1px solid rgba(201,168,76,0.12);font-size:13px;font-style:italic;color:var(--muted);line-height:1.7;}
+
+    /* ─── Footer ──────────────────────────────────────────────────────────── */
+    .guide-footer{text-align:center;margin-top:80px;padding-top:48px;border-top:1px solid rgba(201,168,76,0.1);}
+    .guide-footer img{height:36px;opacity:.85;margin-bottom:14px;}
+    .guide-footer p{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+
+    /* ─── Preview Modal Trigger (PREVIEW ONLY) ───────────────────────────── */
+    .preview-trigger-note{margin-top:48px;padding:18px 22px;border:1px dashed rgba(201,168,76,0.4);border-radius:8px;text-align:center;background:rgba(201,168,76,0.04);}
+    .preview-trigger-note p{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .preview-trigger-btn{display:inline-block;padding:10px 24px;border-radius:100px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--cream);font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);}
+    .preview-trigger-btn:hover{background:rgba(201,168,76,0.2);}
+
+    /* ─── Mobile ──────────────────────────────────────────────────────────── */
+    @media (max-width:640px){
+      .guide-topbar{padding:14px 18px;}
+      .topbar-pdf{padding:9px 14px;font-size:10px;}
+      .topbar-back{font-size:10px;}
+      .guide-wrap{padding:100px 22px 80px;}
+      .pillar{margin:56px 0;}
+      .next-cta{padding:32px 22px;}
+      .divider{margin:48px 0;}
+      .divider-major{margin:64px 0;}
+    }
+
+    /* ─── Print / PDF ─────────────────────────────────────────────────────── */
+    @media print{
+      @page{size:letter;margin:0.5in;}
+      body{background:#fff;color:#080808;}
+      .guide-topbar,.preview-trigger-note{display:none !important;}
+      .guide-wrap{padding:0;max-width:100%;}
+      .guide-eyebrow,.pillar-num,.next-eyebrow,.subsection-label,.guide-steps-row{color:#7a6320;}
+      .guide-title,.section-h2,.section-h3,.section-h4,.pillar-name,.next-headline,.sig-name{color:#080808;}
+      .guide-subtitle,.section-lead,.pillar-tagline,.sig-title{color:#3a3a3a;}
+      .prose p,.prose ul li,.prose ol li,.next-cta p{color:#1a1a1a;}
+      .prose p strong,.prose ol li strong{color:#080808;}
+      .prose p em{color:#3a3a3a;}
+      .prose ul li::before,.prose ol li::before{color:#7a6320;}
+      .next-cta{background:#f7f3e8;border-color:#c9a84c;}
+      .capstone{color:#7a6320;}
+      .pillar{page-break-inside:avoid;margin:48px 0;}
+      .footnote,.guide-footer p{color:#666;}
+      .signature a{color:#7a6320;border-bottom:0;}
+      .divider,.divider-major,.guide-footer,.footnote{border-color:#c9a84c;}
+      a{color:inherit;text-decoration:none;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .topbar-pdf{animation:none;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="guide-topbar" data-no-pdf>
+    <button class="topbar-pdf" id="save-pdf" type="button" aria-label="Save this guide as a PDF">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Save as PDF</span>
+    </button>
+    <a class="topbar-back" href="/" aria-label="Back to Legacy Co">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span>Back to Site</span>
+    </a>
+  </div>
+
+  <main class="guide-wrap" id="guide-content">
+
+    <!-- ─── Hero ──────────────────────────────────────────────────────────── -->
+    <header class="guide-hero">
+      <img src="/logo.svg" alt="Legacy Co" class="guide-logo" />
+      <p class="guide-eyebrow">Legacy Co · Formational Habits</p>
+      <h1 class="guide-title">Formational Habits for Faith-Forward Founders</h1>
+      <p class="guide-subtitle">Built around The Brand Bridge: Identity, Clarity, Legacy. The rhythms that form each.</p>
+      <div class="guide-steps-row">
+        <span class="step">Identity</span><span class="dot">·</span>
+        <span class="step">Clarity</span><span class="dot">·</span>
+        <span class="step">Legacy</span>
+      </div>
+    </header>
+
+    <!-- ─── Before You Read This ──────────────────────────────────────────── -->
+    <section class="prose">
+      <h2 class="section-h2">Before you read this</h2>
+      <p class="section-lead">A quick frame for what this is.</p>
+      <p>You already know there's a gap between who you say you're building for and the way you're actually living while you build. This guide names the gap and gives you the rhythms that close it.</p>
+      <p>If your business is supposed to flow from your calling, the calling has to be tended. The work doesn't tend it. The work consumes it.</p>
+      <p>So this is a guide to the habits that form the founder, not the funnel.</p>
+      <p>A few things to know before we go further.</p>
+      <p><strong>This is liturgical, not informational.</strong> The shape repeats. Daily, weekly, seasonally. The repetition is the point. The goal isn't a new tactic to try. It's a posture you rehearse until it becomes the way you move.</p>
+      <p><strong>Two frames hold the whole thing together.</strong> Priority Living gives you the order your life feeds itself in: Faith first, then family and friends, then business, then fitness. The Brand Bridge gives you the formational arc: Identity, then Clarity, then Legacy. Priority Living is the source check. The Brand Bridge is what gets formed in you, over time, when the source check holds.</p>
+      <p><strong>Habits are the components.</strong> Daily rhythms, weekly rhythms, spiritual practices, formational practices: they're the parts that build each pillar of the Brand Bridge into the founder. You don't pick them off the menu. You run them as a set.</p>
+      <p><strong>It's deliberately uncomfortable in a few places.</strong> I'm going to argue that rest is the most strategic thing you can do, that silence will do more for your brand than another reel, and that your willingness to stop is a better leading indicator of long-term fruit than your willingness to push.</p>
+      <p>If that lands wrong, close the PDF. If it lands honest, keep going.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── The Frame ─────────────────────────────────────────────────────── -->
+    <section class="prose">
+      <h2 class="section-h2">The frame: Priority Living and The Brand Bridge</h2>
+
+      <h3 class="section-h3">Priority Living</h3>
+      <p>Most founders run a priority list that looks something like this:</p>
+      <ol>
+        <li>The thing that's on fire today</li>
+        <li>The thing that's about to be on fire</li>
+        <li>Family, when there's margin</li>
+        <li>Health, when there's margin</li>
+        <li>God, somewhere in the background or in transit between calls</li>
+      </ol>
+      <p>I ran that list for years. It produces the same outcome every time. The fires never stop. The margin never arrives. And the order quietly trains you to believe you're the one holding everything together.</p>
+      <p>Priority Living flips that. The order is fixed, and it runs as an operating system rather than a slogan.</p>
+      <ol>
+        <li><strong>Faith.</strong> The source. Your relationship with God is the well everything else draws from. When this dries up, the rest looks productive for a while and then gets brittle.</li>
+        <li><strong>Family and friends.</strong> The people who knew you before the brand and will know you after it. They get your present self.</li>
+        <li><strong>Business.</strong> The vocation. Real, important, not the top of the list.</li>
+        <li><strong>Fitness.</strong> Your body is the vehicle. If it breaks, none of the above gets carried.</li>
+      </ol>
+      <p>The order is about which one feeds which. Faith feeds family. Family steadies business. Business is held loosely because fitness reminds you that you're a body before you're a brand. You'll spend more clock time on business than on prayer in any given week, and that's fine. Priority Living is a source check, not a clock check.</p>
+      <p>Invert the order and the whole thing groans. Keep the order and the rest of this guide makes sense.</p>
+
+      <h3 class="section-h3">The Brand Bridge</h3>
+      <p>If Priority Living tells you what feeds what, the Brand Bridge tells you what gets formed.</p>
+      <p>Three pillars, in order:</p>
+      <p><strong>Identity.</strong> Who you are before what you do. Rooted in calling, not category. Formed daily, eroded daily, restored daily.</p>
+      <p><strong>Clarity.</strong> A brand message so clear your audience knows exactly why they need you. Formed weekly, in the spaces where you stop long enough to hear yourself think.</p>
+      <p><strong>Legacy.</strong> Building for impact that outlasts the transaction. Formed across years, through the small decisions that nobody sees in the moment.</p>
+      <p>Identity is the foundation. Clarity is what emerges when identity is steady. Legacy is what compounds when both hold.</p>
+      <p>You don't pick a pillar. You build all three, in sequence, with the rhythms in the rest of this guide.</p>
+      <p>Habits are how each pillar gets formed in you.</p>
+    </section>
+
+    <hr class="divider divider-major" />
+
+    <!-- ─── Pillar 1: Identity ────────────────────────────────────────────── -->
+    <article class="pillar prose" id="pillar-identity">
+      <p class="pillar-num">Pillar 01</p>
+      <h2 class="pillar-name">Identity</h2>
+      <p class="pillar-tagline">Who you are before what you do. Rooted in calling, not category.</p>
+
+      <p>Identity is the daily work. It's the part of you that gets formed in private, before the screens come on, before the inbox gets a vote. If you skip the daily forming, by Friday you'll be running on the audience's version of you instead of the one God's actually building.</p>
+      <p>The rhythms below are how identity gets restored every day.</p>
+
+      <p class="subsection-label">Daily rhythms</p>
+      <p>Three anchors. The morning, a midpoint, and the close. None of them are long. All of them are non-negotiable.</p>
+
+      <h4 class="section-h4">Morning Anchor</h4>
+      <p>Before email. Before Slack. Before the phone unlocks.</p>
+      <p>Four movements, in order: prayer, scripture, journaling, intentions for the day.</p>
+      <p>I keep mine to roughly 45 minutes. On heavy days it shrinks to 20. On retreat days it stretches to 90. The duration matters less than the order. Prayer comes first because I want my voice to be the second thing in the room. Scripture next because I'd rather be addressed than self-narrated. Journaling third because thinking on paper has been outpacing thinking in my head for ten years. Intentions last because by then I've remembered who I'm working for, and the day's three priorities pick themselves.</p>
+      <p>A working version of this, if you've never built one:</p>
+      <ul>
+        <li>5 minutes: silent prayer. No agenda. Receive first.</li>
+        <li>15 minutes: read one passage slowly. Re-read it. Write the verse that catches.</li>
+        <li>15 minutes: journal whatever's loud. Name what you're carrying. Let it be on the page instead of in your chest.</li>
+        <li>5 minutes: write the day's three Most Important Results. Three. Not seven.</li>
+        <li>5 minutes: close. Pray over the day before you touch the work.</li>
+      </ul>
+      <p>If you can only do one of these for a season, do scripture. The others rebuild around it.</p>
+
+      <h4 class="section-h4">Midday check-in</h4>
+      <p>Five minutes around noon, or whenever the morning's first wave breaks.</p>
+      <p>Two questions:</p>
+      <ol>
+        <li>What am I actually doing right now, and is it the work I started today to do?</li>
+        <li>Is there someone I should call before I do anything else?</li>
+      </ol>
+      <p>The first question kills drift. The second question is where most of my best work has come from. The Spirit nudges in the middle of the day more than I expect, and the only way to catch the nudge is to stop long enough to feel it.</p>
+
+      <h4 class="section-h4">Daily Close</h4>
+      <p>End of the workday, before family time starts.</p>
+      <ul>
+        <li>Name three things you shipped today. Things that actually moved, not just things that filled the calendar.</li>
+        <li>Name one unexpected grace. Something you didn't earn that showed up anyway.</li>
+        <li>Write tomorrow's three Most Important Results, so morning-you doesn't have to negotiate with the inbox to find them.</li>
+      </ul>
+      <p>The close is what makes the morning anchor possible. If you don't close the day, the day stays open in your head, and the morning has to fight through yesterday's residue to get clean.</p>
+      <p>I close mine at 4pm Friday and don't reopen until Monday. The boundary holds because I gave myself permission to stop.</p>
+
+      <p class="subsection-label">Spiritual practices that form identity</p>
+
+      <h4 class="section-h4">Scripture, slowly</h4>
+      <p>Most of us read the Bible the way we read Slack. We scan for the action item. Try the opposite for a month. One passage. Read it three times. The first time for the story. The second time for the verb that catches. The third time to let it read you back.</p>
+      <p>Lectio divina is a thousand years older than your content calendar. It still works.</p>
+
+      <h4 class="section-h4">Prayer that listens</h4>
+      <p>If your prayer life is mostly a list of asks, you're doing half the work. Build in a daily window where you say nothing. Two minutes is enough to start. The point is to stop being the one talking long enough to hear something back.</p>
+
+      <p class="subsection-label">The formational practice: identity work</p>
+      <p>Ask the question, on a regular cadence: who am I when I'm not producing?</p>
+      <p>If the only honest answer involves your title, your offer, or your follower count, you have identity work to do. The faster the brand grows, the more important this becomes. Brands eat founders who haven't done this work.</p>
+      <p>A working practice: once a quarter, write a one-page answer to "who am I, before any of this." Read last quarter's version first. Notice what's drifted.</p>
+    </article>
+
+    <hr class="divider divider-major" />
+
+    <!-- ─── Pillar 2: Clarity ─────────────────────────────────────────────── -->
+    <article class="pillar prose" id="pillar-clarity">
+      <p class="pillar-num">Pillar 02</p>
+      <h2 class="pillar-name">Clarity</h2>
+      <p class="pillar-tagline">A brand message so clear, your audience knows exactly why they need you.</p>
+
+      <p>Clarity surfaces. It rises in the weekly rhythms, in the silence, in the moments when you stop adding more inputs to the system. Most founders are clear about what they're doing this week and unclear about what they're called to. The fix is to build the kind of week that lets clarity rise.</p>
+      <p>The rhythms below are how clarity gets formed.</p>
+
+      <p class="subsection-label">Weekly rhythms</p>
+      <p>Three anchors. The end of the working week, the Sabbath, and the Sunday horizon. Together they form a small liturgy that runs in seven-day loops.</p>
+
+      <h4 class="section-h4">Kingdom Friday</h4>
+      <p>I built a working day called Kingdom Friday because I needed a deliberate close to the week. An actual stop, with a name and a time on the calendar.</p>
+      <p>The shape, in order:</p>
+      <ul>
+        <li>Review what shipped this week and what didn't.</li>
+        <li>Close client loops. Send the email. Move the card. Mark the project.</li>
+        <li>Write one piece of public-facing work. For me that's the <em>Kingdom Creative Friday</em> newsletter. For you it might be a journal entry, a team note, a reflection.</li>
+        <li>Write the next week's three focus results before you leave the desk.</li>
+        <li>Sabbath prep by 4pm. Phone in another room. Computer closed.</li>
+      </ul>
+      <p>What this protects: the Sabbath that follows. You can't enter rest if you're still mid-thought on Tuesday's deliverable. The work has to be put down on purpose.</p>
+
+      <h4 class="section-h4">Sabbath</h4>
+      <p>One day. No client work. No "I'll just check my email." No quietly building the brand in your head while pretending to be present.</p>
+      <p>Most founders who fail at Sabbath fail because they try to add it on top of a six-day week that wasn't designed to land. Sabbath only works when Friday closes. Sabbath only feels like rest when the week actually stops.</p>
+      <p>A working version:</p>
+      <ul>
+        <li>Wake without an alarm if you can.</li>
+        <li>Do something embodied. Walk. Cook. Garden. Be in your body, not your strategy.</li>
+        <li>Be with the people you love without an agenda.</li>
+        <li>Read something that isn't research.</li>
+        <li>Don't post. Don't pitch. Don't follow up.</li>
+      </ul>
+      <p>The first few Sabbaths feel like withdrawal. That's the point. You're discovering how much of your identity has been quietly tied to availability.</p>
+
+      <h4 class="section-h4">Sunday horizon</h4>
+      <p>Worship in the morning. Family the rest of the day. Twenty minutes in the evening with a pen and paper, looking at the week ahead.</p>
+      <p>I ask three questions:</p>
+      <ol>
+        <li>What's the one thing this week that, if it shipped, would matter most?</li>
+        <li>Where do I expect to feel pulled off the priority order, and what's my plan when that happens?</li>
+        <li>Who needs me to be present this week in a way that won't show up on a calendar?</li>
+      </ol>
+      <p>That last question is the one that's saved more relationships than I can count.</p>
+
+      <p class="subsection-label">Spiritual practices that form clarity</p>
+
+      <h4 class="section-h4">Silence and solitude</h4>
+      <p>Once a week, get an hour alone with no input. No music, no podcast, no phone. Walk somewhere. Sit somewhere. Most of the noise we carry is recent, and silence is how it leaves.</p>
+      <p>Founders especially need this. Our jobs reward responsiveness. Silence is the discipline that reminds you you're not on call to the world.</p>
+
+      <h4 class="section-h4">Daily examen</h4>
+      <p>Borrowed from Ignatius. Five minutes at the end of the day:</p>
+      <ul>
+        <li>Where did I notice God today?</li>
+        <li>Where did I resist?</li>
+        <li>What do I want to bring into tomorrow?</li>
+      </ul>
+      <p>Done over time, the examen becomes tracking. You start to see patterns in where the Spirit moves and where you keep flinching.</p>
+
+      <p class="subsection-label">The formational practices: vocation and restraint</p>
+
+      <h4 class="section-h4">Vocation discernment</h4>
+      <p>There's a difference between what you're built for and what gets rewarded. They overlap, but they're not the same. The reward will pull you toward what's working in the market. The build is what God put in you.</p>
+      <p>Twice a year I do a half-day on this. I look at every offer, every initiative, every commitment, and ask: is this aligned with who I'm becoming, or just with what's currently producing? The honest answer reshapes the next quarter every single time.</p>
+
+      <h4 class="section-h4">Restraint</h4>
+      <p>Choose, regularly, what not to build.</p>
+      <p>Most founders have plenty of ideas. What they lack is permission to leave the good ones alone. Restraint is the discipline of saying "yes that's a real opportunity" and "no I'm not going to take it." It costs something every time. It also compounds.</p>
+      <p>Your priority order tells you what to keep. Restraint is what you use to enforce it.</p>
+    </article>
+
+    <hr class="divider divider-major" />
+
+    <!-- ─── Pillar 3: Legacy ──────────────────────────────────────────────── -->
+    <article class="pillar prose" id="pillar-legacy">
+      <p class="pillar-num">Pillar 03</p>
+      <h2 class="pillar-name">Legacy</h2>
+      <p class="pillar-tagline">Building for impact that outlasts the transaction. Generational brand equity.</p>
+
+      <p>Legacy is the long arc. It's made of small decisions repeated over years, most of them invisible to the audience. Brand-as-discipleship is what shapes legacy on the public side. Confession and accountability are what protect it on the private side. The decision to stop is the one that proves you actually believe the work belongs to God.</p>
+      <p>The rhythms below are how legacy gets formed across time.</p>
+
+      <p class="subsection-label">The spiritual practice: confession and accountability</p>
+      <p>Find one or two people you tell the truth to. Not your team. Not your followers. People who know your actual life and won't be impressed by your launch metrics. Founders who skip this drift, slowly, in ways they can't see.</p>
+      <p>This is the practice I most often watch faith-forward founders neglect, and it's the one that quietly undoes everything else. Legacy is held together by the people who hold you to it.</p>
+      <p>A working practice:</p>
+      <ul>
+        <li>One or two people. Not your spouse (already too close). Not your team (already entangled). Probably another founder a few years ahead of you, or a pastor, or a longtime friend who has nothing to gain from your brand.</li>
+        <li>A monthly cadence at minimum. Weekly is gold.</li>
+        <li>Tell them the thing you can't post about. Let them tell you what they see.</li>
+      </ul>
+
+      <p class="subsection-label">The formational practice: brand as discipleship</p>
+      <p>This is the bet I run my whole company on. The brand work <em>is</em> the discovery, and the discovery is formation. Strategy, message, visual, system: all of it is downstream of who you're becoming.</p>
+      <p>For you as the founder, that means your brand is the public-facing residue of an interior life. If the interior life is being formed, the brand will reflect it. If the interior life is being neglected, no amount of design polish covers that gap. People feel it before they can name it.</p>
+      <p>So treat the brand the way a disciple treats their formation. Slow. Honest. Built around a real identity, not a borrowed one. That's how legacy compounds in the work.</p>
+
+      <p class="subsection-label">The decision to stop</p>
+      <p>The capstone. The hardest practice on this list to learn, and the one that holds everything else together.</p>
+      <p>You will face a moment, more than once, where stopping looks like losing. Stopping a project that isn't working. Stopping an offer that's bringing in money but eating you. Stopping the day at 4 because you said you would, even though one more hour would close the loop.</p>
+      <p>The decision to stop is a confession. It says: I am not the one holding this together. The work belongs to God. I am a steward, not a savior. The world keeps spinning while I rest.</p>
+      <p>This is where rest stops being a tactic and starts being a theology. Once it lands here, the rest of the rhythms get easier, and legacy starts compounding without you having to force it.</p>
+    </article>
+
+    <hr class="divider divider-major" />
+
+    <!-- ─── Closing ───────────────────────────────────────────────────────── -->
+    <section class="prose closing">
+      <h2 class="section-h2">Closing: the bridge gets built one habit at a time</h2>
+      <p>Here's the thesis underneath all of this.</p>
+      <p>The Brand Bridge gets built in you slowly, when the rhythms hold. Identity formed daily. Clarity formed weekly. Legacy formed across years. Priority Living keeping the source clean while the bridge builds itself.</p>
+      <p>You are not your launch. You are not your monthly recurring revenue. You are not your follower count or your conversion rate. None of those are the thing about you that lasts.</p>
+      <p>What lasts is who you became while you were building. The character formed under the load. The marriage that held. The kids who recognized you when you walked in the door. The relationship with God that deepened instead of getting deferred.</p>
+      <p>If the rhythms in this guide are doing their job, in five years you'll look up and find that the founder who built the business is a person you actually want to be. The business will reflect that or it won't, but either way you'll have the thing that matters.</p>
+      <p>Identity, then clarity, then legacy. Form the founder, not the funnel.</p>
+      <p>Start with one rhythm. Hold it for thirty days before adding another. Don't try to install the whole system in a week. Liturgies form people slowly, on purpose.</p>
+      <p class="capstone">The work of becoming is the work that shows up in everything else.</p>
+    </section>
+
+    <!-- ─── What's Next CTA ──────────────────────────────────────────────── -->
+    <section class="next-cta">
+      <p class="next-eyebrow">What's Next</p>
+      <h2 class="next-headline">The Imprint Assessment</h2>
+      <p>If this guide named something you've been carrying, there's a next step.</p>
+      <p>I built the <strong>Imprint Assessment</strong> for founders who want to see, on one page, where their identity, clarity, and legacy are aligned and where they've drifted. It's the same diagnostic I run with every Brand Discipleship client before we start any visible work.</p>
+      <p>You'll get the assessment in tomorrow's email, along with the next rhythm in this series. Take it when you have 20 quiet minutes. Then book the complimentary debrief call and I'll walk through your results with you.</p>
+    </section>
+
+    <!-- ─── Signature ─────────────────────────────────────────────────────── -->
+    <div class="signature">
+      <p>Until tomorrow.</p>
+      <p class="sig-name">KC</p>
+      <p class="sig-title">Creative Director, Legacy Creative</p>
+      <p><a href="https://legacycreative.co">legacycreative.co</a></p>
+    </div>
+
+    <!-- ─── Footnote ──────────────────────────────────────────────────────── -->
+    <p class="footnote">Built from The Masters Program's Priority Living frame, the Brand Bridge framework that runs Legacy Co and Brand Discipleship, and a five-day liturgy of rest I'm developing for artists and creators. If you want the deeper version of any of these, the next four emails will get you there.</p>
+
+    <!-- ─── Footer ────────────────────────────────────────────────────────── -->
+    <footer class="guide-footer">
+      <img src="/logo.svg" alt="Legacy Co" />
+      <p>© 2026 Legacy Creative Co.</p>
+    </footer>
+
+    <!-- ─── PREVIEW ONLY: Lead Capture Modal Trigger ────────────────────── -->
+    <!-- Remove this block before going live. It's here so you can test the modal flow on this page. -->
+    <div class="preview-trigger-note" data-no-pdf>
+      <p>Preview Only · Lead Capture Modal</p>
+      <button class="preview-trigger-btn" data-lead-capture type="button">Open the Lead Capture Modal</button>
+    </div>
+
+  </main>
+
+  <!-- ─── Save as PDF ──────────────────────────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script>
+    document.getElementById('save-pdf').addEventListener('click', function(){
+      var btn = this;
+      var label = btn.querySelector('span');
+      var originalLabel = label.textContent;
+      label.textContent = 'Preparing…';
+      btn.disabled = true;
+
+      var node = document.getElementById('guide-content');
+      var opts = {
+        margin:       [0.5, 0.5, 0.5, 0.5],
+        filename:     'Legacy-Co-Formational-Habits-Guide.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak:    { mode: ['css','legacy'], avoid: '.pillar, .next-cta' }
+      };
+
+      html2pdf().set(opts).from(node).save().then(function(){
+        label.textContent = originalLabel;
+        btn.disabled = false;
+      }).catch(function(){
+        label.textContent = originalLabel;
+        btn.disabled = false;
+        window.print();
+      });
+    });
+  </script>
+
+  <!-- ─── Lead Capture Modal (preview-only on this page) ──────────────────── -->
+  <script src="/lead-capture.js" defer></script>
+</body>
+</html>
