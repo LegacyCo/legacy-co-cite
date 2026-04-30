@@ -254,15 +254,6 @@
     .footer-faith{font-size:12px;color:rgba(136,136,128,0.4);letter-spacing:.1em;font-style:italic;}
     @media(max-width:1024px){.footer-links{gap:48px;}}
     @media(max-width:768px){.footer-inner{flex-direction:column;}.footer-links{flex-direction:column;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}}
-    /* ── PDF / Print ── full-brand preservation ─────────────────────── */
-    @media print {
-      /* Force backgrounds and colors to render in PDF (overrides browser
-         default of stripping them). Modern browsers respect this in CSS. */
-      *, *::before, *::after {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        color-adjust: exact !important;
-      }
       html, body { background: var(--black) !important; color: var(--white) !important; }
 
       /* Hide chrome that does not belong in a saved document */
@@ -291,6 +282,58 @@
       /* Page setup — generous margins and brand-coloured backdrop */
       @page { margin: 0.6in; size: letter; background: #080808; }
     }
+    /* ── PDF / Print ── full-brand preservation ─────────────────────── */
+    @media print {
+      /* Force backgrounds + colors to render in saved PDFs */
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      html, body {
+        background: #080808 !important;
+        color: #FAFAF8 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      /* Fixed-position layer repeats on every printed page,
+         filling the full bleed area (page margins included). */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: #080808;
+        z-index: -1;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide site chrome that does not belong in a saved document */
+      nav, .nav-drawer, .nav-hamburger,
+      chat-widget, [data-widget-id],
+      #post-cta, #journal-cta, #cta-final,
+      #newsletter-band,
+      footer,
+      iframe[src*="leadconnector"], iframe[src*="legacycreative.co/widget"],
+      iframe[src*="youtube"], iframe[src*="vimeo"],
+      .yt-thumb, .video-embed,
+      .article-sidebar { display: none !important; }
+
+      /* Single-column prose, no fixed-nav offset */
+      .article-layout { display: block !important; grid-template-columns: 1fr !important; }
+      #article-header { padding: 32px 0 24px !important; }
+      #article-body { padding: 24px 0 40px !important; }
+      .container { max-width: 100% !important; padding: 0 !important; }
+
+      /* Keep visual blocks intact across page breaks */
+      .pull-quote, .pillar-block, .sign-block, .step-block,
+      figure, blockquote, table { page-break-inside: avoid; break-inside: avoid; }
+      h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+      img { max-width: 100% !important; height: auto !important; }
+
+      @page { margin: 0.6in; size: letter; }
+    }
+
 
 
   </style>
