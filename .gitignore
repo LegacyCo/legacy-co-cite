@@ -9,3 +9,20 @@
 
 # OS
 Thumbs.db
+
+# Folders that live in the project directory but are not part of the website.
+# Keep these untracked so `git add -A` can't accidentally publish them.
+aibm-automation/
+aibm-claude-skills/
+aibm-custom-gpts/
+aibm-fundamentals/
+aibm-image-prompts/
+aibm-prompts/
+brand-blueprint/
+lemniscate-preview/
+prospects/
+tasks/
+
+# Local development scratch
+node_modules/
+package-lock.json
